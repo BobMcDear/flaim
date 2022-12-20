@@ -91,7 +91,7 @@ output, batch_stats, intermediates = model.apply(
         )
 ```
 
-If the model architecture is hierarchial, ```intermediates```'s items are the output of each stage and can be looked up through 
+If the model architecture is hierarchical, ```intermediates```'s items are the output of each stage and can be looked up through 
 ```intermediates['intermediates']['stage_ind']```, where ```ind``` is the index of the stage, with 0 being reserved for the stem. For isotropic models, the output of every block is returned, accessible via ```intermediates['intermediates']['block_ind']```.
 
 Note that Flax's ```sow``` API, which is used to store the intermediate activations, appends the data to a tuple; that is, if _n_ forward passes are performed, ```intermediates['intermediates']['stage_ind']``` or ```intermediates['intermediates']['block_ind']``` would be tuples of length _n_, with the *i*<sup>th</sup> item corresponding to the *i*<sup>th</sup> forward pass.
