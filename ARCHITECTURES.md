@@ -187,7 +187,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 ## ResNet
 
 ResNet from _[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)_ by He et al. ResNet proposes residual connections
-to enable information to propogate more freely throughout the network.<br>
+to enable information to propagate more freely throughout the network.<br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
@@ -354,8 +354,8 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 ## Swin
 
-Shifted window attention transformer (Swin transformer) from _[Swin Transformer: Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030)_ by Liu et al. Swin is a hierarchial vision transformer that uses
-shifted window attention (Swin attention) to parsimiously calculate attention by limiting it to local windows whilst also capturing cross-window relationships.
+Shifted window attention transformer (Swin transformer) from _[Swin Transformer: Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030)_ by Liu et al. Swin is a hierarchical vision transformer that uses
+shifted window attention (Swin attention) to parsimoniously calculate attention by limiting it to local windows whilst also capturing cross-window relationships.
 <br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
@@ -395,7 +395,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 ## VAN
 
-Visual attention network (VAN) from _[Visual Attention Network](https://arxiv.org/abs/2202.09741)_ by Guo et al. VAN combines the merits of convolutions and self-attention through large kernel attention (LKA), a linear attention module with spatial and channel adaptibility as well as the ability to capture long-range dependencies.
+Visual attention network (VAN) from _[Visual Attention Network](https://arxiv.org/abs/2202.09741)_ by Guo et al. VAN combines the merits of convolutions and self-attention through large kernel attention (LKA), a linear attention module with spatial and channel adaptability as well as the ability to capture long-range dependencies.
 <br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/Visual-Attention-Network/VAN-Classification).
