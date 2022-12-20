@@ -1,0 +1,559 @@
+# Available Architectures
+
+The following is a list of all available architectures, with brief descriptions and references, classified into network families. Unless otherwise noted, the training dataset is ImageNet1K.
+
+• <strong>[CaiT](#cait)</strong><br>
+• <strong>[ConvNeXt](#convnext)</strong><br>
+• <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
+• <strong>[HorNet](#hornet)</strong><br>
+• <strong>[NesT](#nest)</strong><br>
+• <strong>[PVT V2](#pvt-v2)</strong><br>
+• <strong>[ResNet](#resnet)</strong><br>
+• <strong>[ResNet-D](#resnet-d)</strong><br>
+• <strong>[ResNet-T](#resnet-t)</strong><br>
+• <strong>[Wide ResNet](#wide-resnet)</strong><br>
+• <strong>[ResNeXt](#resnext)</strong><br>
+• <strong>[SENet](#senet)</strong><br>
+• <strong>[ECANet](#ecanet)</strong><br>
+• <strong>[ResNet-RS](#resnet-rs)</strong><br>
+• <strong>[SKNet](#sknet)</strong><br>
+• <strong>[ResNeSt](#resnest)</strong><br>
+• <strong>[Swin](#swin)</strong><br>
+• <strong>[Swin-S3](#swin-s3)</strong><br>
+• <strong>[VAN](#van)</strong><br>
+• <strong>[VGG](#vgg)</strong><br>
+• <strong>[ViT](#vit)</strong><br>
+• <strong>[DeiT 3](#deit-3)</strong><br>
+• <strong>[BEiT](#beit)</strong><br>
+• <strong>[BEiT V2](#beit-v2)</strong><br>
+
+
+
+## CaiT
+
+Class attention image transformer (CaiT) from _[Going deeper with Image Transformers](https://arxiv.org/abs/2103.17239)_ by Touvron et al. CaiT
+presents two novel modules, LayerScale and class attention, for enabling ViTs to go significantly deeper with little saturation in accuracy
+at greater depths.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/cait.py).
+
+• ```cait_xxsmall24_224```: CaiT-XXSmall, depth 24, resolution 224 x 224.
+
+• ```cait_xxsmall36_224```: CaiT-XXSmall, depth 36, resolution 224 x 224.
+
+• ```cait_small24_224```: CaiT-Small, depth 24, resolution 224 x 224.
+
+• ```cait_xxsmall24_384```: CaiT-XXSmall, depth 24, resolution 384 x 384.
+
+• ```cait_xxsmall36_384```: CaiT-XXSmall, depth 36, resolution 384 x 384.
+
+• ```cait_xsmall24_384```: CaiT-XSmall, depth 24, resolution 384 x 384.
+
+• ```cait_small24_384```: CaiT-Small, depth 24, resolution 384 x 384.
+
+• ```cait_small36_384```: CaiT-Small, depth 36, resolution 384 x 384.
+
+• ```cait_medium36_384```: CaiT-Medium, depth 36, resolution 384 x 384.
+
+• ```cait_medium48_448```: CaiT-Medium, depth 48, resolution 448 x 448.
+
+## ConvNeXt
+
+ConvNeXt from _[A ConvNet for the 2020s](https://arxiv.org/abs/2201.03545)_ by Liu et al. ConvNeXt borrows ideas from the transformer literature, such as larger kernel sizes and more aggressive downsampling in the stem, to modernize a plain ResNet and attain results on par with state-of-the-art
+vision transformers like Swin using a purely convolutional network. 
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convnext.py).
+
+• ```convnext_xxxnano```: ConvNeXt-XXXNano, corresponding to ConvNeXt-Atto in timm.
+
+• ```convnext_xxnano```: ConvNeXt-XXNano, corresponding to ConvNeXt-Femto in timm.
+
+• ```convnext_xnano```: ConvNeXt-XNano, corresponding to ConvNeXt-Pico in timm.
+
+• ```convnext_nano```: ConvNeXt-Nano.
+
+• ```convnext_tiny```: ConvNeXt-Tiny.
+
+• ```convnext_small```: ConvNeXt-Small.
+
+• ```convnext_base```: ConvNeXt-Base.
+
+• ```convnext_large```: ConvNeXt-Large.
+
+• ```convnext_tiny_in22k```: ConvNeXt-Tiny, trained on ImageNet22K.
+
+• ```convnext_small_in22k```: ConvNeXt-Small, trained on ImageNet22K.
+
+• ```convnext_base_in22k```: ConvNeXt-Base, trained on ImageNet22K.
+
+• ```convnext_large_in22k```: ConvNeXt-Large, trained on ImageNet22K.
+
+• ```convnext_xlarge_in22k```: ConvNeXt-XLarge, trained on ImageNet22K.
+
+• ```convnext_tiny_in22ft1k```: ConvNeXt-Tiny, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_small_in22ft1k```: ConvNeXt-Small, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_base_in22ft1k```: ConvNeXt-Base, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_large_in22ft1k```: ConvNeXt-Large, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_xlarge_in22ft1k```: ConvNeXt-XLarge, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_tiny_384_in22ft1k```: ConvNeXt-Tiny, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_small_384_in22ft1k```: ConvNeXt-Small, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_base_384_in22ft1k```: ConvNeXt-Base, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_large_384_in22ft1k```: ConvNeXt-Large, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```convnext_xlarge_384_in22ft1k```: ConvNeXt-XLarge, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+## EfficientNetV2
+
+EfficientNetV2 from _[EfficientNetV2: Smaller Models and Faster Training](https://arxiv.org/abs/2104.00298)_ by Tan et al. EfficientNetV2 
+builds on EfficientNet but adds fused MBConv to the search space, takes training speed into account, and more.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/efficientnet.py).
+
+• ```efficientnetv2_small```: EfficientNetV2-Small.
+
+• ```efficientnetv2_medium```: EfficientNetV2-Medium.
+
+• ```efficientnetv2_large```: EfficientNetV2-Large.
+
+• ```efficientnetv2_small_in22k```: EfficientNetV2-Small, trained on ImageNet22K.
+
+• ```efficientnetv2_medium_in22k```: EfficientNetV2-Medium, trained on ImageNet22K.
+
+• ```efficientnetv2_large_in22k```: EfficientNetV2-Large, trained on ImageNet22K.
+
+• ```efficientnetv2_xlarge_in22k```: EfficientNetV2-XLarge, trained on ImageNet22K.
+
+• ```efficientnetv2_small_in22ft1k```: EfficientNetV2-Small, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```efficientnetv2_medium_in22ft1k```: EfficientNetV2-Medium, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```efficientnetv2_large_in22ft1k```: EfficientNetV2-Large, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+• ```efficientnetv2_xlarge_in22ft1k```: EfficientNetV2-XLarge, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+## HorNet
+
+High-order spatial interaction network (HorNet) from _[HorNet: Efficient High-Order Spatial Interactions with Recursive Gated Convolutions](https://arxiv.org/abs/2207.14284)_ by Rao et al. HorNet uses recursive gated convolutions (g^n convolution) to model long-range spatial interactions in the input, akin to self-attention, via convolutions.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/raoyongming/HorNet).
+
+• ```hornet_tiny```: HorNet-Tiny, kernel size 7 x 7.
+
+• ```hornet_small```: HorNet-Small, kernel size 7 x 7.
+
+• ```hornet_base```: HorNet-Base, kernel size 7 x 7.
+
+• ```hornet_large_in22k```: HorNet-Large, kernel size 7 x 7, trained on ImageNet22K.
+
+## NesT
+
+Nested transformer (NesT) from _[Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and Interpretable Visual Understanding](https://arxiv.org/abs/2105.12723)_ by Zhang et al. NesT partitions the input into non-overlapping blocks to perform local self-attention and aggregates them using a simple aggregation layer.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/nest.py).
+
+• ```nest_tiny_224```: NesT-Tiny, resolution 224 x 224.
+
+• ```nest_small_224```: NesT-Small, resolution 224 x 224.
+
+• ```nest_base_224```: NesT-Base, resolution 224 x 224.
+
+## PVT V2
+
+Pyramid vision transformer V2 (PVT V2) from _[PVT v2: Improved Baselines with Pyramid Vision Transformer](https://arxiv.org/abs/2106.13797)_ by Wang et al. PVT V2's primary differences from regular ViTs are spatial reduction attention, overlapping patch embedding, and a convolution in every MLP.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/pvt_v2.py).
+
+• ```pvtv2_b0```: PVTV2-B0.
+
+• ```pvtv2_b1```: PVTV2-B1.
+
+• ```pvtv2_b2```: PVTV2-B2.
+
+• ```pvtv2_b3```: PVTV2-B3.
+
+• ```pvtv2_b4```: PVTV2-B4.
+
+• ```pvtv2_b5```: PVTV2-B5.
+
+## ResNet
+
+ResNet from _[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)_ by He et al. ResNet proposes residual connections
+to enable information to propogate more freely throughout the network.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```resnet18```: ResNet-18.
+
+• ```resnet34```: ResNet-34.
+
+• ```resnet26```: ResNet-26.
+
+• ```resnet50```: ResNet-50.
+
+• ```resnet101```: ResNet-101.
+
+• ```resnet152```: ResNet-152.
+
+## ResNet-D
+
+ResNet-D from _[Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/abs/1812.01187)_ by He et al. ResNet-D
+is identical to ResNet, except that it supplants the 7 x 7 convolution in the stem with three 3 x 3 convolutions
+and delegates spatial reduction in the non-identity branch of each residual block to average pooling in lieu of a strided
+1 x 1 convolution.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```resnet18d```: ResNet-D-18.
+
+• ```resnet34d```: ResNet-D-34.
+
+• ```resnet26d```: ResNet-D-26.
+
+• ```resnet50d```: ResNet-D-50.
+
+• ```resnet101d```: ResNet-D-101.
+
+• ```resnet152d```: ResNet-D-152.
+
+• ```resnet200d```: ResNet-D-200.
+
+## ResNet-T
+
+ResNet-T from _[PyTorch Image Models](https://github.com/rwightman/pytorch-image-models)_ by Wightman. ResNet-T is identical to ResNet-D, except that the
+stem is tiered, i.e., the output dimension of the convolutions are 24, 32, and 64 instead of 32, 32, and 64.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```resnet10t```: ResNet-T-10.
+
+• ```resnet14t```: ResNet-T-14.
+
+• ```resnet26t```: ResNet-T-26.
+
+## Wide ResNet
+
+Wide ResNet from _[Wide Residual Networks](https://arxiv.org/abs/1605.07146)_ by Zagoruyko et al. Wide ResNet recommends increasing the number of channels
+in the bottleneck dimension of each residual block as an alternative to deepening ResNets.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```wide_resnet50_2```: Wide ResNet-50, width multiplier 2x.
+
+• ```wide_resnet101_2```: Wide ResNet-101, width multiplier 2x.
+
+## ResNeXt
+
+ResNeXt from _[Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)_ by Xie et al. ResNeXt is inspired by Inception's split-transform-merge strategy and has a multi-branch design that aggregates a set of homogeneous transformations in each residual block for better performance. 
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```resnext50_32x4d```: ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+• ```resnext101_32x8d```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8.
+
+• ```resnext101_64x4d```: ResNeXt-101, cardinality 64, bottleneck dimension of each branch in the first stage 4.
+
+## SENet
+
+Squeeze-and-excitation network (SENet) from _[Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)_ by Hu et al. SENet introduces squeeze-and-excitation (SE), a channel attention mechanism, for capturing relationships between different channels and adaptively weighing them. 
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```seresnext50_32x4d```: SE-ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+• ```seresnext101_32x8d```: SE-ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8.
+
+• ```seresnext26d_32x4d```: SE-ResNeXt-D-26, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+• ```seresnext26t_32x4d```: SE-ResNeXt-T-26, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+## ECANet
+
+Efficient channel attention network (ECANet) from _[ECA-Net: Efficient Channel Attention for Deep Convolutional Neural Networks](https://arxiv.org/abs/1910.03151)_ by Wang et al. ECANet suggests an alternative to squeeze-and-excitation, dubbed efficient channel attention (ECA), that eliminates dimensionality reduction in the bottleneck layer of the excitation module
+for better accuracy, in addition to being cheaper.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```ecaresnet50d```: ECA-ResNet-D-50.
+
+• ```ecaresnet101d```: ECA-ResNet-D-101.
+
+• ```ecaresnet269d```: ECA-ResNet-D-269.
+
+• ```ecaresnet26t```: ECA-ResNet-T-26.
+
+• ```ecaresnet50t```: ECA-ResNet-T-50.
+
+## ResNet-RS
+
+ResNet-RS from _[Revisiting ResNets: Improved Training and Scaling Strategies](https://arxiv.org/abs/2103.07579)_ by Bello et al. ResNet-RS is similar  to an 
+SE-ResNet-D but enjoys a refined scaling procedure.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
+
+• ```resnetrs50```: ResNet-RS-50.
+
+• ```resnetrs101```: ResNet-RS-101.
+
+• ```resnetrs152```: ResNet-RS-152.
+
+• ```resnetrs200```: ResNet-RS-200.
+
+• ```resnetrs270```: ResNet-RS-270.
+
+• ```resnetrs350```: ResNet-RS-350.
+
+• ```resnetrs420```: ResNet-RS-420.
+
+## SKNet
+
+Selective kernel networks (SKNet) from _[Selective Kernel Networks](https://arxiv.org/abs/1903.06586)_ by Li et al. SKNet uses selective kernel units (SK units) to adjust each residual block's
+kernel size according to the input.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/sknet.py).
+
+• ```skresnet18```: SK-ResNet-18.
+
+• ```skresnet34```: SK-Resnet-34.
+
+• ```skresnext50_32x4d```: SK-ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+## ResNeSt
+
+ResNeSt from _[ResNeSt: Split-Attention Networks](https://arxiv.org/abs/2004.08955)_ by Zhang et al. ResNeSt compounds the power of multi-branch architectures with that of channel attention
+using a mechanism known as split attention (SplAt).
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnest.py).
+
+• ```resnest14_2s1x64d```: ResNeSt-14, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+• ```resnest26_2s1x64d```: ResNeSt-26, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+• ```resnest50_2s1x64d```: ResNeSt-50, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+• ```resnest101_2s1x64d```: ResNeSt-101, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+• ```resnest200_2s1x64d```: ResNeSt-200, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+• ```resnest269_2s1x64d```: ResNeSt-269, radix 2, cardinality 1, bottleneck dimension of each branch in the first stage 64.
+
+## Swin
+
+Shifted window attention transformer (Swin transformer) from _[Swin Transformer: Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030)_ by Liu et al. Swin is a hierarchial vision transformer that uses
+shifted window attention (Swin attention) to parsimiously calculate attention by limiting it to local windows whilst also capturing cross-window relationships.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
+
+• ```swin_tiny_window7_224```: Swin-Tiny, window size 7 x 7, resolution 224 x 224.
+
+• ```swin_small_window7_224```: Swin-Small, window size 7 x 7, resolution 224 x 224.
+
+• ```swin_base_window7_224```: Swin-Base, window size 7 x 7, resolution 224 x 224.
+
+• ```swin_large_window7_224```: Swin-Large, window size 7 x 7, resolution 224 x 224.
+
+• ```swin_base_window12_384```: Swin-Base, window size 12 x 12, resolution 384 x 384.
+
+• ```swin_large_window12_384```: Swin-Large, window size 12 x 12, resolution 384 x 384.
+
+• ```swin_base_window7_224_in22k```: Swin-Base, window size 7 x 7, resolution 224 x 224, trained on ImageNet22K.
+
+• ```swin_large_window7_224_in22k```: Swin-Large, window size 7 x 7, resolution 224 x 224, trained on ImageNet22K.
+
+• ```swin_base_window12_384_in22k```: Swin-Base, window size 7 x 7, resolution 384 x 384, trained on ImageNet22K.
+
+• ```swin_large_window12_384_in22k```: Swin-Large, window size 7 x 7, resolution 384 x 384, trained on ImageNet22K.
+
+## Swin-S3
+
+Swin-S3 from _[Searching the Search Space of Vision Transformer](https://arxiv.org/abs/2111.14725)_ by Chen et al. Swin-S3 is composed of the same building blocks as Swin but was discovered through neural architecture search.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
+
+• ```swin_s3_tiny_224```: Swin-S3-Tiny, resolution 224 x 224. 
+
+• ```swin_s3_small_224```: Swin-S3-Small, resolution 224 x 224. 
+
+• ```swin_s3_base_224```: Swin-S3-Base, resolution 224 x 224. 
+
+## VAN
+
+Visual attention network (VAN) from _[Visual Attention Network](https://arxiv.org/abs/2202.09741)_ by Guo et al. VAN combines the merits of convolutions and self-attention through large kernel attention (LKA), a linear attention module with spatial and channel adaptibility as well as the ability to capture long-range dependencies.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/Visual-Attention-Network/VAN-Classification).
+
+• ```van_b0```: VAN-B0.
+
+• ```van_b1```: VAN-B1.
+
+• ```van_b2```: VAN-B2.
+
+• ```van_b3```: VAN-B3.
+
+## VGG
+
+VGG from _[Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)_ by Simonyan et al. VGG stacks many 3 x 3 convolutions on top of one another and showed the importance of depth for object recognition.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vgg.py).
+
+• ```vgg11```: VGG-11.
+
+• ```vgg13```: VGG-13.
+
+• ```vgg16```: VGG-16.
+
+• ```vgg19```: VGG-19.
+
+• ```vgg11_bn```: VGG-11 with batch normalization.
+
+• ```vgg13_bn```: VGG-13 with batch normalization.
+
+• ```vgg16_bn```: VGG-16 with batch normalization.
+
+• ```vgg19_bn```: VGG-19 with batch normalization.
+
+## ViT
+
+Vision transformer (ViT) from _[An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)_ by Dosovitskiy et al. ViT is identical to an NLP transformer, except that the input is first patchified and linearly transformed to manage the quadratic complexity of self-attention. 
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
+
+• ```vit_small_patch32_224```: ViT-Small, patch size 32 x 32, resolution 224 x 224.
+
+• ```vit_base_patch32_224```: ViT-Base, patch size 32 x 32, resolution 224 x 224.
+
+• ```vit_tiny_patch16_224```: ViT-Tiny, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_small_patch16_224```: ViT-Small, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_base_patch16_224```: ViT-Base, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_large_patch16_224```: ViT-Large, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_base_patch8_224```: ViT-Base, patch size 8 x 8, resolution 224 x 224.
+
+• ```vit_small_patch32_384```: ViT-Small, patch size 32 x 32, resolution 384 x 384.
+
+• ```vit_base_patch32_384```: ViT-Base, patch size 32 x 32, resolution 384 x 384.
+
+• ```vit_large_patch32_384```: ViT-Large, patch size 32 x 32, resolution 384 x 384.
+
+• ```vit_tiny_patch16_384```: ViT-Tiny, patch size 16 x 16, resolution 384 x 384.
+
+• ```vit_small_patch16_384```: ViT-Small, patch size 16 x 16, resolution 384 x 384.
+
+• ```vit_base_patch16_384```: ViT-Base, patch size 16 x 16, resolution 384 x 384.
+
+• ```vit_large_patch16_384```: ViT-Large, patch size 16 x 16, resolution 384 x 384.
+
+• ```vit_small_patch32_224_in22k```: ViT-Small, patch size 32 x 32, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_base_patch32_224_in22k```: ViT-Base, patch size 32 x 32, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_large_patch32_224_in22k```: ViT-Large, patch size 32 x 32, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_tiny_patch16_224_in22k```: ViT-Tiny, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_small_patch16_224_in22k```: ViT-Small, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_base_patch16_224_in22k```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_large_patch16_224_in22k```: ViT-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_huge_patch14_224_in22k```: ViT-Huge, patch size 14 x 14, resolution 224 x 224, trained on ImageNet22K.
+
+• ```vit_base_patch8_224_in22k```: ViT-Base, patch size 8 x 8, resolution 224 x 224, trained on ImageNet22K.
+
+## DeiT 3
+
+Data-efficient image transformer III (DeiT 3) from _[DeiT III: Revenge of the ViT](https://arxiv.org/abs/2204.07118)_ by Touvron et al. DeiT 3 is very similar to ViT but is trained using a better recipe.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/deit.py).
+
+• ```deit3_small_patch16_224```: DeiT3-Small, patch size 16 x 16, resolution 224 x 224.
+
+• ```deit3_medium_patch16_224```: DeiT3-Medium, patch size 16 x 16, resolution 224 x 224.
+
+• ```deit3_base_patch16_224```: DeiT3-Base, patch size 16 x 16, resolution 224 x 224.
+
+• ```deit3_large_patch16_224```: DeiT3-Large, patch size 16 x 16, resolution 224 x 224.
+
+• ```deit3_huge_patch14_224```: DeiT3-Huge, patch size 14 x 14, resolution 224 x 224.
+
+• ```deit3_small_patch16_384```: DeiT3-Small, patch size 16 x 16, resolution 384 x 384.
+
+• ```deit3_base_patch16_384```: DeiT3-Base, patch size 16 x 16, resolution 384 x 384.
+
+• ```deit3_large_patch16_384```: DeiT3-Large, patch size 16 x 16, resolution 384 x 384.
+
+• ```deit3_small_patch16_224_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_medium_patch16_224_in22ft1k```: DeiT3-Medium, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_base_patch16_224_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_large_patch16_224_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_huge_patch14_224_in22ft1k```: DeiT3-Huge, patch size 14 x 14, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_small_patch16_384_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_base_patch16_384_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+• ```deit3_large_patch16_384_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+## BEiT
+
+BEiT from _[BEiT: BERT Pre-Training of Image Transformers](https://arxiv.org/abs/2106.08254)_ by Bao et al. BEiT is very similar to ViT with relative position embedding but is trained using BERT-style masked modelling.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/beit.py).
+
+• ```beit_base_patch16_224```: BEiT-Base, patch size 16 x 16, resolution 224 x 224. 
+
+• ```beit_large_patch16_224```: BEiT-Large, patch size 16 x 16, resolution 224 x 224. 
+
+• ```beit_base_patch16_384```: BEiT-Base, patch size 16 x 16, resolution 384 x 384. 
+
+• ```beit_large_patch16_384```: BEiT-Large, patch size 16 x 16, resolution 384 x 384. 
+
+• ```beit_large_patch16_512```: BEiT-Large, patch size 16 x 16, resolution 512 x 512. 
+
+• ```beit_base_patch16_224_in22k```: BEiT-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```beit_large_patch16_224_in22k```: BEiT-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+## BEiT V2
+
+BEiT V2 from _[BEiT v2: Masked Image Modeling with Vector-Quantized Visual Tokenizers](https://arxiv.org/abs/2208.06366)_ by Peng et al. BEiT V2 is identical to BEiT in terms of architecture but uses a different masked modelling approach that relies on vector-quantized knowledge distillation algorithm for exploiting higher-level semantics.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/beit.py).
+
+• ```beitv2_base_patch16_224```: BEiTV2-Base, patch size 16 x 16, resolution 224 x 224.
+
+• ```beitv2_large_patch16_224```: BEiTV2-Large, patch size 16 x 16, resolution 224 x 224.
+
+• ```beitv2_base_patch16_224_in22k```: BEiTV2-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+• ```beitv2_large_patch16_224_in22k```: BEiTV2-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
