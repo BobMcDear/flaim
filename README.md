@@ -117,9 +117,7 @@ Code contributions are currently not accepted, however, there are three alternat
 
 • Bugs: If you discover any bugs, please open an issue and include your system information, a description of the problem, and a reproducible example.<br>
 • Feature request: flaim is under active development and many more models will be released in the near future. If there are particular architectures or modules you'd like to see added, please request them by opening an issue.<br>
-• Questions: If you have questions regarding a model, the code, or anything else, please ask them by opening an issue. Most likely somebody else has the same question, and asking it would help them too.<br>
-
-When you are opening an issue, please tag it with [B], [F], or [Q] for bugs, feature requests, and questions respectively.
+• Questions: If you have questions regarding a model, the code, or anything else, please ask them by opening a discussion thread. Most likely somebody else has the same question, and asking it would help them too.<br>
 
 
 ## Acknowledgements
