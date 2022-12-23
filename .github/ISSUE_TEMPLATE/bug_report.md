@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a bug report to help improve flaim.
-title: "[B]"
+title: "[Bug report]"
 labels: ''
 assignees: ''
 

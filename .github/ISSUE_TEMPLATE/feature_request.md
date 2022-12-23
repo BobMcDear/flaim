@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for improving flaim.
-title: "[F]"
+title: "[Feature request]"
 labels: ''
 assignees: ''
 
