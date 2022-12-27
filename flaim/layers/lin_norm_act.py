@@ -57,7 +57,7 @@ class ConvBNAct(nn.Module):
 	out_dim: T.Optional[int] = None
 	kernel_size: T.Union[T.Tuple[int, int], int] = 3
 	stride: T.Union[T.Tuple[int, int], int] = 1
-	padding: T.Optional[T.Union[T.Tuple[T.Tuple[int, int], T.Tuple[int, int]], str, int]] = None
+	padding: T.Optional[T.Union[str, int]] = None
 	groups: T.Union[int, str] = 1
 	dilation: int = 1
 	bias: bool = True
@@ -117,7 +117,7 @@ class ConvLNAct(nn.Module):
 	out_dim: T.Optional[int] = None
 	kernel_size: T.Union[T.Tuple[int, int], int] = 3
 	stride: T.Union[T.Tuple[int, int], int] = 1
-	padding: T.Optional[T.Union[T.Tuple[T.Tuple[int, int], T.Tuple[int, int]], str, int]] = None
+	padding: T.Optional[T.Union[str, int]] = None
 	groups: T.Union[int, str] = 1
 	dilation: int = 1
 	bias: bool = True
