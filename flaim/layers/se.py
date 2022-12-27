@@ -42,6 +42,8 @@ class SE(nn.Module):
 		gate (T.Callable): Gating function used to normalize the attention
 		scores.
 		Default is nn.sigmoid.
+		bias (bool): Whether the linear layers should have a bias term.
+		Default is True.
 		bottleneck (bool): If True, SE's usual MLP is used, i.e., one with 
 		a single hidden layer. Otherwise, a single fully-connected layer 
 		with no non-linearities is used, and reduction_factor, reduction_dim,
@@ -53,6 +55,7 @@ class SE(nn.Module):
 	pool: T.Callable = global_avg_pool
 	act: T.Callable = nn.relu
 	gate: T.Callable = nn.sigmoid
+	bias: bool = True
 	bottleneck: bool = True
 
 	@nn.compact
@@ -64,11 +67,13 @@ class SE(nn.Module):
 				hidden_dim_expansion_factor=1/self.reduction_factor if self.reduction_factor else None,
 				hidden_dim=self.reduction_dim,
 				act=self.act,
+				bias=self.bias,
 				)(attention)
 		
 		else:
 			attention = nn.Dense(
 				features=input.shape[-1],
+				use_bias=self.bias,
 				)(attention)
 		
 		attention = self.gate(attention)
