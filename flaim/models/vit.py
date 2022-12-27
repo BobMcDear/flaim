@@ -98,7 +98,7 @@ class ViT(nn.Module):
 			)(output) if self.pre_norm else output
 		self.sow(
 			col='intermediates',
-			name='stem',
+			name='block_0',
 			value=output,
 			)
 		
@@ -123,7 +123,7 @@ class ViT(nn.Module):
 				)(output)
 			self.sow(
 				col='intermediates',
-				name=f'block_{block_ind}',
+				name=f'block_{block_ind+1}',
 				value=output,
 				)
 
