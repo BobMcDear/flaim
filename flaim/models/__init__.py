@@ -7,6 +7,7 @@ from . import (
 	cait,
 	convnext,
 	efficientnetv2,
+	gcvit,
 	hornet,
 	nest,
 	pvtv2,

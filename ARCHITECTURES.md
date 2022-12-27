@@ -6,6 +6,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[ConvNeXt](#convnext)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
+• <strong>[GC ViT](#gc-vit)</strong><br>
 • <strong>[NesT](#nest)</strong><br>
 • <strong>[PVT V2](#pvt-v2)</strong><br>
 • <strong>[ResNet](#resnet)</strong><br>
@@ -153,6 +154,23 @@ please visit [here](https://github.com/raoyongming/HorNet).
 • ```hornet_base```: HorNet-Base, kernel size 7 x 7.
 
 • ```hornet_large_in22k```: HorNet-Large, kernel size 7 x 7, trained on ImageNet22K.
+
+## GC ViT
+
+Global context vision transformer (GC ViT) from _[Global Context Vision Transformers](https://arxiv.org/abs/2206.09959)_ by Hatamizadeh et al. GC ViT's core contribution is global context attention, where global queries are matched against local keys and values for capturing long-range interactions,
+in addition to short-range interactions modelled via window attention.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/gcvit.py).
+
+• ```gcvit_xxtiny_224```: GCViT-XXTiny, resolution 224 x 224.
+
+• ```gcvit_xtiny_224```: GCViT-XTiny, resolution 224 x 224.
+
+• ```gcvit_tiny_224```: GCViT-Tiny, resolution 224 x 224.
+
+• ```gcvit_small_224```: GCViT-Small, resolution 224 x 224.
+
+• ```gcvit_base_224```: GCViT-Base, resolution 224 x 224.
 
 ## NesT
 

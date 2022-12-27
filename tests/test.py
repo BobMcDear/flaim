@@ -66,6 +66,7 @@ def main(
 			'cait_xxsmall24_224',
 			'convnext_xxxnano',
 			'efficientnetv2_small',
+			'gcvit_xxtiny',
 			'hornet_tiny',
 			'nest_tiny_224',
 			'pvtv2_b0',
