@@ -3,6 +3,7 @@
 The following is a list of all available architectures, with brief descriptions and references, classified into network families. Unless otherwise noted, the training dataset is ImageNet1K.
 
 • <strong>[CaiT](#cait)</strong><br>
+• <strong>[ConvMixer](#convmixer)</strong><br>
 • <strong>[ConvNeXt](#convnext)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
@@ -57,6 +58,21 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```cait_medium36_384```: CaiT-Medium, depth 36, resolution 384 x 384.
 
 • ```cait_medium48_448```: CaiT-Medium, depth 48, resolution 448 x 448.
+
+## ConvMixer
+
+ConvMixer from _[Patches Are All You Need?](https://arxiv.org/abs/2201.09792)_ by Trockman et al. ConvMixer
+is similar to isotropic architectures like ViT but uses convolutions with large kernel sizes to perform token mixing.
+.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convmixer.py).
+
+• ```convmixer20_1024d_patch14_kernel9```: ConvMixer, depth 20, token dimension 1024, patch size 14 x 14, kernel size 9 x 9.
+
+• ```convmixer20_1536d_patch7_kernel9```: ConvMixer, depth 20, token dimension 1536, patch size 7 x 7, kernel size 9 x 9.
+
+• ```convmixer32_768d_patch7_kernel7```: ConvMixer, depth 32, token dimension 768, patch size 7 x 7, kernel size 7 x 7.
+
 
 ## ConvNeXt
 

@@ -64,6 +64,7 @@ def main(
 	if small_sample:
 		model_names = {
 			'cait_xxsmall24_224',
+			'convmixer20_1024d_patch14_kernel9',
 			'convnext_xxxnano',
 			'efficientnetv2_small',
 			'gcvit_xxtiny',

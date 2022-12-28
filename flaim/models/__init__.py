@@ -5,6 +5,7 @@ State-of-the-art pre-trained vision models.
 
 from . import (
 	cait,
+	convmixer,
 	convnext,
 	efficientnetv2,
 	gcvit,
