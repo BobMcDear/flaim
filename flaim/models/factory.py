@@ -66,8 +66,8 @@ def get_input_size(
 	
 	Returns (int): The input size the model expects.
 	"""
-	size = re.findall(r'_\d{3}', model_name)
-	return int(size[0][1:]) if size else 224
+	size = re.findall(r'_\d{3}(?:_|$)', model_name)
+	return int(size[0].split('_')[1]) if size else 224
 
 
 def create_flaim_dir() -> str:
