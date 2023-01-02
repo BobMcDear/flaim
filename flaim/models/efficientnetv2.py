@@ -143,6 +143,7 @@ class MBConv(nn.Module):
 		Default is 1.
 		expansion_factor (int): Expansion factor for
 		the inverted bottleneck.
+		Default is 1.
 		act (T.Callable): Activation function.
 		Default is nn.silu.
 		tf (bool): Whether to use batch normalization epsilon of
