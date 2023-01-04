@@ -15,6 +15,7 @@ import typing as T
 
 from flax import linen as nn
 
+from .acts import gelu
 from .layer_scale import LayerScale
 from .mlp import TransformerMLP
 
@@ -28,6 +29,8 @@ class MetaFormerBlock(nn.Module):
 		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the 
 		hidden layer of the MLP.
 		Default is 4.
+		act (T.Callable): Activation for the hidden layer of the MLP.
+		Default is gelu.
 		dw_kernel_size (T.Optional[int]): Kernel size of a depthwise convolution
 		applied immediately after the first linear layer of the MLP. If None,
 		no depthwise convolution is applied.
@@ -42,6 +45,7 @@ class MetaFormerBlock(nn.Module):
 	"""
 	token_mixer: T.Callable
 	mlp_hidden_dim_expansion_factor: float = 4.
+	act: T.Callable = gelu
 	dw_kernel_size: T.Optional[int] = None
 	layer_norm_eps: T.Optional[float] = 1e-6
 	layer_scale_init_value: T.Optional[float] = None
@@ -59,6 +63,7 @@ class MetaFormerBlock(nn.Module):
 
 		output = TransformerMLP(
 			hidden_dim_expansion_factor=self.mlp_hidden_dim_expansion_factor,
+			act=self.act,
 			dw_kernel_size=self.dw_kernel_size,
 			layer_norm_eps=self.layer_norm_eps,
 			layer_scale_init_value=self.layer_scale_init_value,
