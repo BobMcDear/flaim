@@ -7,6 +7,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[ConvNeXt](#convnext)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
+• <strong>[MaxViT](#maxvit)</strong><br>
 • <strong>[GC ViT](#gc-vit)</strong><br>
 • <strong>[NesT](#nest)</strong><br>
 • <strong>[PVT V2](#pvt-v2)</strong><br>
@@ -170,6 +171,49 @@ please visit [here](https://github.com/raoyongming/HorNet).
 • ```hornet_base```: HorNet-Base, kernel size 7 x 7.
 
 • ```hornet_large_in22k```: HorNet-Large, kernel size 7 x 7, trained on ImageNet22K.
+
+## MaxViT
+
+Multi-axis vision transformer (MaxViT) from _[MaxViT: Multi-Axis Vision Transformer](https://arxiv.org/abs/2204.01697)_ by Tu et al. MaxViT combines
+dilated global attention, a method for expressing global spatial interactions with a linear complexity, with MBConv and window attention for competitive performance.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/maxxvit.py).
+
+```maxvit_tiny_224```: MaxViT-Tiny, resolution 224 x 224.
+
+```maxvit_small_224```: MaxViT-Small, resolution 224 x 224.
+
+```maxvit_base_224```: MaxViT-Base, resolution 224 x 224.
+
+```maxvit_large_224```: MaxViT-Large, resolution 224 x 224.
+
+```maxvit_tiny_384```: MaxViT-Tiny, resolution 384 x 384.
+
+```maxvit_small_384```: MaxViT-Small, resolution 384 x 384.
+
+```maxvit_base_384```: MaxViT-Base, resolution 384 x 384.
+
+```maxvit_large_384```: MaxViT-Large, resolution 384 x 384.
+
+```maxvit_tiny_512```: MaxViT-Tiny, resolution 512 x 512.
+
+```maxvit_small_512```: MaxViT-Small, resolution 512 x 512.
+
+```maxvit_base_512```: MaxViT-Base, resolution 512 x 512.
+
+```maxvit_large_512```: MaxViT-Large, resolution 512 x 512.
+
+```maxvit_base_384_in22ft1k```: MaxViT-Base, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+```maxvit_large_384_in22ft1k```: MaxViT-Large, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+```maxvit_xlarge_384_in22ft1k```: MaxViT-XLarge, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+```maxvit_base_512_in22ft1k```: MaxViT-Base, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+```maxvit_large_512_in22ft1k```: MaxViT-Large, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
+
+```maxvit_xlarge_512_in22ft1k```: MaxViT-XLarge, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
 
 ## GC ViT
 

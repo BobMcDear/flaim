@@ -10,6 +10,7 @@ from . import (
 	efficientnetv2,
 	gcvit,
 	hornet,
+	maxvit,
 	nest,
 	pvtv2,
 	resnet,

@@ -69,6 +69,7 @@ def main(
 			'efficientnetv2_small',
 			'gcvit_xxtiny',
 			'hornet_tiny',
+			'maxvit_tiny_224',
 			'nest_tiny_224',
 			'pvtv2_b0',
 			'resnet18',
