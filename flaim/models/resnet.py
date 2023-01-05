@@ -451,6 +451,20 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnet152': {
 			'depths': (3, 8, 36, 3),
 			},
+		'resnet18_ssl': {
+			'depths': (2, 2, 2, 2),
+			'block': BasicBlock,
+			},
+		'resnet50_ssl': {
+			'depths': (3, 4, 6, 3),
+			},
+		'resnet18_swsl': {
+			'depths': (2, 2, 2, 2),
+			'block': BasicBlock,
+			},
+		'resnet50_swsl': {
+			'depths': (3, 4, 6, 3),
+			},
 		'resnet18d': {
 			'depths': (2, 2, 2, 2),
 			'block': BasicBlock,
@@ -526,6 +540,66 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			'depths': (3, 4, 23, 3),
 			'cardinality': 64,
 			'dim_per_cardinal_first_stage': 4,
+			},
+		'resnext50_32x4d_ssl': {
+			'depths': (3, 4, 6, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 4,
+			},
+		'resnext101_32x4d_ssl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 4,
+			},
+		'resnext101_32x8d_ssl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 8,
+			},
+		'resnext101_32x16d_ssl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 16,
+			},
+		'resnext50_32x4d_swsl': {
+			'depths': (3, 4, 6, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 4,
+			},
+		'resnext101_32x4d_swsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 4,
+			},
+		'resnext101_32x8d_swsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 8,
+			},
+		'resnext101_32x16d_swsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 16,
+			},
+		'resnext101_32x8d_wsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 8,
+			},
+		'resnext101_32x16d_wsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 16,
+			},
+		'resnext101_32x32d_wsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 32,
+			},
+		'resnext101_32x48d_wsl': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 48,
 			},
 		'seresnext50_32x4d': {
 			'depths': (3, 4, 6, 3),

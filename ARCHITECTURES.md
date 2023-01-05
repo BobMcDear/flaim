@@ -281,6 +281,14 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```resnet152```: ResNet-152.
 
+• ```resnet18_ssl```: ResNet-18, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnet50_ssl```: ResNet-50, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnet18_swsl```: ResNet-18, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnet50_swsl```: ResNet-50, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
 ## ResNet-D
 
 ResNet-D from _[Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/abs/1812.01187)_ by He et al. ResNet-D
@@ -340,6 +348,30 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```resnext101_32x8d```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8.
 
 • ```resnext101_64x4d```: ResNeXt-101, cardinality 64, bottleneck dimension of each branch in the first stage 4.
+
+• ```resnext50_32x4d_ssl```: ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x4d_ssl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 4, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x8d_ssl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x16d_ssl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 16, trained using semi-supervised learning, with a teacher model, on a subset of YFCC100M and fine-tuned on ImageNet1K.
+
+• ```resnext50_32x4d_swsl```: ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x4d_swsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 4, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x8d_swsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x16d_swsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 16, trained using semi-weakly supervised learning, with a teacher model, on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x8d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x16d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 16, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x32d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 32, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+• ```resnext101_32x48d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 48, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
 
 ## SENet
 
