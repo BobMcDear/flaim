@@ -380,11 +380,17 @@ Squeeze-and-excitation network (SENet) from _[Squeeze-and-Excitation Networks](h
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
+• ```seresnet50```: SE-ResNet-50.
+
+• ```seresnet152d```: SE-ResNet-D-152.
+
 • ```seresnext50_32x4d```: SE-ResNeXt-50, cardinality 32, bottleneck dimension of each branch in the first stage 4.
 
 • ```seresnext101_32x8d```: SE-ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 8.
 
 • ```seresnext26d_32x4d```: SE-ResNeXt-D-26, cardinality 32, bottleneck dimension of each branch in the first stage 4.
+
+• ```seresnext101d_32x8d```: SE-ResNeXt-D-101, cardinality 32, bottleneck dimension of each branch in the first stage 8.
 
 • ```seresnext26t_32x4d```: SE-ResNeXt-T-26, cardinality 32, bottleneck dimension of each branch in the first stage 4.
 

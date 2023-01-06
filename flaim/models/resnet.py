@@ -601,6 +601,16 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			'cardinality': 32,
 			'dim_per_cardinal_first_stage': 48,
 			},
+		'seresnet50': {
+			'depths': (3, 4, 6, 3),
+			'attention': layers.SE,
+			},
+		'seresnet152d': {
+			'depths': (3, 8, 36, 3),
+			'stem': ResNetDStem,
+			'downsample': partial(ResNetDownsample, avg_pool=True),
+			'attention': layers.SE,
+			},
 		'seresnext50_32x4d': {
 			'depths': (3, 4, 6, 3),
 			'cardinality': 32,
@@ -617,6 +627,14 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			'depths': (2, 2, 2, 2),
 			'cardinality': 32,
 			'dim_per_cardinal_first_stage': 4,
+			'stem': ResNetDStem,
+			'downsample': partial(ResNetDownsample, avg_pool=True),
+			'attention': layers.SE,
+			},
+		'seresnext101d_32x8d': {
+			'depths': (3, 4, 23, 3),
+			'cardinality': 32,
+			'dim_per_cardinal_first_stage': 8,
 			'stem': ResNetDStem,
 			'downsample': partial(ResNetDownsample, avg_pool=True),
 			'attention': layers.SE,
