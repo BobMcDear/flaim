@@ -276,6 +276,18 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'n_heads': 12,
 			'patch_size': 8,
 			},
+		'vit_base_patch32_224_sam': {
+			'depth': 12,
+			'token_dim': 768,
+			'n_heads': 12,
+			'patch_size': 32,
+			},
+		'vit_base_patch16_224_sam': {
+			'depth': 12,
+			'token_dim': 768,
+			'n_heads': 12,
+			'patch_size': 16,
+			},
 		'deit3_small_patch16_224': {
 			'depth': 12,
 			'token_dim': 384, 
