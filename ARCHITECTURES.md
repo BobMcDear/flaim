@@ -5,6 +5,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[CaiT](#cait)</strong><br>
 • <strong>[ConvMixer](#convmixer)</strong><br>
 • <strong>[ConvNeXt](#convnext)</strong><br>
+• <strong>[ConvNeXt V2](#convnext-v2)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
 • <strong>[MaxViT](#maxvit)</strong><br>
@@ -128,6 +129,65 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```convnext_large_384_in22ft1k```: ConvNeXt-Large, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
 
 • ```convnext_xlarge_384_in22ft1k```: ConvNeXt-XLarge, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+
+## ConvNeXt V2
+
+ConvNeXt V2 from _[ConvNeXt V2: Co-designing and Scaling ConvNets with Masked Autoencoders](https://arxiv.org/abs/2301.00808)_ by Woo et al. ConvNeXt V2 is based on ConvNeXt and benefits from a fully convolutional masked autoencoder training scheme (FCMAE) as well as global response normalization (GRN), a novel module that abates inter-channel feature redundancies.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convnext.py).
+
+• ```convnextv2_atto_fcmae```: ConvNeXtV2-Atto, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_femto_fcmae```: ConvNeXtV2-Femto, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_pico_fcmae```: ConvNeXtV2-Pico, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_nano_fcmae```: ConvNeXtV2-Nano, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_tiny_fcmae```: ConvNeXtV2-Tiny, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_base_fcmae```: ConvNeXtV2-Base, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_large_fcmae```: ConvNeXtV2-Large, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_huge_fcmae```: ConvNeXtV2-Huge, trained using FCMAE on ImageNet1K with no supervision.
+
+• ```convnextv2_atto_fcmae_ftin1k```: ConvNeXtV2-Atto, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_femto_fcmae_ftin1k```: ConvNeXtV2-Femto, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_pico_fcmae_ftin1k```: ConvNeXtV2-Pico, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_nano_fcmae_ftin1k```: ConvNeXtV2-Nano, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_tiny_fcmae_ftin1k```: ConvNeXtV2-Tiny, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_base_fcmae_ftin1k```: ConvNeXtV2-Base, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_large_fcmae_ftin1k```: ConvNeXtV2-Large, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_huge_fcmae_ftin1k```: ConvNeXtV2-Huge, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+
+• ```convnextv2_nano_fcmae_in22ft1k```: ConvNeXtV2-Nano, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_tiny_fcmae_in22ft1k```: ConvNeXtV2-Tiny, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_base_fcmae_in22ft1k```: ConvNeXtV2-Base, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_large_fcmae_in22ft1k```: ConvNeXtV2-Large, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_nano_384_fcmae_in22ft1k```: ConvNeXtV2-Nano, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_tiny_384_fcmae_in22ft1k```: ConvNeXtV2-Tiny, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_base_384_fcmae_in22ft1k```: ConvNeXtV2-Base, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_large_384_fcmae_in22ft1k```: ConvNeXtV2-Large, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_huge_384_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+• ```convnextv2_huge_512_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 512 x 512, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
 ## EfficientNetV2
 

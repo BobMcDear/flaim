@@ -7,6 +7,7 @@ from .acts import *
 from .conv import *
 from .eca import * 
 from .gn_conv import *
+from .grn import *
 from .head import *
 from .identity import *
 from .layer_scale import *

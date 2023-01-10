@@ -22,9 +22,12 @@ class ConvNeXtBlock(nn.Module):
 		layer_scale_init_value (T.Optional[float]): Value for initializing
 		LayerScale. If None, no LayerScale is applied.
 		Default is 1e-6.
+		grn (bool): Whether to use global response normalization inside the MLP.
+		Default is False.
 	"""
 	out_dim: T.Optional[int] = None
 	layer_scale_init_value: T.Optional[float] = 1e-6
+	grn: bool = False
 
 	@nn.compact
 	def __call__(self, input):
@@ -34,6 +37,10 @@ class ConvNeXtBlock(nn.Module):
 			groups='dw',
 			)(input)
 		output = layers.TransformerMLP(
+			act=nn.Sequential([
+				layers.gelu,
+				layers.GRN(),
+				]) if self.grn else layers.gelu,
 			layer_scale_init_value=self.layer_scale_init_value,
 			residual=False,
 			)(output)
@@ -52,11 +59,14 @@ class ConvNeXtStage(nn.Module):
 		layer_scale_init_value (T.Optional[float]): Value for initializing
 		LayerScale. If None, no LayerScale is applied.
 		Default is 1e-6.
+		grn (bool): Whether to use global response normalization inside the MLP.
+		Default is False.
 	"""
 	depth: int
 	out_dim: int
 	stride: int = 1
 	layer_scale_init_value: T.Optional[float] = 1e-6
+	grn: bool = False
 
 	@nn.compact
 	def __call__(self, input):
@@ -72,6 +82,7 @@ class ConvNeXtStage(nn.Module):
 		for _ in range(self.depth):
 			input = ConvNeXtBlock(
 				layer_scale_init_value=self.layer_scale_init_value,
+				grn=self.grn,
 				)(input)
 
 		return input
@@ -87,6 +98,8 @@ class ConvNeXt(nn.Module):
 		layer_scale_init_value (T.Optional[float]): Value for initializing
 		LayerScale. If None, no LayerScale is applied.
 		Default is 1e-6.
+		grn (bool): Whether to use global response normalization inside the MLP.
+		Default is False.
 		n_classes (int): Number of output classes. If 0, there is no head,
 		and the raw final features are returned. If -1, all stages of the 
 		head, other than the final linear layer, are applied and the output
@@ -96,6 +109,7 @@ class ConvNeXt(nn.Module):
 	depths: T.Tuple[int, ...]
 	out_dims: T.Tuple[int, ...]
 	layer_scale_init_value: T.Optional[float] = 1e-6
+	grn: bool = False
 	n_classes: int = 0
 
 	@nn.compact
@@ -118,6 +132,7 @@ class ConvNeXt(nn.Module):
 				out_dim=self.out_dims[stage_ind],
 				stride=1 if stage_ind == 0 else 2,
 				layer_scale_init_value=self.layer_scale_init_value,
+				grn=self.grn,
 				)(output)
 			self.sow(
 				col='intermediates',
@@ -234,6 +249,162 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 		'convnext_xlarge_384_in22ft1k': {
 			'depths': (3, 3, 27, 3),
 			'out_dims': (256, 512, 1024, 2048),
+			},
+		'convnextv2_atto_fcmae': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (40, 80, 160, 320),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_femto_fcmae': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (48, 96, 192, 384),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_pico_fcmae': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (64, 128, 256, 512),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_nano_fcmae': {
+			'depths': (2, 2, 8, 2),
+			'out_dims': (80, 160, 320, 640),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_tiny_fcmae': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_base_fcmae': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_large_fcmae': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (192, 384, 768, 1536),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_huge_fcmae': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (352, 704, 1408, 2816),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_atto_fcmae_ftin1k': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (40, 80, 160, 320),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_femto_fcmae_ftin1k': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (48, 96, 192, 384),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_pico_fcmae_ftin1k': {
+			'depths': (2, 2, 6, 2),
+			'out_dims': (64, 128, 256, 512),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_nano_fcmae_ftin1k': {
+			'depths': (2, 2, 8, 2),
+			'out_dims': (80, 160, 320, 640),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_tiny_fcmae_ftin1k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_base_fcmae_ftin1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_large_fcmae_ftin1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (192, 384, 768, 1536),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_huge_fcmae_ftin1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (352, 704, 1408, 2816),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_nano_fcmae_in22ft1k': {
+			'depths': (2, 2, 8, 2),
+			'out_dims': (80, 160, 320, 640),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_tiny_fcmae_in22ft1k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_base_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_large_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (192, 384, 768, 1536),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_nano_384_fcmae_in22ft1k': {
+			'depths': (2, 2, 8, 2),
+			'out_dims': (80, 160, 320, 640),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_tiny_384_fcmae_in22ft1k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_base_384_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_large_384_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (192, 384, 768, 1536),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_huge_384_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (352, 704, 1408, 2816),
+			'layer_scale_init_value': None,
+			'grn': True,
+			},
+		'convnextv2_huge_512_fcmae_in22ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (352, 704, 1408, 2816),
+			'layer_scale_init_value': None,
+			'grn': True,
 			},
 		}
 	return ConvNeXt, configs
