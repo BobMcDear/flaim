@@ -664,6 +664,14 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```vit_base_patch16_224_sam```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained using sharpness-aware minimization (SAM).
 
+• ```vit_small_patch16_224_dino```: ViT-Small, patch size 16 x 16, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+
+• ```vit_base_patch16_224_dino```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+
+• ```vit_small_patch8_224_dino```: ViT-Small, patch size 8 x 8, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+
+• ```vit_base_patch8_224_dino```: ViT-Base, patch size 8 x 8, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+
 ## DeiT 3
 
 Data-efficient image transformer III (DeiT 3) from _[DeiT III: Revenge of the ViT](https://arxiv.org/abs/2204.07118)_ by Touvron et al. DeiT 3 is very similar to ViT but is trained using a better recipe.<br>
