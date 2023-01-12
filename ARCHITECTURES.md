@@ -100,6 +100,10 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```convnext_large```: ConvNeXt-Large.
 
+• ```convnext_nano_in12k```: ConvNeXt-Nano, trained on ImageNet12K (a subset of ImageNet22K).
+
+• ```convnext_nano_in12ft1k```: ConvNeXt-Nano, trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+
 • ```convnext_tiny_in22k```: ConvNeXt-Tiny, trained on ImageNet22K.
 
 • ```convnext_small_in22k```: ConvNeXt-Small, trained on ImageNet22K.
