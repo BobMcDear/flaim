@@ -647,6 +647,11 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			'downsample': partial(ResNetDownsample, avg_pool=True),
 			'attention': layers.SE,
 			},
+		'ecaresnet50_light': {
+			'depths': (1, 1, 11, 3),
+			'downsample': partial(ResNetDownsample, avg_pool=True),
+			'attention': layers.ECA,
+			},
 		'ecaresnet50d': {
 			'depths': (3, 4, 6, 3),
 			'stem': ResNetDStem,

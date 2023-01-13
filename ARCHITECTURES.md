@@ -466,6 +466,8 @@ for better accuracy, in addition to being cheaper.
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
+• ```ecaresnet50_light```: Lightweight ECA-ResNet-50 with most of the layers being in stage 3.
+
 • ```ecaresnet50d```: ECA-ResNet-D-50.
 
 • ```ecaresnet101d```: ECA-ResNet-D-101.
