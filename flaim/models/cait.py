@@ -192,25 +192,20 @@ def get_cait_configs() -> T.Tuple[T.Type[Cait], T.Dict]:
 			'n_heads': 4,
 			'depth': 24,
 			},
-		'cait_xxsmall36_224': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 36,
-			},
 		'cait_small24_224': {
 			'token_dim': 384,
 			'n_heads': 8,
 			'depth': 24,
 			},
+		'cait_xxsmall36_224': {
+			'token_dim': 192,
+			'n_heads': 4,
+			'depth': 36,
+			},
 		'cait_xxsmall24_384': {
 			'token_dim': 192,
 			'n_heads': 4,
 			'depth': 24,
-			},
-		'cait_xxsmall36_384': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 36,
 			},
 		'cait_xsmall24_384': {
 			'token_dim': 288,
@@ -221,6 +216,11 @@ def get_cait_configs() -> T.Tuple[T.Type[Cait], T.Dict]:
 			'token_dim': 384,
 			'n_heads': 8,
 			'depth': 24,
+			},
+		'cait_xxsmall36_384': {
+			'token_dim': 192,
+			'n_heads': 4,
+			'depth': 36,
 			},
 		'cait_small36_384': {
 			'token_dim': 384,
