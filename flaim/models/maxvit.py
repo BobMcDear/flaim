@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from .factory import NORM_STATS, register_configs
 
 
 class MaxViTStem(nn.Module):
@@ -545,64 +545,78 @@ def get_maxvit_configs() -> T.Tuple[T.Type[MaxViT], T.Dict]:
 		'maxvit_tiny_384': {
 			'depths': (2, 2, 5, 2),
 			'out_dims': (64, 128, 256, 512),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_small_384': {
 			'depths': (2, 2, 5, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_base_384': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_large_384': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (128, 256, 512, 1024),
 			'stem_out_dim': 128,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_tiny_512': {
 			'depths': (2, 2, 5, 2),
 			'out_dims': (64, 128, 256, 512),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_small_512': {
 			'depths': (2, 2, 5, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_base_512': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_large_512': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (128, 256, 512, 1024),
 			'stem_out_dim': 128,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_base_384_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_large_384_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (128, 256, 512, 1024),
 			'stem_out_dim': 128,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_xlarge_384_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (192, 384, 768, 1536),
 			'stem_out_dim': 192,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_base_512_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (96, 192, 384, 768),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_large_512_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (128, 256, 512, 1024),
 			'stem_out_dim': 128,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'maxvit_xlarge_512_in22ft1k': {
 			'depths': (2, 6, 14, 2),
 			'out_dims': (192, 384, 768, 1536),
 			'stem_out_dim': 192,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		}
 	return MaxViT, configs

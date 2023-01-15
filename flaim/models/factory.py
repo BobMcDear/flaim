@@ -15,6 +15,12 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 
+NORM_STATS = {
+	'imagenet': {'mean': (0.485, 0.456, 0.406), 'std': (0.229, 0.224, 0.225)},
+	'inception': {'mean': (0.5, 0.5, 0.5), 'std': (0.5, 0.5, 0.5)},
+	}
+
+
 def add_model_cls(
 	model_cls: T.Callable,
 	configs: T.Dict,
@@ -184,7 +190,8 @@ def get_model(
 	n_classes: int = 0,
 	jit: bool = True,
 	prng: T.Optional[jax.random.KeyArray] = None,
-	) -> T.Tuple[nn.Module, T.Dict]:
+	norm_stats: bool = False,
+	) -> T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]:
 	"""
 	Returns a model and its parameters.
 
@@ -203,8 +210,13 @@ def get_model(
 		prng (T.Optional[jax.random.KeyArray]): PRNG key for
 		initializing the model's parameters. If None, a key is created.
 		Default is None.
+		norm_stats (bool): Whether to also return normalization statistics.
+		The statistics are returned as a dictionary, with key 'mean' containing
+		the means and key 'std' the standard deviations.
+		Default is False.
 
-	Returns (T.Tuple[nn.Module, T.Dict]): The model and its parameters.
+	Returns (T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]):
+	The model, its parameters, and possibly the normalization statistics.
 	"""
 	if model_name not in CONFIGS:
 		raise ValueError(f'{model_name} is not a recognized model.')
@@ -213,23 +225,24 @@ def get_model(
 	config['n_classes'] = n_classes
 
 	model_cls = config.pop('model_cls')
-	input_size = get_input_size(model_name)
+	norm_stats_ = config.pop('norm_stats') if 'norm_stats' in config else NORM_STATS['imagenet']
 
 	model = model_cls(**config)
 	config['model_cls'] = model_cls
+	config['norm_stats'] = norm_stats_
 
 	vars = init_model(
 		model=model,
 		jit=jit,
 		prng=prng,
-		input_size=input_size,
+		input_size=get_input_size(model_name),
 		)
 	
 	if pretrained:
 		pretrained_vars = load_pretrained_vars(model_name)
 		vars = merge_vars(vars, pretrained_vars)
 	
-	return model, vars
+	return (model, vars, norm_stats_) if norm_stats else (model, vars)
 
 
 def list_models(

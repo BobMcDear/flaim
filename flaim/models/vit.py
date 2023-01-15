@@ -9,7 +9,7 @@ from functools import partial
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from .factory import NORM_STATS, register_configs
 
 
 class ViT(nn.Module):
@@ -155,138 +155,163 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'token_dim': 384,
 			'n_heads': 6,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch32_224': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_tiny_patch16_224': {
 			'depth': 12,
 			'token_dim': 192,
 			'n_heads': 3,
+			'norm_stats': NORM_STATS['inception'],
 			}, 
 		'vit_small_patch16_224': {
 			'depth': 12,
 			'token_dim': 384,
 			'n_heads': 6,
+			'norm_stats': NORM_STATS['inception'],
 			}, 
 		'vit_base_patch16_224': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_large_patch16_224': {
 			'depth': 24,
 			'token_dim': 1024,
 			'n_heads': 16,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch8_224': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 8,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_small_patch32_384': {
 			'depth': 12,
 			'token_dim': 384,
 			'n_heads': 6,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch32_384': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_large_patch32_384': {
 			'depth': 24,
 			'token_dim': 1024,
 			'n_heads': 16,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_tiny_patch16_384': {
 			'depth': 12,
 			'token_dim': 192,
 			'n_heads': 3,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_small_patch16_384': {
 			'depth': 12,
 			'token_dim': 384,
 			'n_heads': 6,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch16_384': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_large_patch16_384': {
 			'depth': 24,
 			'token_dim': 1024,
 			'n_heads': 16,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_small_patch32_224_in22k': {
 			'depth': 12,
 			'token_dim': 384,
 			'n_heads': 6,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch32_224_in22k': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_large_patch32_224_in22k': {
 			'depth': 24,
 			'token_dim': 1024,
 			'n_heads': 16,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_tiny_patch16_224_in22k': {
 			'depth': 12,
 			'token_dim': 192,
 			'n_heads': 3,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_small_patch16_224_in22k': {
 			'depth': 12,
 			'token_dim': 384,
 			'n_heads': 6,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch16_224_in22k': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_large_patch16_224_in22k': {
 			'depth': 24,
 			'token_dim': 1024,
 			'n_heads': 16,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_huge_patch14_224_in22k': {
 			'depth': 32,
 			'token_dim': 1280,
 			'n_heads': 16,
 			'patch_size': 14,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch8_224_in22k': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 8,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch32_224_sam': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 32,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_base_patch16_224_sam': {
 			'depth': 12,
 			'token_dim': 768,
 			'n_heads': 12,
 			'patch_size': 16,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'vit_small_patch16_224_dino': {
 			'depth': 12,
@@ -316,6 +341,8 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'n_heads': 6,
 			'layer_scale_init_value': 1e-6,
 			'class_token_pos_embed': False,
+			'norm_stats': NORM_STATS['inception'],
+
 			},
 		'deit3_medium_patch16_224': {
 			'depth': 12,
@@ -433,6 +460,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_large_patch16_224': {
 			'depth': 24,
@@ -443,6 +471,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_base_patch16_384': {
 			'depth': 12,
@@ -453,6 +482,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_large_patch16_384': {
 			'depth': 24,
@@ -463,6 +493,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_large_patch16_512': {
 			'depth': 24,
@@ -473,6 +504,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_base_patch16_224_in22k': {
 			'depth': 12,
@@ -483,6 +515,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beit_large_patch16_224_in22k': {
 			'depth': 24,
@@ -493,6 +526,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			'k_bias': False,
 			'head_pool': True,
 			'head_norm_first': False,
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'beitv2_base_patch16_224': {
 			'depth': 12,

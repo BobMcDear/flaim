@@ -38,6 +38,7 @@ is generally a lengthy process.
 * ```prng``` (```T.Optional[jax.random.KeyArray]```): PRNG key used for initializing the model. When ```None```,
 a PRNG key, with a seed of 0, is created. If ```pretrained``` is ```True``` and ```n_classes``` is 0 or -1, this argument has no effects
 on the returned parameters.
+* ```norm_stats``` (```bool```): Whether to also return normalization statistics used to normalize the input data when the model was trained. The  statistics are returned as a dictionary, with key 'mean' containing the means and key 'std' the standard deviations for each channel.
 
 The snippet below constructs a ResNet-50 with 10 output classes.
 
@@ -45,12 +46,13 @@ The snippet below constructs a ResNet-50 with 10 output classes.
 import flaim
 
 
-model, vars = flaim.get_model(
+model, vars, norm_stats = flaim.get_model(
         model_name='resnet50',
         pretrained=True,
         n_classes=10,
         jit=True,
         prng=None,
+        norm_stats=True,
         )
 ```
 
@@ -61,7 +63,7 @@ receive a ```training``` argument indicating whether the model should be in trai
 ```python
 from jax import numpy as jnp
 
-
+# input should be normalized using norm_stats beforehand
 input = jnp.ones((2, 224, 224, 3))
 
 # Training

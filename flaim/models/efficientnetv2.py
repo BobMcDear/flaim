@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from .factory import NORM_STATS, register_configs
 
 
 class ResConvBNAct(nn.Module):
@@ -332,6 +332,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2),
 			'expansion_factors': (1, 4, 4, 4, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_medium': {
 			'depths': (3, 5, 5, 7, 14, 18, 5),
@@ -339,6 +340,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_large': {
 			'depths': (4, 7, 7, 10, 19, 25, 7),
@@ -346,6 +348,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_small_in22k': {
 			'depths': (2, 4, 4, 6, 9, 15),
@@ -353,6 +356,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_medium_in22k': {
 			'depths': (3, 5, 5, 7, 14, 18, 5),
@@ -360,6 +364,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_large_in22k': {
 			'depths': (4, 7, 7, 10, 19, 25, 7),
@@ -367,6 +372,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_xlarge_in22k': {
 			'depths': (4, 8, 8, 16, 24, 32, 8),
@@ -374,6 +380,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_small_in22ft1k': {
 			'depths': (2, 4, 4, 6, 9, 15),
@@ -381,6 +388,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_medium_in22ft1k': {
 			'depths': (3, 5, 5, 7, 14, 18, 5),
@@ -388,6 +396,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_large_in22ft1k': {
 			'depths': (4, 7, 7, 10, 19, 25, 7),
@@ -395,6 +404,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		'efficientnetv2_xlarge_in22ft1k': {
 			'depths': (4, 8, 8, 16, 24, 32, 8),
@@ -402,6 +412,7 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
 			'strides': (1, 2, 2, 2, 1, 2, 1),
 			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
+			'norm_stats': NORM_STATS['inception'],
 			},
 		}
 	return EfficientNetV2, configs
