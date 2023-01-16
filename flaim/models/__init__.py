@@ -18,5 +18,6 @@ from . import (
 	van,
 	vgg,
 	vit,
+	xcit,
 	)
 from .factory import get_model, list_models

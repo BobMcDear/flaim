@@ -30,7 +30,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[DeiT 3](#deit-3)</strong><br>
 • <strong>[BEiT](#beit)</strong><br>
 • <strong>[BEiT V2](#beit-v2)</strong><br>
-
+• <strong>[XCiT](#xcit)</strong><br>
 
 
 ## CaiT
@@ -751,3 +751,94 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```beitv2_base_patch16_224_in22k```: BEiTV2-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
 
 • ```beitv2_large_patch16_224_in22k```: BEiTV2-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K.
+
+## XCiT
+
+Cross-covariance image transformer (XCiT) from _[XCiT: Cross-Covariance Image Transformers](https://arxiv.org/abs/2106.09681)_ by El-Nouby et al. XCiT
+introduces cross-covariance attention (XCA), an inverted version of self-attention that is applied along the feature axis rather than the token axis to eliminate the quadratix complexity of traditional transformers, and complements it with local patch interaction modules (LPI) that explicitly enable communications amongst patches for scalable, efficient image transformers.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/xcit.py).<br>
+
+```xcit_nano12_patch16_224```: XCiT-Nano, depth 12, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_nano12_patch16_224_dist```: XCiT-Nano, depth 12, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_nano12_patch16_384_dist```: XCiT-Nano, depth 12, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_nano12_patch8_224```: XCiT-Nano, depth 12, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_nano12_patch8_224_dist```: XCiT-Nano, depth 12, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_nano12_patch8_384_dist```: XCiT-Nano, depth 12, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_tiny12_patch16_224```: XCiT-Tiny, depth 12, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_tiny12_patch16_224_dist```: XCiT-Tiny, depth 12, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_tiny12_patch16_384_dist```: XCiT-Tiny, depth 12, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_tiny24_patch16_224```: XCiT-Tiny, depth 24, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_tiny24_patch16_224_dist```: XCiT-Tiny, depth 24, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_tiny24_patch16_384_dist```: XCiT-Tiny, depth 24, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_tiny12_patch8_224```: XCiT-Tiny, depth 12, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_tiny12_patch8_224_dist```: XCiT-Tiny, depth 12, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_tiny12_patch8_384_dist```: XCiT-Tiny, depth 12, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher.
+
+```xcit_tiny24_patch8_224```: XCiT-Tiny, depth 24, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_tiny24_patch8_224_dist```: XCiT-Tiny, depth 24, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_tiny24_patch8_384_dist```: XCiT-Tiny, depth 24, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher.
+
+```xcit_small12_patch16_224```: XCiT-Small, depth 12, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_small12_patch16_224_dist```: XCiT-Small, depth 12, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_small12_patch16_384_dist```: XCiT-Small, depth 12, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_small24_patch16_224```: XCiT-Small, depth 24, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_small24_patch16_224_dist```: XCiT-Small, depth 24, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_small24_patch16_384_dist```: XCiT-Small, depth 24, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_small12_patch8_224```: XCiT-Small, depth 12, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_small12_patch8_224_dist```: XCiT-Small, depth 12, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_small12_patch8_384_dist```: XCiT-Small, depth 12, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_small24_patch8_224```: XCiT-Small, depth 24, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_small24_patch8_224_dist```: XCiT-Small, depth 24, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_small24_patch8_384_dist```: XCiT-Small, depth 24, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_medium24_patch16_224```: XCiT-Medium, depth 24, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_medium24_patch16_224_dist```: XCiT-Medium, depth 24, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_medium24_patch16_384_dist```: XCiT-Medium, depth 24, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_medium24_patch8_224```: XCiT-Medium, depth 24, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_medium24_patch8_224_dist```: XCiT-Medium, depth 24, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_medium24_patch8_384_dist```: XCiT-Medium, depth 24, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_large24_patch16_224```: XCiT-Large, depth 24, patch size 16 x 16, training resolution 224 x 224.
+
+```xcit_large24_patch16_224_dist```: XCiT-Large, depth 24, patch size 16 x 16, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_large24_patch16_384_dist```: XCiT-Large, depth 24, patch size 16 x 16, training resolution 384 x 384, trained using distillation with a convolutional teacher. 
+
+```xcit_large24_patch8_224```: XCiT-Large, depth 24, patch size 8 x 8, training resolution 224 x 224.
+
+```xcit_large24_patch8_224_dist```: XCiT-Large, depth 24, patch size 8 x 8, training resolution 224 x 224, trained using distillation with a convolutional teacher.
+
+```xcit_large24_patch8_384_dist```: XCiT-Large, depth 24, patch size 8 x 8, training resolution 384 x 384, trained using distillation with a convolutional teacher. 

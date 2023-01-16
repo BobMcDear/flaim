@@ -94,6 +94,7 @@ def main(
 			'vit_base_patch32_224_clip_laion2b',
 			'deit3_small_patch16_224',
 			'beit_base_patch16_224',
+			'xcit_nano12_patch16_224',
 			}
 	
 	else:
