@@ -194,9 +194,25 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 			'depths': (2, 2, 8, 2),
 			'out_dims': (80, 160, 320, 640),
 			},
+		'convnext_tiny_in12k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			},
+		'convnext_small_in12k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (96, 192, 384, 768),
+			},
 		'convnext_nano_in12ft1k': {
 			'depths': (2, 2, 8, 2),
 			'out_dims': (80, 160, 320, 640),
+			},
+		'convnext_tiny_in12ft1k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			},
+		'convnext_small_in12ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (96, 192, 384, 768),
 			},
 		'convnext_tiny_in22k': {
 			'depths': (3, 3, 9, 3),

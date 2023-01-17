@@ -102,7 +102,15 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```convnext_nano_in12k```: ConvNeXt-Nano, trained on ImageNet12K (a subset of ImageNet22K).
 
-• ```convnext_nano_in12ft1k```: ConvNeXt-Nano, trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+• ```convnext_tiny_in12k```: ConvNeXt-Tiny, trained on ImageNet12K (a subset of ImageNet22K).
+
+• ```convnext_small_in12k```: ConvNeXt-Small, trained on ImageNet12K (a subset of ImageNet22K).
+
+• ```convnext_nano_in12ft1k```: ConvNeXt-Nano, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+
+• ```convnext_tiny_in12ft1k```: ConvNeXt-Tiny, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+
+• ```convnext_small_in12ft1k```: ConvNeXt-Small, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
 
 • ```convnext_tiny_in22k```: ConvNeXt-Tiny, trained on ImageNet22K.
 
@@ -114,25 +122,25 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```convnext_xlarge_in22k```: ConvNeXt-XLarge, trained on ImageNet22K.
 
-• ```convnext_tiny_in22ft1k```: ConvNeXt-Tiny, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_tiny_in22ft1k```: ConvNeXt-Tiny, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_small_in22ft1k```: ConvNeXt-Small, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_small_in22ft1k```: ConvNeXt-Small, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_base_in22ft1k```: ConvNeXt-Base, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_base_in22ft1k```: ConvNeXt-Base, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_large_in22ft1k```: ConvNeXt-Large, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_large_in22ft1k```: ConvNeXt-Large, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_xlarge_in22ft1k```: ConvNeXt-XLarge, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_xlarge_in22ft1k```: ConvNeXt-XLarge, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_tiny_384_in22ft1k```: ConvNeXt-Tiny, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_tiny_384_in22ft1k```: ConvNeXt-Tiny, training resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_small_384_in22ft1k```: ConvNeXt-Small, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_small_384_in22ft1k```: ConvNeXt-Small, training resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_base_384_in22ft1k```: ConvNeXt-Base, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_base_384_in22ft1k```: ConvNeXt-Base, training resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_large_384_in22ft1k```: ConvNeXt-Large, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_large_384_in22ft1k```: ConvNeXt-Large, training resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```convnext_xlarge_384_in22ft1k```: ConvNeXt-XLarge, training resolution 384 x 384, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```convnext_xlarge_384_in22ft1k```: ConvNeXt-XLarge, training resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
 ## ConvNeXt V2
 
@@ -157,41 +165,41 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```convnextv2_huge_fcmae```: ConvNeXtV2-Huge, trained using FCMAE on ImageNet1K with no supervision.
 
-• ```convnextv2_atto_fcmae_ftin1k```: ConvNeXtV2-Atto, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_atto_fcmae_ftin1k```: ConvNeXtV2-Atto, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_femto_fcmae_ftin1k```: ConvNeXtV2-Femto, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_femto_fcmae_ftin1k```: ConvNeXtV2-Femto, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_pico_fcmae_ftin1k```: ConvNeXtV2-Pico, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_pico_fcmae_ftin1k```: ConvNeXtV2-Pico, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_nano_fcmae_ftin1k```: ConvNeXtV2-Nano, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_nano_fcmae_ftin1k```: ConvNeXtV2-Nano, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_tiny_fcmae_ftin1k```: ConvNeXtV2-Tiny, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_tiny_fcmae_ftin1k```: ConvNeXtV2-Tiny, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_base_fcmae_ftin1k```: ConvNeXtV2-Base, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_base_fcmae_ftin1k```: ConvNeXtV2-Base, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_large_fcmae_ftin1k```: ConvNeXtV2-Large, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_large_fcmae_ftin1k```: ConvNeXtV2-Large, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_huge_fcmae_ftin1k```: ConvNeXtV2-Huge, trained using FCMAE on ImageNet1K and fine-tuned with labels.
+• ```convnextv2_huge_fcmae_ftin1k```: ConvNeXtV2-Huge, pre-trained using FCMAE on ImageNet1K and fine-tuned with labels.
 
-• ```convnextv2_nano_fcmae_in22ft1k```: ConvNeXtV2-Nano, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_nano_fcmae_in22ft1k```: ConvNeXtV2-Nano, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_tiny_fcmae_in22ft1k```: ConvNeXtV2-Tiny, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_tiny_fcmae_in22ft1k```: ConvNeXtV2-Tiny, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_base_fcmae_in22ft1k```: ConvNeXtV2-Base, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_base_fcmae_in22ft1k```: ConvNeXtV2-Base, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_large_fcmae_in22ft1k```: ConvNeXtV2-Large, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_large_fcmae_in22ft1k```: ConvNeXtV2-Large, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_nano_384_fcmae_in22ft1k```: ConvNeXtV2-Nano, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_nano_384_fcmae_in22ft1k```: ConvNeXtV2-Nano, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_tiny_384_fcmae_in22ft1k```: ConvNeXtV2-Tiny, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_tiny_384_fcmae_in22ft1k```: ConvNeXtV2-Tiny, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_base_384_fcmae_in22ft1k```: ConvNeXtV2-Base, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_base_384_fcmae_in22ft1k```: ConvNeXtV2-Base, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_large_384_fcmae_in22ft1k```: ConvNeXtV2-Large, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_large_384_fcmae_in22ft1k```: ConvNeXtV2-Large, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_huge_384_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 384 x 384, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_huge_384_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
-• ```convnextv2_huge_512_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 512 x 512, trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+• ```convnextv2_huge_512_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 512 x 512, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
 ## EfficientNetV2
 
@@ -214,13 +222,13 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```efficientnetv2_xlarge_in22k```: EfficientNetV2-XLarge, trained on ImageNet22K.
 
-• ```efficientnetv2_small_in22ft1k```: EfficientNetV2-Small, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```efficientnetv2_small_in22ft1k```: EfficientNetV2-Small, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```efficientnetv2_medium_in22ft1k```: EfficientNetV2-Medium, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```efficientnetv2_medium_in22ft1k```: EfficientNetV2-Medium, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```efficientnetv2_large_in22ft1k```: EfficientNetV2-Large, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```efficientnetv2_large_in22ft1k```: EfficientNetV2-Large, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
-• ```efficientnetv2_xlarge_in22ft1k```: EfficientNetV2-XLarge, trained on ImageNet22K and fine-tuned on ImageNet1K.
+• ```efficientnetv2_xlarge_in22ft1k```: EfficientNetV2-XLarge, pre-trained on ImageNet22K and fine-tuned on ImageNet1K.
 
 ## HorNet
 
@@ -267,17 +275,17 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 ```maxvit_large_512```: MaxViT-Large, resolution 512 x 512.
 
-```maxvit_base_384_in22ft1k```: MaxViT-Base, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_base_384_in22ft1k```: MaxViT-Base, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-```maxvit_large_384_in22ft1k```: MaxViT-Large, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_large_384_in22ft1k```: MaxViT-Large, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-```maxvit_xlarge_384_in22ft1k```: MaxViT-XLarge, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_xlarge_384_in22ft1k```: MaxViT-XLarge, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-```maxvit_base_512_in22ft1k```: MaxViT-Base, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_base_512_in22ft1k```: MaxViT-Base, resolution 512 x 512, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-```maxvit_large_512_in22ft1k```: MaxViT-Large, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_large_512_in22ft1k```: MaxViT-Large, resolution 512 x 512, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-```maxvit_xlarge_512_in22ft1k```: MaxViT-XLarge, resolution 512 x 512, trained on ImageNet22K and fine-tuned on Imagenet1K.
+```maxvit_xlarge_512_in22ft1k```: MaxViT-XLarge, resolution 512 x 512, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
 ## GC ViT
 
@@ -700,21 +708,21 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```deit3_large_patch16_384```: DeiT3-Large, patch size 16 x 16, resolution 384 x 384.
 
-• ```deit3_small_patch16_224_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_small_patch16_224_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 224 x 224, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_medium_patch16_224_in22ft1k```: DeiT3-Medium, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_medium_patch16_224_in22ft1k```: DeiT3-Medium, patch size 16 x 16, resolution 224 x 224, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_base_patch16_224_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_base_patch16_224_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 224 x 224, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_large_patch16_224_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_large_patch16_224_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 224 x 224, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_huge_patch14_224_in22ft1k```: DeiT3-Huge, patch size 14 x 14, resolution 224 x 224, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_huge_patch14_224_in22ft1k```: DeiT3-Huge, patch size 14 x 14, resolution 224 x 224, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_small_patch16_384_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_small_patch16_384_in22ft1k```: DeiT3-Small, patch size 16 x 16, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_base_patch16_384_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_base_patch16_384_in22ft1k```: DeiT3-Base, patch size 16 x 16, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
-• ```deit3_large_patch16_384_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 384 x 384, trained on ImageNet22K and fine-tuned on Imagenet1K.
+• ```deit3_large_patch16_384_in22ft1k```: DeiT3-Large, patch size 16 x 16, resolution 384 x 384, pre-trained on ImageNet22K and fine-tuned on Imagenet1K.
 
 ## BEiT
 
