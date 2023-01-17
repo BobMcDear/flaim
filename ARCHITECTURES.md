@@ -27,6 +27,8 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[VAN](#van)</strong><br>
 • <strong>[VGG](#vgg)</strong><br>
 • <strong>[ViT](#vit)</strong><br>
+• <strong>[ViT SAM](#vit-sam)</strong><br>
+• <strong>[ViT DINO](#vit-dino)</strong><br>
 • <strong>[DeiT 3](#deit-3)</strong><br>
 • <strong>[BEiT](#beit)</strong><br>
 • <strong>[BEiT V2](#beit-v2)</strong><br>
@@ -674,17 +676,31 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```vit_base_patch8_224_in22k```: ViT-Base, patch size 8 x 8, resolution 224 x 224, trained on ImageNet22K.
 
-• ```vit_base_patch32_224_sam```: ViT-Base, patch size 32 x 32, resolution 224 x 224, trained using sharpness-aware minimization (SAM).
+## ViT SAM
 
-• ```vit_base_patch16_224_sam```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained using sharpness-aware minimization (SAM).
+ViTs trained using sharpness-aware minimization (SAM) from _[When Vision Transformers Outperform ResNets without Pre-training or Strong Data Augmentations](https://arxiv.org/abs/2106.01548)_ by Chen et al. SAM can be used to train ViTs that outperform ResNets without the need for large-scale pre-training or strong data augmentation.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
 
-• ```vit_small_patch16_224_dino```: ViT-Small, patch size 16 x 16, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+• ```vit_base_patch32_224_sam```: ViT-Base, patch size 32 x 32, resolution 224 x 224.
 
-• ```vit_base_patch16_224_dino```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+• ```vit_base_patch16_224_sam```: ViT-Base, patch size 16 x 16, resolution 224 x 224.
 
-• ```vit_small_patch8_224_dino```: ViT-Small, patch size 8 x 8, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+## ViT DINO
 
-• ```vit_base_patch8_224_dino```: ViT-Base, patch size 8 x 8, resolution 224 x 224, trained using self-distillation with no labels (DINO).
+ViTs trained using self-distillation with no labels (DINO) from _[Emerging Properties in Self-Supervised Vision Transformers](https://arxiv.org/abs/2104.14294)_ by Caron et al. DINO is a self-supervised learning technique that is particularly suited to vision transformers and exhibits interesting properties such as the emergence of unsupervised segmentation.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
+
+• ```vit_small_patch16_224_dino```: ViT-Small, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_base_patch16_224_dino```: ViT-Base, patch size 16 x 16, resolution 224 x 224.
+
+• ```vit_small_patch8_224_dino```: ViT-Small, patch size 8 x 8, resolution 224 x 224.
+
+• ```vit_base_patch8_224_dino```: ViT-Base, patch size 8 x 8, resolution 224 x 224.
 
 ## DeiT 3
 
@@ -747,7 +763,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 ## BEiT V2
 
-BEiT V2 from _[BEiT v2: Masked Image Modeling with Vector-Quantized Visual Tokenizers](https://arxiv.org/abs/2208.06366)_ by Peng et al. BEiT V2 is identical to BEiT in terms of architecture but uses a different masked modelling approach that relies on vector-quantized knowledge distillation algorithm for exploiting higher-level semantics.
+BEiT V2 from _[BEiT v2: Masked Image Modeling with Vector-Quantized Visual Tokenizers](https://arxiv.org/abs/2208.06366)_ by Peng et al. BEiT V2 is identical to BEiT in terms of architecture but uses a different masked modelling approach that relies on a vector-quantized knowledge distillation algorithm for exploiting higher-level semantics.
 <br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/beit.py).
