@@ -6,6 +6,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[ConvMixer](#convmixer)</strong><br>
 • <strong>[ConvNeXt](#convnext)</strong><br>
 • <strong>[ConvNeXt V2](#convnext-v2)</strong><br>
+• <strong>[CLIP](#clip)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
 • <strong>[MaxViT](#maxvit)</strong><br>
@@ -202,6 +203,29 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```convnextv2_huge_384_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 384 x 384, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
 
 • ```convnextv2_huge_512_fcmae_in22ft1k```: ConvNeXtV2-Huge, training resolution 512 x 512, pre-trained using FCMAE on ImageNet22K and fine-tuned on ImageNet1K with labels.
+
+## CLIP
+
+Models trained using contrastive language-image pre-training (CLIP) from _[Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)_ by Radford et al. CLIP jointly trains a vision and language model (flaim includes the former only) on (image, text) pairs, with the objective of ensuring the two models' output features are close for matching (image, text) pairs and distant otherwise.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
+
+```vit_base_clip_patch32_224_laion2b```: ViT-Base, patch size 32 x 32, resolution 224 x 224, trained on LAION-2B.
+
+```vit_base_clip_patch16_224_laion2b```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained on LAION-2B.
+
+```vit_large_clip_patch14_224_laion2b```: ViT-Large, patch size 14 x 14, resolution 224 x 224, trained on LAION-2B.
+
+```vit_huge_clip_patch14_224_laion2b```: ViT-Huge, patch size 14 x 14, resolution 224 x 224, trained on LAION-2B.
+
+```vit_giant_clip_patch14_224_laion2b```: ViT-Giant, patch size 14 x 14, resolution 224 x 224, trained on LAION-2B.
+
+```vit_base_clip_patch32_224_openai```: ViT-Base, patch size 32 x 32, resolution 224 x 224, trained by OpenAI on a dataset of 400 million pairs.
+
+```vit_base_clip_patch16_224_openai```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained by OpenAI on a dataset of 400 million pairs.
+
+```vit_large_clip_patch14_224_openai```: ViT-Large, patch size 14 x 14, resolution 224 x 224, trained by OpenAI on a dataset of 400 million pairs.
 
 ## EfficientNetV2
 
