@@ -115,90 +115,112 @@ def max_pool(
 
 def global_avg_pool(
 	input,
-	retain_spatial: bool = True,
+	axis: T.Union[T.Tuple[int, ...], int] = (-3, -2),
+	keep_axis: bool = True,
 	):
 	"""
 	Global  average pooling.
 
 	Args:
 		input: Input.
-		retain_spatial (bool): Whether the spatial
-		dimensions should be retained or squeezed.
+		axis (T.Union[T.Tuple[int, ...], int]): Axis along which
+		pooling is performed.
+		Default is (-3, -2).
+		keep_axis (bool): Whether the pooled
+		axis should be kept or squeezed.
 		Default is True.
 	
 	Returns: Globally average-pooled input.
 	"""
-	return jnp.mean(input, axis=(-3, -2), keepdims=retain_spatial)
+	return jnp.mean(input, axis=axis, keepdims=keep_axis)
 
 
 def global_max_pool(
 	input,
-	retain_spatial: bool = True,
+	axis: T.Union[T.Tuple[int, ...], int] = (-3, -2),
+	keep_axis: bool = True,
 	):
 	"""
 	Global  max pooling.
 
 	Args:
 		input: Input.
-		retain_spatial (bool): Whether the spatial
-		dimensions should be retained or squeezed.
+		axis (T.Union[T.Tuple[int, ...], int]): Axis along which
+		pooling is performed.
+		Default is (-3, -2).
+		keep_axis (bool): Whether the pooled
+		axis should be kept or squeezed.
 		Default is True.
 	
 	Returns: Globally average-pooled input.
 	"""
-	return jnp.max(input, axis=(-3, -2), keepdims=retain_spatial)
+	return jnp.max(input, axis=axis, keepdims=keep_axis)
 
 
 def global_avg_max_pool(
 	input,
-	retain_spatial: bool = True,
+	axis: T.Union[T.Tuple[int, ...], int] = (-3, -2),
+	keep_axis: bool = True,
 	):
 	"""
 	Returns a tuple of the globally average- and max-pooled input.
 
 	Args:
 		input: Input.
-		retain_spatial (bool): Whether the spatial
-		dimensions should be retained or squeezed.
+		axis (T.Union[T.Tuple[int, ...], int]): Axis along which
+		pooling is performed.
+		Default is (-3, -2).
+		keep_axis (bool): Whether the pooled
+		axis should be kept or squeezed.
 		Default is True.
 	
 	Returns: Tuple of the globally average- and max-pooled input.
 	"""
 	return (
-		global_avg_pool(input, retain_spatial),
-		global_max_pool(input, retain_spatial),
+		global_avg_pool(input, axis=axis, keep_axis=keep_axis),
+		global_max_pool(input, axis=axis, keep_axis=keep_axis),
 		)
 
 
 def global_concat_avg_max_pool(
 	input,
-	retain_spatial: bool = True,
+	axis: T.Union[T.Tuple[int, ...], int] = (-3, -2),
+	keep_axis: bool = True,
 	):
 	"""
 	Concatenates the results of global  average and max pooling.
 
 	Args:
-		retain_spatial (bool): Whether the spatial
-		dimensions should be retained or squeezed.
+		input: Input.
+		axis (T.Union[T.Tuple[int, ...], int]): Axis along which
+		pooling is performed.
+		Default is (-3, -2).
+		keep_axis (bool): Whether the pooled
+		axis should be kept or squeezed.
 		Default is True.
 	
 	Returns: Concatenation of the globally average- and max-pooled input.
 	"""
-	return jnp.concatenate(global_avg_max_pool(input, retain_spatial), axis=-1)
+	return jnp.concatenate(global_avg_max_pool(input, axis=axis, keep_axis=keep_axis), axis=-1)
 
 
 def global_sum_avg_max_pool(
 	input,
-	retain_spatial: bool = True,
+	axis: T.Union[T.Tuple[int, ...], int] = (-3, -2),
+	keep_axis: bool = True,
 	):
 	"""
 	Sums the results of global  average and max pooling.
 
 	Args:
-		retain_spatial (bool): Whether the spatial
-		dimensions should be retained or squeezed.
+		input: Input.
+		axis (T.Union[T.Tuple[int, ...], int]): Axis along which
+		pooling is performed.
+		Default is (-3, -2).
+		keep_axis (bool): Whether the pooled
+		axis should be kept or squeezed.
 		Default is True.
 	
 	Returns: Summation of the globally average- and max-pooled input.
 	"""
-	return jnp.sum(global_avg_max_pool(input, retain_spatial), axis=-1)
+	return jnp.sum(global_concat_avg_max_pool(input, axis=axis, keep_axis=keep_axis), axis=-1)

@@ -57,10 +57,10 @@ class Head(nn.Module):
 			output = nn.LayerNorm(
 				epsilon=self.layer_norm_eps,
 				)(input) if self.layer_norm_eps else input
-			output = self.pool_fn(output, retain_spatial=False)
+			output = self.pool_fn(output, keep_axis=False)
 		
 		else:
-			output = self.pool_fn(input, retain_spatial=False)
+			output = self.pool_fn(input, keep_axis=False)
 			output = nn.LayerNorm(
 				epsilon=self.layer_norm_eps,
 				)(output) if self.layer_norm_eps else output

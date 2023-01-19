@@ -72,7 +72,7 @@ class ECA(nn.Module):
 
 	@nn.compact
 	def __call__(self, input):
-		attention = self.pool(input, retain_spatial=False)
+		attention = self.pool(input, keep_axis=False)
 		attention = jnp.expand_dims(attention, axis=-2)
 		attention = jnp.swapaxes(attention, axis1=-2, axis2=-1)
 		
