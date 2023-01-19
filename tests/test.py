@@ -62,7 +62,7 @@ def main(
 		Default is True.
 	"""
 	if small_sample:
-		model_names = {
+		model_names = [
 			'cait_xxsmall24_224',
 			'convmixer20_1024d_patch14_kernel9',
 			'convnext_xxxnano',
@@ -95,7 +95,7 @@ def main(
 			'deit3_small_patch16_224',
 			'beit_base_patch16_224',
 			'xcit_nano12_patch16_224',
-			}
+			]
 	
 	else:
 		model_names = flaim.list_models()
