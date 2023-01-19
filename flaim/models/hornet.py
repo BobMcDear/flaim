@@ -99,6 +99,7 @@ class HorNet(nn.Module):
 		self.sow(
 			col='intermediates',
 			name='stage_0',
+			value=output,
 			)
 		
 		for stage_ind in range(len(self.depths)):
