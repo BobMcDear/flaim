@@ -148,8 +148,8 @@ class WindowMHSA(nn.Module):
 		output = jnp.reshape(output, (-1, self.window_size**2, in_dim))
 
 		if self.global_q:
-			q = jnp.repeat(q_global, repeats=bs//len(q_global), axis=0)
-			q = jnp.reshape(q, (bs, -1, self.n_heads, head_dim))
+			q = jnp.repeat(q_global, repeats=len(output)//len(q_global), axis=0)
+			q = jnp.reshape(q, (len(q), -1, self.n_heads, head_dim))
 			q = jnp.swapaxes(q, axis1=1, axis2=2)
 
 			kv = nn.Dense(
