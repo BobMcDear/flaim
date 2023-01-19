@@ -44,11 +44,17 @@ class SE(nn.Module):
 		Default is nn.sigmoid.
 		bias (bool): Whether the linear layers should have a bias term.
 		Default is True.
+		bn (bool): Whether to add batch normalization to the excitation module.
+		If False, the training argument is ignored.
+		Default is False.
 		bottleneck (bool): If True, SE's usual MLP is used, i.e., one with 
 		a single hidden layer. Otherwise, a single fully-connected layer 
 		with no non-linearities is used, and reduction_factor, reduction_dim,
-		and act are ignored.
+		act, and bn are ignored.
 		Default is True.
+		return_attn (bool): Whether to return the raw attention values instead 
+		of gating them and multiplying them by the input. If True, gate is ignored.
+		Default is False.
 	"""
 	reduction_factor: T.Optional[int] = 16
 	reduction_dim: T.Optional[int] = None
@@ -56,10 +62,12 @@ class SE(nn.Module):
 	act: T.Callable = nn.relu
 	gate: T.Callable = nn.sigmoid
 	bias: bool = True
+	bn: bool = False
 	bottleneck: bool = True
+	return_attn: bool = False
 
 	@nn.compact
-	def __call__(self, input):
+	def __call__(self, input, training: bool = True):
 		attention = self.pool(input)
 
 		if self.bottleneck:
@@ -68,13 +76,17 @@ class SE(nn.Module):
 				hidden_dim=self.reduction_dim,
 				act=self.act,
 				bias=self.bias,
-				)(attention)
+				bn=self.bn,
+				)(attention, training=training)
 		
 		else:
 			attention = nn.Dense(
 				features=input.shape[-1],
 				use_bias=self.bias,
 				)(attention)
+			
+		if self.return_attn:
+			return attention
 		
 		attention = self.gate(attention)
 		return attention*input
