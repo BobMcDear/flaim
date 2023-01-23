@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from .factory import NORM_STATS, register_configs
 
 
 class ConvNeXtBlock(nn.Module):
@@ -429,6 +429,31 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 			'out_dims': (352, 704, 1408, 2816),
 			'layer_scale_init_value': None,
 			'grn': True,
+			},
+		'convnext_base_clip_laion2b': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'norm_stats': NORM_STATS['clip'],
+			},
+		'convnext_base_clip_laion2b_augreg': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'norm_stats': NORM_STATS['clip'],
+			},
+		'convnext_base_clip_laiona': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'norm_stats': NORM_STATS['clip'],
+			},
+		'convnext_base_clip_320_laiona': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'norm_stats': NORM_STATS['clip'],
+			},
+		'convnext_base_clip_320_laiona_augreg': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (128, 256, 512, 1024),
+			'norm_stats': NORM_STATS['clip'],
 			},
 		}
 	return ConvNeXt, configs

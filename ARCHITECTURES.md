@@ -209,7 +209,17 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 Models trained using contrastive language-image pre-training (CLIP) from _[Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)_ by Radford et al. CLIP jointly trains a vision and language model (flaim includes the former only) on (image, text) pairs, with the objective of ensuring the two models' output features are close for matching (image, text) pairs and distant otherwise.
 <br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
-please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convnext.py) and [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
+
+• ```convnext_base_clip_laion2b```: ConvNeXt-Base, trained on LAION-2B.
+
+• ```convnext_base_clip_laion2b_augreg```: ConvNeXt-Base, trained on LAION-2B with additional augmentation and regularization.
+
+• ```convnext_base_clip_laiona```: ConvNeXt-Base, trained on LAION-Aesthetics.
+
+• ```convnext_base_clip_320_laiona```: ConvNeXt-Base, training resolution 320 x 320, trained on LAION-Aesthetics.
+
+• ```convnext_base_clip_320_laiona_augreg```: ConvNeXt-Base, training resolution 320 x 320, trained on LAION-Aesthetics with additional augmentation and regularization.
 
 ```vit_base_clip_patch32_224_laion2b```: ViT-Base, patch size 32 x 32, resolution 224 x 224, trained on LAION-2B.
 
