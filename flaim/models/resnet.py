@@ -139,8 +139,11 @@ class BasicBlock(nn.Module):
 		and output shapes are different.
 		Default is ResNetDownsample.
 		attention (T.Callable): T.Callable returning an attention module
-		executed immediately after the second batch normalization.
+		applied to the data.
 		Default is Identity.
+		attention_pre (bool): Whether to apply the attention module before or after
+		the second 3 x 3 convolution.
+		Default is False.
 		avg_downsample (T.Optional[str]): If 'pre', average pooling is used
 		before the first 3 x 3 convolution for spatial downsampling if stride is not 1,
 		and the convolution's stride is set to 1. If 'post', average pooling is used
@@ -156,6 +159,7 @@ class BasicBlock(nn.Module):
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
 	attention: T.Callable = layers.Identity
+	attention_pre: bool = False
 	avg_downsample: T.Optional[str] = None
 
 	@nn.compact
@@ -177,11 +181,14 @@ class BasicBlock(nn.Module):
 				stride=self.stride,
 				)
 
+		if self.attention_pre:
+			output = self.attention()(output)
 		output = layers.ConvBNAct(
 			out_dim=self.out_dim,
 			groups=self.cardinality,
 			)(output, training=training)
-		output = self.attention()(output)
+		if not self.attention_pre:
+			output = self.attention()(output)
 
 		if input.shape != output.shape:
 			input = self.downsample(
@@ -212,8 +219,11 @@ class BottleneckBlock(nn.Module):
 		and output shapes are different.
 		Default is ResNetDownsample.
 		attention (T.Callable): T.Callable returning an attention module
-		executed immediately after the third batch normalization.
+		applied to the data.
 		Default is Identity.
+		attention_pre (bool): Whether to apply the attention module before or after
+		the second 1 x 1 convolution.
+		Default is False.
 		avg_downsample (T.Optional[str]): If 'pre', average pooling is used
 		before the 3 x 3 convolution for spatial downsampling if stride is not 1,
 		and the convolution's stride is set to 1. If 'post', average pooling is used
@@ -229,6 +239,7 @@ class BottleneckBlock(nn.Module):
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
 	attention: T.Callable = layers.Identity
+	attention_pre: bool = False
 	avg_downsample: T.Optional[str] = None
 
 	@nn.compact
@@ -255,11 +266,14 @@ class BottleneckBlock(nn.Module):
 				stride=self.stride,
 				)
 		
+		if self.attention_pre:
+			output = self.attention()(output)
 		output = layers.ConvBNAct(
 			out_dim=self.out_dim,
 			kernel_size=1,
 			)(output, training=training)
-		output = self.attention()(output)
+		if not self.attention_pre:
+			output = self.attention()(output)
 		
 		if input.shape != output.shape:
 			input = self.downsample(
@@ -296,8 +310,12 @@ class ResNetStage(nn.Module):
 		shapes are different.
 		Default is ResNetDownsample.
 		attention (T.Callable): T.Callable returning an attention module
-		executed immediately after the third batch normalization in each block.
+		applied to the data.
 		Default is Identity.
+		attention_pre (bool): Whether to apply the attention module before or after
+		the second 3 x 3 convolution in basic blocks or the second 1 x 1 convolution
+		in bottleneck blocks.
+		Default is False.
 		avg_downsample (T.Optional[str]): If 'pre', average pooling is used
 		before the first 3 x 3 convolution of each block for spatial downsampling if stride is not 1,
 		and the convolution's stride is set to 1. If 'post', average pooling is used
@@ -315,6 +333,7 @@ class ResNetStage(nn.Module):
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
 	attention: T.Callable = layers.Identity
+	attention_pre: bool = False
 	avg_downsample: T.Optional[str] = None
 
 	@nn.compact
@@ -328,6 +347,7 @@ class ResNetStage(nn.Module):
 				stride=self.stride if block_ind == 0 else 1,
 				downsample=self.downsample,
 				attention=self.attention,
+				attention_pre=self.attention_pre,
 				avg_downsample=self.avg_downsample,
 				)(input, training=training)
 		return input
@@ -357,10 +377,13 @@ class ResNet(nn.Module):
 		downsample (T.Callable): Downsampling module to use if input and output
 		shapes are different.
 		Default is ResNetDownsample.
-		attention (T.Callable): T.Callable returning an attention module executed
-		immediately after the second batch normalization in each basic block or
-		the third batch normalization in each bottleneck block.
+		attention (T.Callable): T.Callable returning an attention module
+		applied to the data.
 		Default is Identity.
+		attention_pre (bool): Whether to apply the attention module before or after
+		the second 3 x 3 convolution in basic blocks or the second 1 x 1 convolution
+		in bottleneck blocks.
+		Default is False.
 		avg_downsample (T.Optional[str]): If 'pre', average pooling is used
 		before the first 3 x 3 convolution of each block for spatial downsampling if stride is not 1,
 		and the convolution's stride is set to 1. If 'post', average pooling is used
@@ -382,6 +405,7 @@ class ResNet(nn.Module):
 	stem: T.Callable = ResNetStem
 	downsample: T.Callable = ResNetDownsample
 	attention: T.Callable = layers.Identity
+	attention_pre: bool = False
 	avg_downsample: T.Optional[str] = None
 	n_classes: int = 0
 
@@ -406,6 +430,7 @@ class ResNet(nn.Module):
 				stride=1 if stage_ind == 0 else 2,
 				downsample=self.downsample,
 				attention=self.attention,
+				attention_pre=self.attention_pre,
 				avg_downsample=self.avg_downsample,
 				)(output, training=training)
 			self.sow(
