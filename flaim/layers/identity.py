@@ -32,6 +32,8 @@ class Identity(nn.Module):
 	"""
 	Identity class.
 	"""
-	@nn.compact
+	def __init__(self, *args, **kwargs) -> None:
+		pass
+
 	def __call__(self, input, *args, **kwargs):
 		return input
