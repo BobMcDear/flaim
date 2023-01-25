@@ -5,6 +5,7 @@ Shifted window attention transformer (Swin transformer).
 
 import typing as T
 from functools import partial
+from math import sqrt
 
 from flax import linen as nn
 from jax import numpy as jnp
@@ -116,7 +117,7 @@ class WindowMHSA(nn.Module):
 		n_tokens, token_dim = input.shape[-2:]
 		window_size = self.window_size
 		shift = self.shift
-		img_size = int(jnp.sqrt(n_tokens))
+		img_size = int(sqrt(n_tokens))
 
 		if img_size <= window_size:
 			window_size = img_size
@@ -161,7 +162,7 @@ class PatchMerge(nn.Module):
 	@nn.compact
 	def __call__(self, input):
 		n_tokens, token_dim = input.shape[-2:]
-		img_size = int(jnp.sqrt(n_tokens))
+		img_size = int(sqrt(n_tokens))
 		
 		output = jnp.reshape(input, (-1, img_size, img_size, token_dim))
 		s1 = output[:, 0::2, 0::2, :]
