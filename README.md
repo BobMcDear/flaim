@@ -100,7 +100,7 @@ Note that Flax's ```sow``` API, which is used to store the intermediate activati
 
 ## Available Architectures
 
-All available architectures, accompanied by short descriptions and references, are [here](https://github.com/bobmcdear/flaim/blob/main/ARCHITECTURES.md). ```flaim.list_models``` also returns a list of flaim models. Its only arugment, ```pattern```, is an optional regex pattern that, if not ```None```, ensures only model names containing this expression are returned, as demonstrated below.
+All available architectures, accompanied by short descriptions and references, are [here](https://github.com/BobMcDear/flaim/blob/0.0.3/ARCHITECTURES.md). ```flaim.list_models``` also returns a list of flaim models. Its only arugment, ```pattern```, is an optional regex pattern that, if not ```None```, ensures only model names containing this expression are returned, as demonstrated below.
 
 ```python
 # Every model
@@ -126,4 +126,4 @@ Code contributions are currently not accepted, however, there are three alternat
 
 Many thanks to Ross Wightman for the amazing timm package, which was an inspiration for flaim and has been an indispensable guide during development. Additionally, the pre-trained parameters are stored on Hugging Face Hub; big thanks to Hugging Face for this gratis service.
 
-References for ```flaim.models``` can be found [here](https://github.com/bobmcdear/flaim/blob/main/ARCHITECTURES.md), and ones for ```flaim.layers``` are in the source code.
+References for ```flaim.models``` can be found [here](https://github.com/BobMcDear/flaim/blob/0.0.3/ARCHITECTURES.md), and ones for ```flaim.layers``` are in the source code.
