@@ -73,6 +73,8 @@ def main(
 			'maxvit_tiny_224',
 			'nest_tiny_224',
 			'pvtv2_b0',
+			'regnetx_200mf',
+			'regnety_200mf',
 			'resnet18',
 			'resnet26',
 			'resnet18d',

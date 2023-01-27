@@ -13,6 +13,7 @@ from . import (
 	maxvit,
 	nest,
 	pvtv2,
+	regnet,
 	resnet,
 	swin,
 	van,

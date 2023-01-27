@@ -18,6 +18,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[ResNet-T](#resnet-t)</strong><br>
 • <strong>[Wide ResNet](#wide-resnet)</strong><br>
 • <strong>[ResNeXt](#resnext)</strong><br>
+• <strong>[RegNet](#regnet)</strong><br>
 • <strong>[SENet](#senet)</strong><br>
 • <strong>[ECANet](#ecanet)</strong><br>
 • <strong>[ResNet-RS](#resnet-rs)</strong><br>
@@ -67,8 +68,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 ## ConvMixer
 
 ConvMixer from _[Patches Are All You Need?](https://arxiv.org/abs/2201.09792)_ by Trockman et al. ConvMixer
-is similar to isotropic architectures like ViT but uses convolutions with large kernel sizes to perform token mixing.
-.<br>
+is similar to isotropic architectures like ViT but uses convolutions with large kernel sizes to perform token mixing.<br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convmixer.py).
 
@@ -480,6 +480,61 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```resnext101_32x32d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 32, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
 
 • ```resnext101_32x48d_wsl```: ResNeXt-101, cardinality 32, bottleneck dimension of each branch in the first stage 48, trained using weakly-supervised learning on 940 million Instagram images and fine-tuned on ImageNet1K.
+
+## RegNet
+
+RegNet from _[Designing Network Design Spaces](https://arxiv.org/abs/2003.13678)_ by Radosavovic et al. RegNet is a family of ResNeXt-like networks whose depths and widths are parameterized through a simple linear function that works well under a variety of FLOPS settings.
+<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/regnet.py).
+
+```regnetx_200mf```: RegNetX costing approximately 200 mega FLOPS/0.2 giga FLOPS. 
+
+```regnetx_400mf```: RegNetX costing approximately 400 mega FLOPS/0.4 giga FLOPS. 
+
+```regnetx_600mf```: RegNetX costing approximately 600 mega FLOPS/0.6 giga FLOPS. 
+
+```regnetx_800mf```: RegNetX costing approximately 800 mega FLOPS/0.8 giga FLOPS. 
+
+```regnetx_1600mf```: RegNetX costing approximately 1600 mega FLOPS/1.6 giga FLOPS. 
+
+```regnetx_3200mf```: RegNetX costing approximately 3200 mega FLOPS/3.2 giga FLOPS. 
+
+```regnetx_4000mf```: RegNetX costing approximately 4000 mega FLOPS/4.0 giga FLOPS. 
+
+```regnetx_6400mf```: RegNetX costing approximately 6400 mega FLOPS/6.4 giga FLOPS. 
+
+```regnetx_8000mf```: RegNetX costing approximately 8000 mega FLOPS/8.0 giga FLOPS. 
+
+```regnetx_12gf```: RegNetX costing approximately 12000 mega FLOPS/12 giga FLOPS. 
+
+```regnetx_16gf```: RegNetX costing approximately 16000 mega FLOPS/16 giga FLOPS.
+
+```regnetx_32gf```: RegNetX costing approximately 32000 mega FLOPS/32 giga FLOPS.
+
+```regnety_200mf```: RegNetY costing approximately 200 mega FLOPS/0.2 giga FLOPS. 
+
+```regnety_400mf```: RegNetY costing approximately 400 mega FLOPS/0.4 giga FLOPS. 
+
+```regnety_600mf```: RegNetY costing approximately 600 mega FLOPS/0.6 giga FLOPS. 
+
+```regnety_800mf```: RegNetY costing approximately 800 mega FLOPS/0.8 giga FLOPS. 
+
+```regnety_1600mf```: RegNetY costing approximately 1600 mega FLOPS/1.6 giga FLOPS. 
+
+```regnety_3200mf```: RegNetY costing approximately 3200 mega FLOPS/3.2 giga FLOPS. 
+
+```regnety_4000mf```: RegNetY costing approximately 4000 mega FLOPS/4.0 giga FLOPS. 
+
+```regnety_6400mf```: RegNetY costing approximately 6400 mega FLOPS/6.4 giga FLOPS. 
+
+```regnety_8000mf```: RegNetY costing approximately 8000 mega FLOPS/8.0 giga FLOPS. 
+
+```regnety_12gf```: RegNetY costing approximately 12000 mega FLOPS/12 giga FLOPS. 
+
+```regnety_16gf```: RegNetY costing approximately 16000 mega FLOPS/16 giga FLOPS. 
+
+```regnety_32gf```: RegNetY costing approximately 32000 mega FLOPS/32 giga FLOPS. 
 
 ## SENet
 
