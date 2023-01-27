@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
 	name='flaim',
-	version='0.0.3',
+	version='0.0.5',
 	description='Flax Image Models',
 	long_description=open('README.md').read(),
 	long_description_content_type='text/markdown',
