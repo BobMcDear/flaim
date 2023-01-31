@@ -68,6 +68,7 @@ class VANBlock(nn.Module):
 	def __call__(self, input, training: bool = True):
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			)(input)
 		output = VANAttention(
 			dw_kernel_size=self.dw_kernel_size,
@@ -81,6 +82,7 @@ class VANBlock(nn.Module):
 		residual = output
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			)(output)
 		output = layers.TransformerMLP(
 			hidden_dim_expansion_factor=self.mlp_hidden_dim_expansion_factor,

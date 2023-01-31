@@ -149,6 +149,7 @@ class LPI(nn.Module):
 		output = self.act(output)
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			)(output)
 		output = layers.Conv(
 			groups='dw',

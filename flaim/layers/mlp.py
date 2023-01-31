@@ -128,6 +128,7 @@ class MLP(nn.Module):
 			)(output) if self.dw_kernel_size else output
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			)(output) if self.bn else output
 		output = self.act(output)
 		output = nn.Dense(
@@ -218,6 +219,7 @@ class ConvMLP(nn.Module):
 			)(input)
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			)(output) if self.bn else output
 		output = self.act(output)
 		output = Conv(

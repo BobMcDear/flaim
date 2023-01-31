@@ -101,6 +101,7 @@ class PreNormMBConv(nn.Module):
 	def __call__(self, input, training: bool = True):
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			epsilon=1e-3 if self.tf else 1e-5,
 			)(input)
 
