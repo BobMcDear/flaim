@@ -79,6 +79,7 @@ class ConvBNAct(nn.Module):
 			)(input)
 		output = nn.BatchNorm(
 			use_running_average=not training,
+			momentum=0.9,
 			epsilon=1e-3 if self.tf else 1e-5,
 			)(output) if self.bn else output
 		output = self.act(output)
