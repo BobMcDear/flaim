@@ -115,6 +115,10 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 • ```convnext_small_in12ft1k```: ConvNeXt-Small, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
 
+• ```convnext_tiny_384_in12ft1k```: ConvNeXt-Tiny, training resolution 384 x 384, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+
+• ```convnext_small_384_in12ft1k```: ConvNeXt-Small, training resolution 384 x 384, pre-trained on ImageNet12K (a subset of ImageNet22K) and fine-tuned on ImageNet1K.
+
 • ```convnext_tiny_in22k```: ConvNeXt-Tiny, trained on ImageNet22K.
 
 • ```convnext_small_in22k```: ConvNeXt-Small, trained on ImageNet22K.

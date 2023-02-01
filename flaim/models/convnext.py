@@ -214,6 +214,14 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 			'depths': (3, 3, 27, 3),
 			'out_dims': (96, 192, 384, 768),
 			},
+		'convnext_tiny_384_in12ft1k': {
+			'depths': (3, 3, 9, 3),
+			'out_dims': (96, 192, 384, 768),
+			},
+		'convnext_small_384_in12ft1k': {
+			'depths': (3, 3, 27, 3),
+			'out_dims': (96, 192, 384, 768),
+			},
 		'convnext_tiny_in22k': {
 			'depths': (3, 3, 9, 3),
 			'out_dims': (96, 192, 384, 768),
