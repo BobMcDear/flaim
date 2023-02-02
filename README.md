@@ -3,6 +3,7 @@
 • <strong>[Introduction](#introduction)</strong><br>
 • <strong>[Installation](#installation)</strong><br>
 • <strong>[Usage](#usage)</strong><br>
+• <strong>[Examples](#examples)</strong><br>
 • <strong>[Available Architectures](#available-architectures)</strong><br>
 • <strong>[Contributing](#contributing)</strong><br>
 • <strong>[Acknowledgements](#acknowledgements)</strong><br>
@@ -97,6 +98,10 @@ If the model architecture is hierarchical, ```intermediates```'s items are the o
 ```intermediates['intermediates']['stage_ind']```, where ```ind``` is the index of the stage, with 0 being reserved for the stem. For isotropic models, the output of every block is returned, accessible via ```intermediates['intermediates']['block_ind']```.
 
 Note that Flax's ```sow``` API, which is used to store the intermediate activations, appends the data to a tuple; that is, if _n_ forward passes are performed, ```intermediates['intermediates']['stage_ind']``` or ```intermediates['intermediates']['block_ind']``` would be tuples of length _n_, with the *i*<sup>th</sup> item corresponding to the *i*<sup>th</sup> forward pass.
+
+## Examples
+
+[```examples/```](https://github.com/bobmcdear/flaim/blob/main/examples/) contains a series of annotated notebooks for solving various vision problems such as object classification using flaim.  
 
 ## Available Architectures
 
