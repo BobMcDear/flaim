@@ -25,5 +25,6 @@ from .sk import *
 from .splat import *
 from .tuplify import *
 from .vit_layers import *
+from .window_mhsa import *
 from .window import *
 from .xca import *
