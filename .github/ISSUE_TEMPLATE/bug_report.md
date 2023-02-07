@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a bug report to help improve flaim.
 title: "[Bug report]"
-labels: ''
-assignees: ''
+labels: bug
+assignees: BobMcDear
 
 ---
 
@@ -15,7 +15,7 @@ assignees: ''
 - flaim version:
 
 **Description**
-Please concisely describe the bug you are encountering.
+Please describe the bug you are encountering.
 
 **Reproduction**
 Please provide a code snippet to reproduce this bug.
