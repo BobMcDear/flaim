@@ -7,6 +7,7 @@ The following is a list of all available architectures, with brief descriptions 
 • <strong>[ConvNeXt](#convnext)</strong><br>
 • <strong>[ConvNeXt V2](#convnext-v2)</strong><br>
 • <strong>[CLIP](#clip)</strong><br>
+• <strong>[DaViT](#davit)</strong><br>
 • <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
 • <strong>[HorNet](#hornet)</strong><br>
 • <strong>[MaxViT](#maxvit)</strong><br>
@@ -240,6 +241,18 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 ```vit_base_clip_patch16_224_openai```: ViT-Base, patch size 16 x 16, resolution 224 x 224, trained by OpenAI on a dataset of 400 million pairs.
 
 ```vit_large_clip_patch14_224_openai```: ViT-Large, patch size 14 x 14, resolution 224 x 224, trained by OpenAI on a dataset of 400 million pairs.
+
+## DaViT
+
+DaViT from _[DaViT: Dual Attention Vision Transformers](https://arxiv.org/abs/2204.03645)_ by Ding et al. DaViT captures local spatial interactions through window attention and avails of channel self-attention to model global interactions whilst maintaining a linear complexity.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/davit.py).
+
+• ```davit_tiny_224```: DaViT-Tiny, resolution 224 x 224.
+
+• ```davit_small_224```: DaViT-Small, resolution 224 x 224.
+
+• ```davit_base_224```: DaViT-Base, resolution 224 x 224.
 
 ## EfficientNetV2
 

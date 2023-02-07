@@ -67,6 +67,7 @@ def main(
 			'convmixer20_1024d_patch14_kernel9',
 			'convnext_xxxnano',
 			'convnextv2_atto_fcmae',
+			'davit_tiny',
 			'efficientnetv2_small',
 			'gcvit_xxtiny_224',
 			'hornet_tiny',

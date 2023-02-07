@@ -7,6 +7,7 @@ from . import (
 	cait,
 	convmixer,
 	convnext,
+	davit,
 	efficientnetv2,
 	gcvit,
 	hornet,
