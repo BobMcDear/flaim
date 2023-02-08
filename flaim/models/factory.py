@@ -1,5 +1,5 @@
 """
-Functions for accessing flaim models and loading pre-trained parameters.
+Utilities for retrieving flaim models and loading pre-trained parameters.
 """
 
 
@@ -120,19 +120,28 @@ def download_vars(
 
 def load_pretrained_vars(
 	model_name: str,
+	n_classes: int = 0,
 	) -> T.Dict:
 	"""
-	Loads a model's parameters from the .flaim/ directory. If it doesn't exist,
-	it is downloaded.
+	Loads a model's pre-trained parameters from the .flaim/ directory.
+	If it doesn't exist, it is downloaded.
 
 	Args:
-		model_name (str): Name of model whose parameters are returned.
+		model_name (str): Name of model whose pre-trained parameters are returned.
+		n_classes (int): Number of output classes. If 0, the head's parameters
+		are not returned.
 	
 	Returns (T.Dict): The model's parameters.
 	"""
 	params_path = download_vars(model_name)
 	with open(params_path, 'rb') as f:
 		params = pickle.load(f)
+	
+	if n_classes == 0:
+		flattened_params = traverse_util.flatten_dict(params)
+		flattened_params = {key: flattened_params[key] for key in flattened_params if 'Head' not in key[1]}
+		params = traverse_util.unflatten_dict(flattened_params)
+
 	return params
 
 
@@ -240,7 +249,7 @@ def get_model(
 		)
 	
 	if pretrained:
-		pretrained_vars = load_pretrained_vars(model_name)
+		pretrained_vars = load_pretrained_vars(model_name, n_classes)
 		vars = merge_vars(vars, pretrained_vars)
 	
 	return (model, vars, norm_stats_) if norm_stats else (model, vars)
