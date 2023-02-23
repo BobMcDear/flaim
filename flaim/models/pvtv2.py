@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class SRAQKV(nn.Module):
@@ -186,7 +186,7 @@ class PVTV2(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_pvtv2_configs() -> T.Tuple[T.Type[PVTV2], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -196,36 +196,66 @@ def get_pvtv2_configs() -> T.Tuple[T.Type[PVTV2], T.Dict]:
 	configurations of all models.
 	"""
 	configs = {
-		'pvtv2_b0': {
-			'depths': (2, 2, 2, 2),
-			'token_dims': (32, 64, 160, 256),
-			'n_heads': (1, 2, 5, 8),
-			},
-		'pvtv2_b1': {
-			'depths': (2, 2, 2, 2),
-			'token_dims': (64, 128, 320, 512),
-			'n_heads': (1, 2, 5, 8),
-			},
-		'pvtv2_b2': {
-			'depths': (3, 4, 6, 3),
-			'token_dims': (64, 128, 320, 512),
-			'n_heads': (1, 2, 5, 8),
-			},
-		'pvtv2_b3': {
-			'depths': (3, 4, 18, 3),
-			'token_dims': (64, 128, 320, 512),
-			'n_heads': (1, 2, 5, 8),
-			},
-		'pvtv2_b4': {
-			'depths': (3, 8, 27, 3),
-			'token_dims': (64, 128, 320, 512),
-			'n_heads': (1, 2, 5, 8),
-			},
-		'pvtv2_b5': {
-			'depths': (3, 6, 40, 3),
-			'token_dims': (64, 128, 320, 512),
-			'n_heads': (1, 2, 5, 8),
-			'mlp_hidden_dim_expansion_factors': (4, 4, 4, 4),
-			},
+		'pvtv2_b0': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				token_dims=(32, 64, 160, 256),
+				n_heads=(1, 2, 5, 8),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b0'),
+				},
+			),
+		'pvtv2_b1': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				token_dims=(64, 128, 320, 512),
+				n_heads=(1, 2, 5, 8),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b1'),
+				},
+			),
+		'pvtv2_b2': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				token_dims=(64, 128, 320, 512),
+				n_heads=(1, 2, 5, 8),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b2'),
+				},
+			),
+		'pvtv2_b3': dict(
+			model_args=dict(
+				depths=(3, 4, 18, 3),
+				token_dims=(64, 128, 320, 512),
+				n_heads=(1, 2, 5, 8),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b3'),
+				},
+			),
+		'pvtv2_b4': dict(
+			model_args=dict(
+				depths=(3, 8, 27, 3),
+				token_dims=(64, 128, 320, 512),
+				n_heads=(1, 2, 5, 8),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b4'),
+				},
+			),
+		'pvtv2_b5': dict(
+			model_args=dict(
+				depths=(3, 6, 40, 3),
+				token_dims=(64, 128, 320, 512),
+				n_heads=(1, 2, 5, 8),
+				mlp_hidden_dim_expansion_factors=(4, 4, 4, 4),
+				),
+			params={
+				'in1k_224': imagenet_params_config('pvtv2_b5'),
+				},
+			),
 		}
 	return PVTV2, configs

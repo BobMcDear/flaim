@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class GCViTFusedMBConv(nn.Module):
@@ -82,7 +82,7 @@ class GCViTDownsample(nn.Module):
 			)(output)
 		return output
 
-	
+
 class GCViTStem(nn.Module):
 	"""
 	GC ViT stem.
@@ -143,7 +143,7 @@ class WindowMHSA(nn.Module):
 	def __call__(self, input, q_global=None):
 		bs, h, w, in_dim = input.shape
 		head_dim = in_dim//self.n_heads
-		
+
 		output = layers.window_partition(input, self.window_size)
 		output = jnp.reshape(output, (-1, self.window_size**2, in_dim))
 
@@ -163,7 +163,7 @@ class WindowMHSA(nn.Module):
 				axis=0,
 				)
 			k, v = jnp.squeeze(k, axis=0), jnp.squeeze(v, axis=0)
-		
+
 		else:
 			q, k, v = layers.QKV(
 				n_heads=self.n_heads,
@@ -173,7 +173,7 @@ class WindowMHSA(nn.Module):
 			pre_softmax=partial(
 				layers.RelPosEmbed,
 				n_heads=self.n_heads,
-				window_size=self.window_size, 
+				window_size=self.window_size,
 				class_token=False,
 				),
 			)(q=q, k=k, v=v)
@@ -194,7 +194,7 @@ class GCViTBlock(nn.Module):
 		n_heads (int): Number of heads.
 		global_q (bool): Whether to use the provided global queries.
 		Default is False.
-		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the 
+		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the
 		hidden layer of the MLP.
 		Default is 4.
 		window_size (int): Window size for relative position
@@ -242,7 +242,7 @@ class GCViTStage(nn.Module):
 	Args:
 		depth (int): Depth.
 		n_heads (int): Number of heads.
-		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the 
+		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the
 		hidden layer of the MLP.
 		Default is 4.
 		window_size (int): Window size for relative position
@@ -272,7 +272,7 @@ class GCViTStage(nn.Module):
 			input = GCViTDownsample(
 				out_dim=2*input.shape[-1],
 				)(input)
-			
+
 		q_global = GlobalQuery(
 			levels=int(log2(input.shape[-2]//self.window_size)),
 			)(input)
@@ -284,7 +284,7 @@ class GCViTStage(nn.Module):
 				window_size=self.window_size,
 				layer_scale_init_value=self.layer_scale_init_value,
 				)(input, q_global)
-			
+
 		if self.final_norm:
 			input = nn.LayerNorm(
 				epsilon=1e-5,
@@ -302,7 +302,7 @@ class GCViT(nn.Module):
 		token_dim (int): Token dimension.
 		n_heads (T.Tuple[int, ...]): Number of heads of each
 		stage.
-		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the 
+		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the
 		hidden layer of the MLP.
 		Default is 4.
 		window_size_factors (T.Tuple[int, ...]): Factors by which
@@ -314,7 +314,7 @@ class GCViT(nn.Module):
 		is applied.
 		Default is None.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -353,7 +353,7 @@ class GCViT(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
@@ -361,7 +361,7 @@ class GCViT(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_gcvit_configs() -> T.Tuple[T.Type[GCViT], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -371,34 +371,59 @@ def get_gcvit_configs() -> T.Tuple[T.Type[GCViT], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'gcvit_xxtiny_224': {
-			'depths': (2, 2, 6, 2),
-			'token_dim': 64,
-			'n_heads': (2, 4, 8, 16),
-			},
-		'gcvit_xtiny_224': {
-			'depths': (3, 4, 6, 5),
-			'token_dim': 64,
-			'n_heads': (2, 4, 8, 16),
-			},
-		'gcvit_tiny_224': {
-			'depths': (3, 4, 19, 5),
-			'token_dim': 64,
-			'n_heads': (2, 4, 8, 16),
-			},
-		'gcvit_small_224': {
-			'depths': (3, 4, 19, 5),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			'mlp_hidden_dim_expansion_factor': 2,
-			'layer_scale_init_value': 1e-5,
-			},
-		'gcvit_base_224': {
-			'depths': (3, 4, 19, 5),
-			'token_dim': 128,
-			'n_heads': (4, 8, 16, 32),
-			'mlp_hidden_dim_expansion_factor': 2,
-			'layer_scale_init_value': 1e-5,
-			},
+		'gcvit_xxtiny': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				token_dim=64,
+				n_heads=(2, 4, 8, 16),
+				),
+			params={
+				'in1k_224': imagenet_params_config('gcvit_xxtiny_224'),
+				},
+			),
+		'gcvit_xtiny': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 5),
+				token_dim=64,
+				n_heads=(2, 4, 8, 16),
+				),
+			params={
+				'in1k_224': imagenet_params_config('gcvit_xtiny_224'),
+				},
+			),
+		'gcvit_tiny': dict(
+			model_args=dict(
+				depths=(3, 4, 19, 5),
+				token_dim=64,
+				n_heads=(2, 4, 8, 16),
+				),
+			params={
+				'in1k_224': imagenet_params_config('gcvit_tiny_224'),
+				},
+			),
+		'gcvit_small': dict(
+			model_args=dict(
+				depths=(3, 4, 19, 5),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				mlp_hidden_dim_expansion_factor=2,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('gcvit_small_224'),
+				},
+			),
+		'gcvit_base': dict(
+			model_args=dict(
+				depths=(3, 4, 19, 5),
+				token_dim=128,
+				n_heads=(4, 8, 16, 32),
+				mlp_hidden_dim_expansion_factor=2,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('gcvit_base_224'),
+				},
+			),
 		}
 	return GCViT, configs

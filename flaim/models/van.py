@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class VANAttention(nn.Module):
@@ -215,7 +215,7 @@ class VAN(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_van_configs() -> T.Tuple[T.Type[VAN], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -225,21 +225,41 @@ def get_van_configs() -> T.Tuple[T.Type[VAN], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'van_b0': {
-			'depths': (3, 3, 5, 2),
-			'out_dims': (32, 64, 160, 256),
-			},
-		'van_b1': {
-			'depths': (2, 2, 4, 2),
-			'out_dims': (64, 128, 320, 512),
-			},
-		'van_b2': {
-			'depths': (3, 3, 12, 3),
-			'out_dims': (64, 128, 320, 512),
-			},
-		'van_b3': {
-			'depths': (3, 5, 27, 3),
-			'out_dims': (64, 128, 320, 512),
-			},
+		'van_b0': dict(
+			model_args=dict(
+				depths=(3, 3, 5, 2),
+				out_dims=(32, 64, 160, 256),
+				),
+			params={
+				'in1k_224': imagenet_params_config('van_b0'),
+				},
+			),
+		'van_b1': dict(
+			model_args=dict(
+				depths=(2, 2, 4, 2),
+				out_dims=(64, 128, 320, 512),
+				),
+			params={
+				'in1k_224': imagenet_params_config('van_b1'),
+				},
+			),
+		'van_b2': dict(
+			model_args=dict(
+				depths=(3, 3, 12, 3),
+				out_dims=(64, 128, 320, 512),
+				),
+			params={
+				'in1k_224': imagenet_params_config('van_b2'),
+				},
+			),
+		'van_b3': dict(
+			model_args=dict(
+				depths=(3, 5, 27, 3),
+				out_dims=(64, 128, 320, 512),
+				),
+			params={
+				'in1k_224': imagenet_params_config('van_b3'),
+				},
+			),
 		}
 	return VAN, configs

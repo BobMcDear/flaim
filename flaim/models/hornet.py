@@ -9,7 +9,7 @@ from functools import partial
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class HorNetStage(nn.Module):
@@ -125,7 +125,7 @@ class HorNet(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_hornet_configs() -> T.Tuple[T.Type[HorNet], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -135,21 +135,41 @@ def get_hornet_configs() -> T.Tuple[T.Type[HorNet], T.Dict]:
 	configurations of all models.
 	"""
 	configs = {
-		'hornet_tiny': {
-			'depths': (2, 3, 18, 2),
-			'out_dim_first_stage': 64,
-			}, 
-		'hornet_small': {
-			'depths': (2, 3, 18, 2),
-			'out_dim_first_stage': 96,
-			},
-		'hornet_base': {
-			'depths': (2, 3, 18, 2),
-			'out_dim_first_stage': 128,
-			}, 
-		'hornet_large_in22k': {
-			'depths': (2, 3, 18, 2),
-			'out_dim_first_stage': 192,
-			},
+		'hornet_tiny': dict(
+			model_args=dict(
+				depths=(2, 3, 18, 2),
+				out_dim_first_stage= 64,
+				),
+			params={
+				'in1k_224': imagenet_params_config('hornet_tiny'),
+				},
+			),
+		'hornet_small': dict(
+			model_args=dict(
+				depths=(2, 3, 18, 2),
+				out_dim_first_stage= 96,
+				),
+			params={
+				'in1k_224': imagenet_params_config('hornet_small'),
+				},
+			),
+		'hornet_base': dict(
+			model_args=dict(
+				depths=(2, 3, 18, 2),
+				out_dim_first_stage= 128,
+				),
+			params={
+				'in1k_224': imagenet_params_config('hornet_base'),
+				},
+			),
+		'hornet_large': dict(
+			model_args=dict(
+				depths=(2, 3, 18, 2),
+				out_dim_first_stage= 192,
+				),
+			params={
+				'in22k_224': imagenet_params_config('hornet_large_in22k'),
+				},
+			),
 		}
 	return HorNet, configs

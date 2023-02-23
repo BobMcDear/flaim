@@ -9,7 +9,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class ConvPosEnc(nn.Module):
@@ -52,7 +52,7 @@ class DaViTSpatialBlock(nn.Module):
 		output = layers.TransformerMLP(
 			layer_norm_eps=1e-5,
 			)(output)
-		
+
 		return output
 
 
@@ -109,7 +109,7 @@ class DaViTChannelBlock(nn.Module):
 		output = layers.TransformerMLP(
 			layer_norm_eps=1e-5,
 			)(output)
-		
+
 		return output
 
 
@@ -166,7 +166,7 @@ class DaViT(nn.Module):
 		window_size (int): Window size for window attention.
 		Default is 7.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -191,7 +191,7 @@ class DaViT(nn.Module):
 			name='stage_0',
 			value=output,
 			)
-		
+
 		for stage_ind in range(len(self.depths)):
 			output = DaViTStage(
 				depth=self.depths[stage_ind],
@@ -205,7 +205,7 @@ class DaViT(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-5,
@@ -214,7 +214,7 @@ class DaViT(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_davit_configs() -> T.Tuple[T.Type[DaViT], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -224,20 +224,35 @@ def get_davit_configs() -> T.Tuple[T.Type[DaViT], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'davit_tiny_224': {
-			'depths': (1, 1, 3, 1),
-			'out_dims': (96, 192, 384, 768),
-			'n_heads': (3, 6, 12, 24),
-			},
-		'davit_small_224': {
-			'depths': (1, 1, 9, 1),
-			'out_dims': (96, 192, 384, 768),
-			'n_heads': (3, 6, 12, 24),
-			},
-		'davit_base_224': {
-			'depths': (1, 1, 9, 1),
-			'out_dims': (128, 256, 512, 1024),
-			'n_heads': (4, 8, 16, 32),
-			},
+		'davit_tiny': dict(
+			model_args=dict(
+				depths=(1, 1, 3, 1),
+				out_dims=(96, 192, 384, 768),
+				n_heads=(3, 6, 12, 24),
+				),
+			params={
+				'in1k_224': imagenet_params_config('davit_tiny_224'),
+				},
+			),
+		'davit_small': dict(
+			model_args=dict(
+				depths=(1, 1, 9, 1),
+				out_dims=(96, 192, 384, 768),
+				n_heads=(3, 6, 12, 24),
+				),
+			params={
+				'in1k_224': imagenet_params_config('davit_small_224'),
+				},
+			),
+		'davit_base': dict(
+			model_args=dict(
+				depths=(1, 1, 9, 1),
+				out_dims=(128, 256, 512, 1024),
+				n_heads=(4, 8, 16, 32),
+				),
+			params={
+				'in1k_224': imagenet_params_config('davit_base_224'),
+				},
+			),
 		}
 	return DaViT, configs

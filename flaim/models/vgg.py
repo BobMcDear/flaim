@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class VGG(nn.Module):
@@ -41,7 +41,7 @@ class VGG(nn.Module):
 					bn=self.bn,
 					act=nn.relu,
 					)(input, training=training)
-			
+
 			elif width == 'm':
 				self.sow(
 					col='intermediates',
@@ -55,15 +55,15 @@ class VGG(nn.Module):
 					padding=0,
 					)
 				stage_ind += 1
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(input)
-			
+
 		return output
 
 
-@register_configs
+@register_models
 def get_vgg_configs() -> T.Tuple[T.Type[VGG], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -73,33 +73,73 @@ def get_vgg_configs() -> T.Tuple[T.Type[VGG], T.Dict]:
 	configurations of all models.
 	"""
 	configs = {
-		'vgg11': {
-			'out_dims': (64, 'm', 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
-			},
-		'vgg13': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
-			},
-		'vgg16': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 256, 'm', 512, 512, 512, 'm', 512, 512, 512, 'm'),
-			},
-		'vgg19': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 256, 256, 'm', 512, 512, 512, 512, 'm', 512, 512, 512, 512, 'm'),
-			},
-		'vgg11_bn': {
-			'out_dims': (64, 'm', 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
-			'bn': True,
-			},
-		'vgg13_bn': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
-			'bn': True,
-			},
-		'vgg16_bn': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 256, 'm', 512, 512, 512, 'm', 512, 512, 512, 'm'),
-			'bn': True,
-			},
-		'vgg19_bn': {
-			'out_dims': (64, 64, 'm', 128, 128, 'm', 256, 256, 256, 256, 'm', 512, 512, 512, 512, 'm', 512, 512, 512, 512, 'm'),
-			'bn': True,
-			},
+		'vgg11': dict(
+			model_args=dict(
+				out_dims=(64, 'm', 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg11'),
+				},
+			),
+		'vgg11_bn': dict(
+			model_args=dict(
+				out_dims=(64, 'm', 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
+				bn=True,
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg11_bn'),
+				},
+			),
+		'vgg13': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg13'),
+				},
+			),
+		'vgg13_bn': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 'm', 512, 512, 'm', 512, 512, 'm'),
+				bn=True,
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg13_bn'),
+				},
+			),
+		'vgg16': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 256, 'm', 512, 512, 512, 'm', 512, 512, 512, 'm'),
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg16'),
+				},
+			),
+		'vgg16_bn': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 256, 'm', 512, 512, 512, 'm', 512, 512, 512, 'm'),
+				bn=True,
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg16_bn'),
+				},
+			),
+		'vgg19': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 256, 256, 'm', 512, 512, 512, 512, 'm', 512, 512, 512, 512, 'm'),
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg19'),
+				},
+			),
+		'vgg19_bn': dict(
+			model_args=dict(
+				out_dims=(64, 64, 'm', 128, 128, 'm', 256, 256, 256, 256, 'm', 512, 512, 512, 512, 'm', 512, 512, 512, 512, 'm'),
+				bn=True,
+				),
+			params={
+				'in1k_224': imagenet_params_config('vgg19_bn'),
+				},
+			),
 		}
 	return VGG, configs

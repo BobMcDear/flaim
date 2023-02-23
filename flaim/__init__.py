@@ -5,4 +5,5 @@ plus common deep learning modules in computer vision, for Flax.
 
 
 from . import layers
-from .models import get_model, list_models
+from . import models
+from .factory import get_model, list_models

@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import NORM_STATS, register_configs
+from ..factory import clip_params_config, imagenet_params_config, register_models
 
 
 class ConvNeXtBlock(nn.Module):
@@ -148,7 +148,7 @@ class ConvNeXt(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -158,310 +158,219 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'convnext_xxxnano': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (40, 80, 160, 320),
-			},
-		'convnext_xxnano': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (48, 96, 192, 384),
-			},
-		'convnext_xnano': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (64, 128, 256, 512),
-			},
-		'convnext_nano': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			},
-		'convnext_tiny': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_base': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			},
-		'convnext_large': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			},
-		'convnext_nano_in12k': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			},
-		'convnext_tiny_in12k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_in12k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_nano_in12ft1k': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			},
-		'convnext_tiny_in12ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_in12ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_tiny_384_in12ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_384_in12ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_tiny_in22k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_in22k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_base_in22k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			},
-		'convnext_large_in22k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			},
-		'convnext_xlarge_in22k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (256, 512, 1024, 2048),
-			},
-		'convnext_tiny_in22ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_base_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			},
-		'convnext_large_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			},
-		'convnext_xlarge_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (256, 512, 1024, 2048),
-			},
-		'convnext_tiny_384_in22ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_small_384_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'convnext_base_384_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			},
-		'convnext_large_384_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			},
-		'convnext_xlarge_384_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (256, 512, 1024, 2048),
-			},
-		'convnextv2_atto_fcmae': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (40, 80, 160, 320),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_femto_fcmae': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (48, 96, 192, 384),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_pico_fcmae': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (64, 128, 256, 512),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_nano_fcmae': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_tiny_fcmae': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_base_fcmae': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_large_fcmae': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_huge_fcmae': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (352, 704, 1408, 2816),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_atto_fcmae_ftin1k': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (40, 80, 160, 320),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_femto_fcmae_ftin1k': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (48, 96, 192, 384),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_pico_fcmae_ftin1k': {
-			'depths': (2, 2, 6, 2),
-			'out_dims': (64, 128, 256, 512),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_nano_fcmae_ftin1k': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_tiny_fcmae_ftin1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_base_fcmae_ftin1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_large_fcmae_ftin1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_huge_fcmae_ftin1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (352, 704, 1408, 2816),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_nano_fcmae_in22ft1k': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_tiny_fcmae_in22ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_base_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_large_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_nano_384_fcmae_in22ft1k': {
-			'depths': (2, 2, 8, 2),
-			'out_dims': (80, 160, 320, 640),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_tiny_384_fcmae_in22ft1k': {
-			'depths': (3, 3, 9, 3),
-			'out_dims': (96, 192, 384, 768),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_base_384_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_large_384_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (192, 384, 768, 1536),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_huge_384_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (352, 704, 1408, 2816),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnextv2_huge_512_fcmae_in22ft1k': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (352, 704, 1408, 2816),
-			'layer_scale_init_value': None,
-			'grn': True,
-			},
-		'convnext_base_clip_laion2b': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'norm_stats': NORM_STATS['clip'],
-			},
-		'convnext_base_clip_laion2b_augreg': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'norm_stats': NORM_STATS['clip'],
-			},
-		'convnext_base_clip_laiona': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'norm_stats': NORM_STATS['clip'],
-			},
-		'convnext_base_clip_320_laiona': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'norm_stats': NORM_STATS['clip'],
-			},
-		'convnext_base_clip_320_laiona_augreg': {
-			'depths': (3, 3, 27, 3),
-			'out_dims': (128, 256, 512, 1024),
-			'norm_stats': NORM_STATS['clip'],
-			},
+		'convnext_atto': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(40, 80, 160, 320),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_xxxnano'),
+				},
+			),
+		'convnext_femto': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(48, 96, 192, 384),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_xxnano'),
+				},
+			),
+		'convnext_pico': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(64, 128, 256, 512),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_xnano'),
+				},
+			),
+		'convnext_nano': dict(
+			model_args=dict(
+				depths=(2, 2, 8, 2),
+				out_dims=(80, 160, 320, 640),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_nano'),
+				'in12k_224': imagenet_params_config('convnext_nano_in12k'),
+				'in12k_ft_in1k_224': imagenet_params_config('convnext_nano_in12ft1k'),
+				},
+			),
+		'convnext_tiny': dict(
+			model_args=dict(
+				depths=(3, 3, 9, 3),
+				out_dims=(96, 192, 384, 768),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_tiny'),
+				'in12k_224': imagenet_params_config('convnext_tiny_in12k'),
+				'in12k_ft_in1k_224': imagenet_params_config('convnext_tiny_in12ft1k'),
+				'in12k_ft_in1k_384': imagenet_params_config('convnext_tiny_384_in12ft1k'),
+				'in22k_224': imagenet_params_config('convnext_tiny_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('convnext_tiny_in22ft1k'),
+				'in22k_ft_in1k_384': imagenet_params_config('convnext_tiny_384_in22ft1k'),
+				},
+			),
+		'convnext_small': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(96, 192, 384, 768),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_small'),
+				'in12k_224': imagenet_params_config('convnext_small_in12k'),
+				'in12k_ft_in1k_224': imagenet_params_config('convnext_small_in12ft1k'),
+				'in12k_ft_in1k_384': imagenet_params_config('convnext_small_384_in12ft1k'),
+				'in22k_224': imagenet_params_config('convnext_small_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('convnext_small_in22ft1k'),
+				'in22k_ft_in1k_384': imagenet_params_config('convnext_small_384_in22ft1k'),
+				},
+			),
+		'convnext_base': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(128, 256, 512, 1024),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_base'),
+				'in22k_224': imagenet_params_config('convnext_base_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('convnext_base_in22ft1k'),
+				'in22k_ft_in1k_384': imagenet_params_config('convnext_base_384_in22ft1k'),
+				'clip_laion2b_256': clip_params_config('convnext_base_clip_laion2b'),
+				'clip_laion2b_augreg_256': clip_params_config('convnext_base_clip_laion2b_augreg'),
+				'clip_laiona_256': clip_params_config('convnext_base_clip_laiona'),
+				'clip_laiona_320': clip_params_config('convnext_base_clip_320_laiona'),
+				'clip_laiona_augreg_320': clip_params_config('convnext_base_clip_320_laiona_augreg'),
+				},
+			),
+		'convnext_large': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(192, 384, 768, 1536),
+				),
+			params={
+				'in1k_224': imagenet_params_config('convnext_large'),
+				'in22k_224': imagenet_params_config('convnext_large_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('convnext_large_in22ft1k'),
+				'in22k_ft_in1k_384': imagenet_params_config('convnext_large_384_in22ft1k'),
+				},
+			),
+		'convnext_xlarge': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(256, 512, 1024, 2048),
+				),
+			params={
+				'in22k_224': imagenet_params_config('convnext_xlarge_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('convnext_xlarge_in22ft1k'),
+				'in22k_ft_in1k_384': imagenet_params_config('convnext_xlarge_384_in22ft1k'),
+				},
+			),
+		'convnextv2_atto': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(40, 80, 160, 320),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_atto_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_atto_fcmae_ftin1k'),
+				},
+			),
+		'convnextv2_femto': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(48, 96, 192, 384),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_femto_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_femto_fcmae_ftin1k'),
+				},
+			),
+		'convnextv2_pico': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				out_dims=(64, 128, 256, 512),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_pico_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_pico_fcmae_ftin1k'),
+				},
+			),
+		'convnextv2_nano': dict(
+			model_args=dict(
+				depths=(2, 2, 8, 2),
+				out_dims=(80, 160, 320, 640),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_nano_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_nano_fcmae_ftin1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_224': imagenet_params_config('convnextv2_nano_fcmae_in22ft1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_384': imagenet_params_config('convnextv2_nano_384_fcmae_in22ft1k'),
+				},
+			),
+		'convnextv2_tiny': dict(
+			model_args=dict(
+				depths=(3, 3, 9, 3),
+				out_dims=(96, 192, 384, 768),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_tiny_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_tiny_fcmae_ftin1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_224': imagenet_params_config('convnextv2_tiny_fcmae_in22ft1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_384': imagenet_params_config('convnextv2_tiny_384_fcmae_in22ft1k'),
+				},
+			),
+		'convnextv2_base': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(128, 256, 512, 1024),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_base_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_base_fcmae_ftin1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_224': imagenet_params_config('convnextv2_base_fcmae_in22ft1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_384': imagenet_params_config('convnextv2_base_384_fcmae_in22ft1k'),
+				},
+			),
+		'convnextv2_large': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(192, 384, 768, 1536),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_large_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_large_fcmae_ftin1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_224': imagenet_params_config('convnextv2_large_fcmae_in22ft1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_384': imagenet_params_config('convnextv2_large_384_fcmae_in22ft1k'),
+				},
+			),
+		'convnextv2_huge': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(352, 704, 1408, 2816),
+				layer_scale_init_value=None,
+				grn=True,
+				),
+			params={
+				'fcmae_in1k_224': imagenet_params_config('convnextv2_huge_fcmae'),
+				'fcmae_in1k_ft_in1k_224': imagenet_params_config('convnextv2_huge_fcmae_ftin1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_384': imagenet_params_config('convnextv2_huge_384_fcmae_in22ft1k'),
+				'fcmae_in22k_ft_in22k_ft_in1k_512': imagenet_params_config('convnextv2_huge_512_fcmae_in22ft1k'),
+				},
+			),
 		}
 	return ConvNeXt, configs

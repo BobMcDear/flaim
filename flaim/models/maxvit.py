@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import NORM_STATS, register_configs
+from ..factory import imagenet_params_config, inception_params_config, register_models
 
 
 class MaxViTStem(nn.Module):
@@ -516,7 +516,7 @@ class MaxViT(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_maxvit_configs() -> T.Tuple[T.Type[MaxViT], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -526,98 +526,65 @@ def get_maxvit_configs() -> T.Tuple[T.Type[MaxViT], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'maxvit_tiny_224': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (64, 128, 256, 512),
-			},
-		'maxvit_small_224': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'maxvit_base_224': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (96, 192, 384, 768),
-			},
-		'maxvit_large_224': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (128, 256, 512, 1024),
-			'stem_out_dim': 128,
-			},
-		'maxvit_tiny_384': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (64, 128, 256, 512),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_small_384': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_base_384': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_large_384': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (128, 256, 512, 1024),
-			'stem_out_dim': 128,
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_tiny_512': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (64, 128, 256, 512),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_small_512': {
-			'depths': (2, 2, 5, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_base_512': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_large_512': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (128, 256, 512, 1024),
-			'stem_out_dim': 128,
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_base_384_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_large_384_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (128, 256, 512, 1024),
-			'stem_out_dim': 128,
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_xlarge_384_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (192, 384, 768, 1536),
-			'stem_out_dim': 192,
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_base_512_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (96, 192, 384, 768),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_large_512_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (128, 256, 512, 1024),
-			'stem_out_dim': 128,
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'maxvit_xlarge_512_in22ft1k': {
-			'depths': (2, 6, 14, 2),
-			'out_dims': (192, 384, 768, 1536),
-			'stem_out_dim': 192,
-			'norm_stats': NORM_STATS['inception'],
-			},
+		'maxvit_tiny': dict(
+			model_args=dict(
+				depths=(2, 2, 5, 2),
+				out_dims=(64, 128, 256, 512),
+				),
+			params={
+				'in1k_224': imagenet_params_config('maxvit_tiny_224'),
+				'in1k_384': inception_params_config('maxvit_tiny_384'),
+				'in1k_512': inception_params_config('maxvit_tiny_512'),
+				},
+			),
+		'maxvit_small': dict(
+			model_args=dict(
+				depths=(2, 2, 5, 2),
+				out_dims=(96, 192, 384, 768),
+				),
+			params={
+				'in1k_224': imagenet_params_config('maxvit_small_224'),
+				'in1k_384': inception_params_config('maxvit_small_384'),
+				'in1k_512': inception_params_config('maxvit_small_512'),
+				},
+			),
+		'maxvit_base': dict(
+			model_args=dict(
+				depths=(2, 6, 14, 2),
+				out_dims=(96, 192, 384, 768),
+				),
+			params={
+				'in1k_224': imagenet_params_config('maxvit_base_224'),
+				'in1k_384': inception_params_config('maxvit_base_384'),
+				'in1k_512': inception_params_config('maxvit_base_512'),
+				'in22k_ft_in1k_384': inception_params_config('maxvit_base_384_in22ft1k'),
+				'in22k_ft_in1k_512': inception_params_config('maxvit_base_512_in22ft1k'),
+				},
+			),
+		'maxvit_large': dict(
+			model_args=dict(
+				depths=(2, 6, 14, 2),
+				out_dims=(128, 256, 512, 1024),
+				stem_out_dim=128,
+				),
+			params={
+				'in1k_224': imagenet_params_config('maxvit_large_224'),
+				'in1k_384': inception_params_config('maxvit_large_384'),
+				'in1k_512': inception_params_config('maxvit_large_512'),
+				'in22k_ft_in1k_384': inception_params_config('maxvit_large_384_in22ft1k'),
+				'in22k_ft_in1k_512': inception_params_config('maxvit_large_512_in22ft1k'),
+				},
+			),
+		'maxvit_xlarge': dict(
+			model_args=dict(
+				depths=(2, 6, 14, 2),
+				out_dims=(192, 384, 768, 1536),
+				stem_out_dim=192,
+				),
+			params={
+				'in22k_ft_in1k_384': inception_params_config('maxvit_xlarge_384_in22ft1k'),
+				'in22k_ft_in1k_512': inception_params_config('maxvit_xlarge_512_in22ft1k'),
+				},
+			),
 		}
 	return MaxViT, configs

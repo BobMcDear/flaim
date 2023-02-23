@@ -10,13 +10,13 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class TalkingHeads(nn.Module):
 	"""
-	Module enabling communication between different heads,
-	a.k.a. talking heads.
+	Module enabling communication between different heads
+	through a linear layer, a.k.a. talking heads.
 	"""
 	@nn.compact
 	def __call__(self, input):
@@ -177,7 +177,7 @@ class Cait(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_cait_configs() -> T.Tuple[T.Type[Cait], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -187,58 +187,80 @@ def get_cait_configs() -> T.Tuple[T.Type[Cait], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'cait_xxsmall24_224': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 24,
-			},
-		'cait_small24_224': {
-			'token_dim': 384,
-			'n_heads': 8,
-			'depth': 24,
-			},
-		'cait_xxsmall36_224': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 36,
-			},
-		'cait_xxsmall24_384': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 24,
-			},
-		'cait_xsmall24_384': {
-			'token_dim': 288,
-			'n_heads': 6,
-			'depth': 24,
-			},
-		'cait_small24_384': {
-			'token_dim': 384,
-			'n_heads': 8,
-			'depth': 24,
-			},
-		'cait_xxsmall36_384': {
-			'token_dim': 192,
-			'n_heads': 4,
-			'depth': 36,
-			},
-		'cait_small36_384': {
-			'token_dim': 384,
-			'n_heads': 8,
-			'depth': 36,
-			'layer_scale_init_value': 1e-6,
-			},
-		'cait_medium36_384': {
-			'token_dim': 768,
-			'n_heads': 16,
-			'layer_scale_init_value': 1e-6,
-			'depth': 36,
-			},
-		'cait_medium48_448': {
-			'token_dim': 768,
-			'n_heads': 16,
-			'layer_scale_init_value': 1e-6,
-			'depth': 48,
-			},
+		'cait_xxsmall24': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=192,
+				n_heads=4,
+				),
+			params={
+				'in1k_224': imagenet_params_config('cait_xxsmall24_224'),
+				'in1k_384': imagenet_params_config('cait_xxsmall24_384'),
+				},
+			),
+		'cait_xxsmall36': dict(
+			model_args=dict(
+				depth=36,
+				token_dim=192,
+				n_heads=4,
+				),
+			params={
+				'in1k_224': imagenet_params_config('cait_xxsmall36_224'),
+				'in1k_384': imagenet_params_config('cait_xxsmall36_384'),
+				},
+			),
+		'cait_xsmall24': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=288,
+				n_heads=6,
+				),
+			params={
+				'in1k_384': imagenet_params_config('cait_xsmall24_384'),
+				},
+			),
+		'cait_small24': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=384,
+				n_heads=8,
+				),
+			params={
+				'in1k_224': imagenet_params_config('cait_small24_224'),
+				'in1k_384': imagenet_params_config('cait_small24_384'),
+				},
+			),
+		'cait_small36': dict(
+			model_args=dict(
+				depth=36,
+				token_dim=384,
+				n_heads=8,
+				),
+			params={
+				'in1k_384': imagenet_params_config('cait_small36_384'),
+				},
+			),
+		'cait_medium36': dict(
+			model_args=dict(
+				depth=36,
+				token_dim=768,
+				n_heads=16,
+				layer_scale_init_value=1e-6,
+				),
+			params={
+				'in1k_384': imagenet_params_config('cait_medium36_384'),
+				},
+			),
+		'cait_medium48': dict(
+			model_args=dict(
+				depth=48,
+				token_dim=768,
+				n_heads=16,
+				layer_scale_init_value=1e-6,
+				),
+			params={
+				'in1k_448': imagenet_params_config('cait_medium48_448'),
+				},
+			),
 		}
 	return Cait, configs

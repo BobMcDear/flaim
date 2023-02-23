@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 def get_mask(
@@ -288,7 +288,7 @@ class Swin(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -298,79 +298,104 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'swin_tiny_window7_224': {
-			'depths': (2, 2, 6, 2),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			},
-		'swin_small_window7_224': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			},
-		'swin_base_window7_224': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 128,
-			'n_heads': (4, 8, 16, 32),
-			},
-		'swin_large_window7_224': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 192,
-			'n_heads': (6, 12, 24, 48),
-			},
-		'swin_base_window12_384': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 128,
-			'n_heads': (4, 8, 16, 32),
-			'window_size': 12,
-			},
-		'swin_large_window12_384': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 192,
-			'n_heads': (6, 12, 24, 48),
-			'window_size': 12,
-			},
-		'swin_base_window7_224_in22k': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 128,
-			'n_heads': (4, 8, 16, 32),
-			'window_size': 7,
-			},
-		'swin_large_window7_224_in22k': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 192,
-			'n_heads': (6, 12, 24, 48),
-			'window_size': 7,
-			},
-		'swin_base_window12_384_in22k': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 128,
-			'n_heads': (4, 8, 16, 32),
-			'window_size': 12,
-			},
-		'swin_large_window12_384_in22k': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 192,
-			'n_heads': (6, 12, 24, 48),
-			'window_size': 12,
-			},
-		'swin_s3_tiny_224': {
-			'depths': (2, 2, 6, 2),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			'window_size': (7, 7, 14, 7),
-			},
-		'swin_s3_small_224': {
-			'depths': (2, 2, 18, 2),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			'window_size': (14, 14, 14, 7),
-			},
-		'swin_s3_base_224': {
-			'depths': (2, 2, 30, 2),
-			'token_dim': 96,
-			'n_heads': (3, 6, 12, 24),
-			'window_size': (7, 7, 14, 7),
-			},
+		'swin_tiny_window7': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				),
+			params={
+				'in1k_224': imagenet_params_config('swin_tiny_window7_224'),
+				},
+			),
+		'swin_small_window7': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				),
+			params={
+				'in1k_224': imagenet_params_config('swin_small_window7_224'),
+				},
+			),
+		'swin_base_window7': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=128,
+				n_heads=(4, 8, 16, 32),
+				),
+			params={
+				'in22k_224': imagenet_params_config('swin_base_window7_224_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('swin_base_window7_224'),
+				},
+			),
+		'swin_base_window12': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=128,
+				n_heads=(4, 8, 16, 32),
+				window_size=12,
+				),
+			params={
+				'in22k_384': imagenet_params_config('swin_base_window12_384_in22k'),
+				'in22k_ft_in1k_384': imagenet_params_config('swin_base_window12_384'),
+				},
+			),
+		'swin_large_window7': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=192,
+				n_heads=(6, 12, 24, 48),
+				),
+			params={
+				'in22k_224': imagenet_params_config('swin_large_window7_224_in22k'),
+				'in22k_ft_in1k_224': imagenet_params_config('swin_large_window7_224'),
+				},
+			),
+		'swin_large_window12': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=192,
+				n_heads=(6, 12, 24, 48),
+				window_size=12,
+				),
+			params={
+				'in22k_384': imagenet_params_config('swin_large_window12_384_in22k'),
+				'in22k_ft_in1k_384': imagenet_params_config('swin_large_window12_384'),
+				},
+			),
+		'swin_s3_tiny': dict(
+			model_args=dict(
+				depths=(2, 2, 6, 2),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				window_size=(7, 7, 14, 7),
+				),
+			params={
+				'in1k_224': imagenet_params_config('swin_s3_tiny'),
+				},
+			),
+		'swin_s3_small': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				window_size=(14, 14, 14, 7),
+				),
+			params={
+				'in1k_224': imagenet_params_config('swin_s3_small'),
+				},
+			),
+		'swin_s3_base': dict(
+			model_args=dict(
+				depths=(2, 2, 30, 2),
+				token_dim=96,
+				n_heads=(3, 6, 12, 24),
+				window_size=(7, 7, 14, 7),
+				),
+			params={
+				'in1k_224': imagenet_params_config('swin_s3_base'),
+				},
+			),
 		}
 	return Swin, configs

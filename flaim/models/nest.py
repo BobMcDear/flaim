@@ -11,7 +11,7 @@ from flax import linen as nn
 from jax import numpy as jnp
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class ConvLNPool(nn.Module):
@@ -243,7 +243,7 @@ class NesT(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_nest_configs() -> T.Tuple[T.Type[NesT], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -253,20 +253,35 @@ def get_nest_configs() -> T.Tuple[T.Type[NesT], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'nest_tiny_224': {
-			'depths': (2, 2, 8),
-			'token_dims': (96, 192, 384),
-			'n_heads': (3, 6, 12),
-			},
-		'nest_small_224': {
-			'depths': (2, 2, 20),
-			'token_dims': (96, 192, 384),
-			'n_heads': (3, 6, 12),
-			},
-		'nest_base_224': {
-			'depths': (2, 2, 20),
-			'token_dims': (128, 256, 512),
-			'n_heads': (4, 8, 16),
-			},
+		'nest_tiny': dict(
+			model_args=dict(
+				depths=(2, 2, 8),
+				token_dims=(96, 192, 384),
+				n_heads=(3, 6, 12),
+				),
+			params={
+				'in1k_224': imagenet_params_config('nest_tiny_224'),
+				},
+			),
+		'nest_small': dict(
+			model_args=dict(
+				depths=(2, 2, 20),
+				token_dims=(96, 192, 384),
+				n_heads=(3, 6, 12),
+				),
+			params={
+				'in1k_224': imagenet_params_config('nest_small_224'),
+				},
+			),
+		'nest_base': dict(
+			model_args=dict(
+				depths=(2, 2, 20),
+				token_dims=(128, 256, 512),
+				n_heads=(4, 8, 16),
+				),
+			params={
+				'in1k_224': imagenet_params_config('nest_base_224'),
+				},
+			),
 		}
 	return NesT, configs

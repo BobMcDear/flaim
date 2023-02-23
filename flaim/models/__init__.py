@@ -22,4 +22,3 @@ from . import (
 	vit,
 	xcit,
 	)
-from .factory import get_model, list_models

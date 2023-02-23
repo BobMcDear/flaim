@@ -12,7 +12,7 @@ from jax import numpy as jnp
 
 from .. import layers
 from .cait import ClassAttentionQKV
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class DeepPatchEmbed(nn.Module):
@@ -334,7 +334,7 @@ class XCiT(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_xcit_configs() -> T.Tuple[T.Type[XCiT], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -344,266 +344,190 @@ def get_xcit_configs() -> T.Tuple[T.Type[XCiT], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'xcit_nano12_patch16_224': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'norm_all_tokens': False,
-			},
-		'xcit_nano12_patch16_224_dist': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'norm_all_tokens': False,
-			},
-		'xcit_nano12_patch16_384_dist': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'norm_all_tokens': False,
-			},
-		'xcit_nano12_patch8_224': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'patch_size': 8,
-			'norm_all_tokens': False,
-			},
-		'xcit_nano12_patch8_224_dist': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'patch_size': 8,
-			'norm_all_tokens': False,
-			},
-		'xcit_nano12_patch8_384_dist': {
-			'depth': 12,
-			'token_dim': 128,
-			'n_heads': 4,
-			'patch_size': 8,
-			'norm_all_tokens': False,
-			},
-		'xcit_tiny12_patch16_224': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			},
-		'xcit_tiny12_patch16_224_dist': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			},
-		'xcit_tiny12_patch16_384_dist': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			},
-		'xcit_tiny24_patch16_224': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_tiny24_patch16_224_dist': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_tiny24_patch16_384_dist': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_tiny12_patch8_224': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			},
-		'xcit_tiny12_patch8_224_dist': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			},
-		'xcit_tiny12_patch8_384_dist': {
-			'depth': 12,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			},
-		'xcit_tiny24_patch8_224': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_tiny24_patch8_224_dist': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_tiny24_patch8_384_dist': {
-			'depth': 24,
-			'token_dim': 192,
-			'n_heads': 4,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small12_patch16_224': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			},
-		'xcit_small12_patch16_224_dist': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			},
-		'xcit_small12_patch16_384_dist': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			},
-		'xcit_small24_patch16_224': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small24_patch16_224_dist': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small24_patch16_384_dist': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small12_patch8_224': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			},
-		'xcit_small12_patch8_224_dist': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			},
-		'xcit_small12_patch8_384_dist': {
-			'depth': 12,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			},
-		'xcit_small24_patch8_224': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small24_patch8_224_dist': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_small24_patch8_384_dist': {
-			'depth': 24,
-			'token_dim': 384,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch16_224': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch16_224_dist': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch16_384_dist': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch8_224': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch8_224_dist': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_medium24_patch8_384_dist': {
-			'depth': 24,
-			'token_dim': 512,
-			'n_heads': 8,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch16_224': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch16_224_dist': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch16_384_dist': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch8_224': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch8_224_dist': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
-		'xcit_large24_patch8_384_dist': {
-			'depth': 24,
-			'token_dim': 768,
-			'n_heads': 16,
-			'patch_size': 8,
-			'layer_scale_init_value': 1e-5,
-			},
+		'xcit_nano12_patch16': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=128,
+				n_heads=4,
+				norm_all_tokens=False,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_nano12_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_nano12_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_nano12_patch16_384_dist'),
+				},
+			),
+		'xcit_nano12_patch8': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=128,
+				n_heads=4,
+				patch_size=8,
+				norm_all_tokens=False,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_nano12_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_nano12_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_nano12_patch8_384_dist'),
+				},
+			),
+		'xcit_tiny12_patch16': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=192,
+				n_heads=4,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_tiny12_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_tiny12_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_tiny12_patch16_384_dist'),
+				},
+			),
+		'xcit_tiny12_patch8': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=192,
+				n_heads=4,
+				patch_size=8,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_tiny12_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_tiny12_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_tiny12_patch8_384_dist'),
+				},
+			),
+		'xcit_tiny24_patch16': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=192,
+				n_heads=4,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_tiny24_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_tiny24_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_tiny24_patch16_384_dist'),
+				},
+			),
+		'xcit_tiny24_patch8': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=192,
+				n_heads=4,
+				patch_size=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_tiny24_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_tiny24_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_tiny24_patch8_384_dist'),
+				},
+			),
+		'xcit_small12_patch16': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=384,
+				n_heads=8,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_small12_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_small12_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_small12_patch16_384_dist'),
+				},
+			),
+		'xcit_small12_patch8': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=384,
+				n_heads=8,
+				patch_size=8,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_small12_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_small12_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_small12_patch8_384_dist'),
+				},
+			),
+		'xcit_small24_patch16': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=384,
+				n_heads=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_small24_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_small24_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_small24_patch16_384_dist'),
+				},
+			),
+		'xcit_small24_patch8': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=384,
+				n_heads=8,
+				patch_size=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_small24_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_small24_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_small24_patch8_384_dist'),
+				},
+			),
+		'xcit_medium24_patch16': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=512,
+				n_heads=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_medium24_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_medium24_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_medium24_patch16_384_dist'),
+				},
+			),
+		'xcit_medium24_patch8': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=512,
+				n_heads=8,
+				patch_size=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_medium24_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_medium24_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_medium24_patch8_384_dist'),
+				},
+			),
+		'xcit_large24_patch16': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=768,
+				n_heads=16,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_large24_patch16_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_large24_patch16_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_large24_patch16_384_dist'),
+				},
+			),
+		'xcit_large24_patch8': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=768,
+				n_heads=16,
+				patch_size=8,
+				layer_scale_init_value=1e-5,
+				),
+			params={
+				'in1k_224': imagenet_params_config('xcit_large24_patch8_224'),
+				'dist_in1k_224': imagenet_params_config('xcit_large24_patch8_224_dist'),
+				'dist_in1k_384': imagenet_params_config('xcit_large24_patch8_384_dist'),
+				},
+			),
 		}
 	return XCiT, configs

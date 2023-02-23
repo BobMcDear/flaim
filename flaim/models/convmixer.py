@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class ConvActBN(nn.Module):
@@ -144,7 +144,7 @@ class ConvMixer(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_convmixer_configs() -> T.Tuple[T.Type[ConvMixer], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -154,20 +154,35 @@ def get_convmixer_configs() -> T.Tuple[T.Type[ConvMixer], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'convmixer20_1024d_patch14_kernel9': {
-			'depth': 20,
-			'dim': 1024,
-			'patch_size': 14,
-			},
-		'convmixer20_1536d_patch7_kernel9': {
-			'depth': 20,
-			'dim': 1536,
-			},
-		'convmixer32_768d_patch7_kernel7': {
-			'depth': 32,
-			'dim': 768,
-			'kernel_size': 7,
-			'act': nn.relu,
-			},
+		'convmixer20_1024d_patch14_kernel9': dict(
+			model_args=dict(
+				depth=20,
+				dim=1024,
+				patch_size=14,
+				),
+			params={
+				'in1k_224': imagenet_params_config('convmixer20_1024d_patch14_kernel9'),
+				},
+			),
+		'convmixer20_1536d_patch7_kernel9': dict(
+			model_args=dict(
+				depth=20,
+				dim=1536,
+				),
+			params={
+				'in1k_224': imagenet_params_config('convmixer20_1536d_patch7_kernel9'),
+				},
+			),
+		'convmixer32_768d_patch7_kernel7': dict(
+			model_args=dict(
+				depth=32,
+				dim=768,
+				kernel_size=7,
+				act=nn.relu,
+				),
+			params={
+				'in1k_224': imagenet_params_config('convmixer32_768d_patch7_kernel7'),
+				},
+			),
 		}
 	return ConvMixer, configs

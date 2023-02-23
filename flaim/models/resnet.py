@@ -9,7 +9,7 @@ from functools import partial
 from flax import linen as nn
 
 from .. import layers
-from .factory import register_configs
+from ..factory import imagenet_params_config, register_models
 
 
 class ResNetStem(nn.Module):
@@ -109,7 +109,7 @@ class ResNetDownsample(nn.Module):
 				input=input,
 				kernel_size=self.stride,
 				stride=self.stride,
-				padding=0,
+				padding='same',
 				)
 		output = layers.ConvBNAct(
 			out_dim=self.out_dim,
@@ -446,7 +446,7 @@ class ResNet(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -456,356 +456,584 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'resnet18': {
-			'depths': (2, 2, 2, 2),
-			'block': BasicBlock,
-			},
-		'resnet34': {
-			'depths': (3, 4, 6, 3),
-			'block': BasicBlock,
-			},
-		'resnet26': {
-			'depths': (2, 2, 2, 2),
-			},
-		'resnet50': {
-			'depths': (3, 4, 6, 3),
-			},
-		'resnet101': {
-			'depths': (3, 4, 23, 3),
-			},
-		'resnet152': {
-			'depths': (3, 8, 36, 3),
-			},
-		'resnet18_ssl': {
-			'depths': (2, 2, 2, 2),
-			'block': BasicBlock,
-			},
-		'resnet50_ssl': {
-			'depths': (3, 4, 6, 3),
-			},
-		'resnet18_swsl': {
-			'depths': (2, 2, 2, 2),
-			'block': BasicBlock,
-			},
-		'resnet50_swsl': {
-			'depths': (3, 4, 6, 3),
-			},
-		'resnet18d': {
-			'depths': (2, 2, 2, 2),
-			'block': BasicBlock,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet34d': {
-			'depths': (3, 4, 6, 3),
-			'block': BasicBlock,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet26d': {
-			'depths': (2, 2, 2, 2),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet50d': {
-			'depths': (3, 4, 6, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet101d': {
-			'depths': (3, 4, 23, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet152d': {
-			'depths': (3, 8, 36, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet200d': {
-			'depths': (3, 24, 36, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet10t': {
-			'depths': (1, 1, 1, 1),
-			'block': BasicBlock,
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet14t': {
-			'depths': (1, 1, 1, 1),
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'resnet26t': {
-			'depths': (2, 2, 2, 2),
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			},
-		'wide_resnet50_2': {
-			'depths': (3, 4, 6, 3),
-			'dim_per_cardinal_first_stage': 128,
-			},
-		'wide_resnet101_2': {
-			'depths': (3, 4, 23, 3),
-			'dim_per_cardinal_first_stage': 128,
-			},
-		'resnext50_32x4d': {
-			'depths': (3, 4, 6, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext101_32x8d': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			},
-		'resnext101_64x4d': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 64,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext50_32x4d_ssl': {
-			'depths': (3, 4, 6, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext101_32x4d_ssl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext101_32x8d_ssl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			},
-		'resnext101_32x16d_ssl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 16,
-			},
-		'resnext50_32x4d_swsl': {
-			'depths': (3, 4, 6, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext101_32x4d_swsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnext101_32x8d_swsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			},
-		'resnext101_32x16d_swsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 16,
-			},
-		'resnext101_32x8d_wsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			},
-		'resnext101_32x16d_wsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 16,
-			},
-		'resnext101_32x32d_wsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 32,
-			},
-		'resnext101_32x48d_wsl': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 48,
-			},
-		'seresnet50': {
-			'depths': (3, 4, 6, 3),
-			'attention': layers.SE,
-			},
-		'seresnet152d': {
-			'depths': (3, 8, 36, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.SE,
-			},
-		'seresnext50_32x4d': {
-			'depths': (3, 4, 6, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			'attention': layers.SE,
-			},
-		'seresnext101_32x8d': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			'attention': layers.SE,
-			},
-		'seresnext26d_32x4d': {
-			'depths': (2, 2, 2, 2),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.SE,
-			},
-		'seresnext101d_32x8d': {
-			'depths': (3, 4, 23, 3),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 8,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.SE,
-			},
-		'seresnext26t_32x4d': {
-			'depths': (2, 2, 2, 2),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.SE,
-			},
-		'ecaresnet50_light': {
-			'depths': (1, 1, 11, 3),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'ecaresnet50d': {
-			'depths': (3, 4, 6, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'ecaresnet101d': {
-			'depths': (3, 4, 23, 3),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'ecaresnet269d': {
-			'depths': (3, 30, 48, 8),
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'ecaresnet26t': {
-			'depths': (2, 2, 2, 2),
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'ecaresnet50t': {
-			'depths': (3, 4, 6, 3),
-			'stem': partial(ResNetDStem, out_dims=(24, 32, 64)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': layers.ECA,
-			},
-		'resnetrs50': {
-			'depths': (3, 4, 6, 3),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs101': {
-			'depths': (3, 4, 23, 3),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs152': {
-			'depths': (3, 8, 36, 3),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs200': {
-			'depths': (3, 24, 36, 3),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs270': {
-			'depths': (4, 29, 53, 4),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs350': {
-			'depths': (4, 36, 72, 4),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'resnetrs420': {
-			'depths': (4, 44, 87, 4),
-			'stem': partial(ResNetDStem, max_pool=False),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'attention': partial(layers.SE, reduction_factor=4),
-			},
-		'skresnet18': {
-			'depths': (2, 2, 2, 2),
-			'block': BasicBlock,
-			'conv_bn_relu': partial(layers.SK),
-			},
-		'skresnet34': {
-			'depths': (3, 4, 6, 3),
-			'block': BasicBlock,
-			'conv_bn_relu': partial(layers.SK),
-			},
-		'skresnext50_32x4d': {
-			'depths': (3, 4, 6, 3),
-			'conv_bn_relu': partial(layers.SK, reduction_factor=16,	min_reduction_dim=32, split=False),
-			'cardinality': 32,
-			'dim_per_cardinal_first_stage': 4,
-			},
-		'resnest14_2s1x64d': {
-			'depths': (1, 1, 1, 1),
-			'conv_bn_relu': layers.SplAt,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
-		'resnest26_2s1x64d': {
-			'depths': (2, 2, 2, 2),
-			'conv_bn_relu': layers.SplAt,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
-		'resnest50_2s1x64d': {
-			'depths': (3, 4, 6, 3),
-			'conv_bn_relu': layers.SplAt,
-			'stem': ResNetDStem,
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
-		'resnest101_2s1x64d': {
-			'depths': (3, 4, 23, 3),
-			'conv_bn_relu': layers.SplAt,
-			'stem': partial(ResNetDStem, out_dims=(64, 64, 128)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
-		'resnest200_2s1x64d': {
-			'depths': (3, 24, 36, 3),
-			'conv_bn_relu': layers.SplAt,
-			'stem': partial(ResNetDStem, out_dims=(64, 64, 128)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
-		'resnest269_2s1x64d': {
-			'depths': (3, 30, 48, 8),
-			'conv_bn_relu': layers.SplAt,
-			'stem': partial(ResNetDStem, out_dims=(64, 64, 128)),
-			'downsample': partial(ResNetDownsample, avg_pool=True),
-			'avg_downsample': 'post',
-			},
+		'resnet10t': dict(
+			model_args=dict(
+				depths=(1, 1, 1, 1),
+				block=BasicBlock,
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_176': imagenet_params_config('resnet10t'),
+				},
+			),
+		'resnet14t': dict(
+			model_args=dict(
+				depths=(1, 1, 1, 1),
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_176': imagenet_params_config('resnet14t'),
+				},
+			),
+		'resnet18': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				block=BasicBlock,
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet18'),
+				'ssl_ft_in1k_224': imagenet_params_config('resnet18_ssl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnet18_swsl'),
+				},
+			),
+		'resnet18d': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				block=BasicBlock,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet18d'),
+				},
+			),
+		'resnet26': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet26'),
+				},
+			),
+		'resnet26d': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet26d'),
+				},
+			),
+		'resnet26t': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnet26t'),
+				},
+			),
+		'resnet34': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				block=BasicBlock,
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet34'),
+				},
+			),
+		'resnet34d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				block=BasicBlock,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet34d'),
+				},
+			),
+		'resnet50': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet50'),
+				'ssl_ft_in1k_224': imagenet_params_config('resnet50_ssl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnet50_swsl'),
+				},
+			),
+		'resnet50d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet50d'),
+				},
+			),
+		'resnet101': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet101'),
+				},
+			),
+		'resnet101d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnet101d'),
+				},
+			),
+		'resnet152': dict(
+			model_args=dict(
+				depths=(3, 8, 36, 3),
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnet152'),
+				},
+			),
+		'resnet152d': dict(
+			model_args=dict(
+				depths=(3, 8, 36, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnet152d'),
+				},
+			),
+		'resnet200d': dict(
+			model_args=dict(
+				depths=(3, 24, 36, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnet200d'),
+				},
+			),
+		'wide_resnet50_2': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				dim_per_cardinal_first_stage=128,
+			),
+			params={
+				'in1k_224': imagenet_params_config('wide_resnet50_2'),
+				},
+			),
+		'wide_resnet101_2': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				dim_per_cardinal_first_stage=128,
+			),
+			params={
+				'in1k_224': imagenet_params_config('wide_resnet101_2'),
+				},
+			),
+		'resnext50_32x4d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnext50_32x4d'),
+				'ssl_ft_in1k_224': imagenet_params_config('resnext50_32x4d_ssl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnext50_32x4d_swsl'),
+				},
+			),
+		'resnext101_32x4d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+			),
+			params={
+				'ssl_ft_in1k_224': imagenet_params_config('resnext101_32x4d_ssl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnext101_32x4d_swsl'),
+				},
+			),
+		'resnext101_32x8d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=8,
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnext101_32x8d'),
+				'ssl_ft_in1k_224': imagenet_params_config('resnext101_32x8d_ssl'),
+				'wsl_ft_in1k_224': imagenet_params_config('resnext101_32x8d_wsl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnext101_32x8d_swsl'),
+				},
+			),
+		'resnext101_32x16d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=16,
+			),
+			params={
+				'ssl_ft_in1k_224': imagenet_params_config('resnext101_32x16d_ssl'),
+				'wsl_ft_in1k_224': imagenet_params_config('resnext101_32x16d_wsl'),
+				'swsl_ft_in1k_224': imagenet_params_config('resnext101_32x16d_swsl'),
+				},
+			),
+		'resnext101_32x32d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=32,
+			),
+			params={
+				'wsl_ft_in1k_224': imagenet_params_config('resnext101_32x32d_wsl'),
+				},
+			),
+		'resnext101_32x48d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=48,
+			),
+			params={
+				'wsl_ft_in1k_224': imagenet_params_config('resnext101_32x48d_wsl'),
+				},
+			),
+		'resnext101_64x4d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=64,
+				dim_per_cardinal_first_stage=4,
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnext101_64x4d'),
+				},
+			),
+		'seresnet50': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnet50'),
+				},
+			),
+		'seresnet152d': dict(
+			model_args=dict(
+				depths=(3, 8, 36, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.SE,
+			),
+			params={
+				'in1k_256': imagenet_params_config('seresnet152d'),
+				},
+			),
+		'seresnext26d_32x4d': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnext26d_32x4d'),
+				},
+			),
+		'seresnext26t_32x4d': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnext26t_32x4d'),
+				},
+			),
+		'seresnext50_32x4d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnext50_32x4d'),
+				},
+			),
+		'seresnext101_32x8d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=8,
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnext101_32x8d'),
+				},
+			),
+		'seresnext101d_32x8d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				cardinality=32,
+				dim_per_cardinal_first_stage=8,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.SE,
+			),
+			params={
+				'in1k_224': imagenet_params_config('seresnext101d_32x8d'),
+				},
+			),
+		'ecaresnet26t': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_256': imagenet_params_config('ecaresnet26t'),
+				},
+			),
+		'ecaresnet50_light': dict(
+			model_args=dict(
+				depths=(1, 1, 11, 3),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_224': imagenet_params_config('ecaresnet50_light'),
+				},
+			),
+		'ecaresnet50d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_224': imagenet_params_config('ecaresnet50d'),
+				},
+			),
+		'ecaresnet50t': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				stem=partial(ResNetDStem, out_dims=(24, 32, 64)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_256': imagenet_params_config('ecaresnet50t'),
+				},
+			),
+		'ecaresnet101d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_224': imagenet_params_config('ecaresnet101d'),
+				},
+			),
+		'ecaresnet269d': dict(
+			model_args=dict(
+				depths=(3, 30, 48, 8),
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=layers.ECA,
+			),
+			params={
+				'in1k_320': imagenet_params_config('ecaresnet269d'),
+				},
+			),
+		'resnetrs50': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_160': imagenet_params_config('resnetrs50'),
+				},
+			),
+		'resnetrs101': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_192': imagenet_params_config('resnetrs101'),
+				},
+			),
+		'resnetrs152': dict(
+			model_args=dict(
+				depths=(3, 8, 36, 3),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnetrs152'),
+				},
+			),
+		'resnetrs200': dict(
+			model_args=dict(
+				depths=(3, 24, 36, 3),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnetrs200'),
+				},
+			),
+		'resnetrs270': dict(
+			model_args=dict(
+				depths=(4, 29, 53, 4),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnetrs270'),
+				},
+			),
+		'resnetrs350': dict(
+			model_args=dict(
+				depths=(4, 36, 72, 4),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_288': imagenet_params_config('resnetrs350'),
+				},
+			),
+		'resnetrs420': dict(
+			model_args=dict(
+				depths=(4, 44, 87, 4),
+				stem=partial(ResNetDStem, max_pool=False),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				attention=partial(layers.SE, reduction_factor=4),
+			),
+			params={
+				'in1k_320': imagenet_params_config('resnetrs420'),
+				},
+			),
+		'skresnet18': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				block=BasicBlock,
+				conv_bn_relu=layers.SK,
+			),
+			params={
+				'in1k_224': imagenet_params_config('skresnet18'),
+				},
+			),
+		'skresnet34': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				block=BasicBlock,
+				conv_bn_relu=layers.SK,
+			),
+			params={
+				'in1k_224': imagenet_params_config('skresnet34'),
+				},
+			),
+		'skresnext50_32x4d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				conv_bn_relu=partial(layers.SK, reduction_factor=16, min_reduction_dim=32, split=False),
+				cardinality=32,
+				dim_per_cardinal_first_stage=4,
+			),
+			params={
+				'in1k_224': imagenet_params_config('skresnext50_32x4d'),
+				},
+			),
+		'resnest14_2s1x64d': dict(
+			model_args=dict(
+				depths=(1, 1, 1, 1),
+				conv_bn_relu=layers.SplAt,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnest14_2s1x64d'),
+				},
+			),
+		'resnest26_2s1x64d': dict(
+			model_args=dict(
+				depths=(2, 2, 2, 2),
+				conv_bn_relu=layers.SplAt,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnest26_2s1x64d'),
+				},
+			),
+		'resnest50_2s1x64d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				conv_bn_relu=layers.SplAt,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnest50_2s1x64d'),
+				},
+			),
+		'resnest101_2s1x64d': dict(
+			model_args=dict(
+				depths=(3, 4, 23, 3),
+				conv_bn_relu=layers.SplAt,
+				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_256': imagenet_params_config('resnest101_2s1x64d'),
+				},
+			),
+		'resnest200_2s1x64d': dict(
+			model_args=dict(
+				depths=(3, 24, 36, 3),
+				conv_bn_relu=layers.SplAt,
+				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_320': imagenet_params_config('resnest200_2s1x64d'),
+				},
+			),
+		'resnest269_2s1x64d': dict(
+			model_args=dict(
+				depths=(3, 30, 48, 8),
+				conv_bn_relu=layers.SplAt,
+				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='post',
+			),
+			params={
+				'in1k_416': imagenet_params_config('resnest269_2s1x64d'),
+				},
+			),
 		}
 	return ResNet, configs

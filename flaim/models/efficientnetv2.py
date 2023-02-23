@@ -8,7 +8,7 @@ import typing as T
 from flax import linen as nn
 
 from .. import layers
-from .factory import NORM_STATS, register_configs
+from ..factory import inception_params_config, register_models
 
 
 class ResConvBNAct(nn.Module):
@@ -316,7 +316,7 @@ class EfficientNetV2(nn.Module):
 		return output
 
 
-@register_configs
+@register_models
 def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 	"""
 	Gets configurations for all available
@@ -326,93 +326,60 @@ def get_efficientnetv2_configs() -> T.Tuple[T.Type[EfficientNetV2], T.Dict]:
 	configurations of all available models.
 	"""
 	configs = {
-		'efficientnetv2_small': {
-			'depths': (2, 4, 4, 6, 9, 15),
-			'out_dims': (24, 48, 64, 128, 160, 256),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2),
-			'expansion_factors': (1, 4, 4, 4, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_medium': {
-			'depths': (3, 5, 5, 7, 14, 18, 5),
-			'out_dims': (24, 48, 80, 160, 176, 304, 512),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_large': {
-			'depths': (4, 7, 7, 10, 19, 25, 7),
-			'out_dims': (32, 64, 96, 192, 224, 384, 640),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_small_in22k': {
-			'depths': (2, 4, 4, 6, 9, 15),
-			'out_dims': (24, 48, 64, 128, 160, 256),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_medium_in22k': {
-			'depths': (3, 5, 5, 7, 14, 18, 5),
-			'out_dims': (24, 48, 80, 160, 176, 304, 512),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_large_in22k': {
-			'depths': (4, 7, 7, 10, 19, 25, 7),
-			'out_dims': (32, 64, 96, 192, 224, 384, 640),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_xlarge_in22k': {
-			'depths': (4, 8, 8, 16, 24, 32, 8),
-			'out_dims': (32, 64, 96, 192, 256, 512, 640),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_small_in22ft1k': {
-			'depths': (2, 4, 4, 6, 9, 15),
-			'out_dims': (24, 48, 64, 128, 160, 256),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_medium_in22ft1k': {
-			'depths': (3, 5, 5, 7, 14, 18, 5),
-			'out_dims': (24, 48, 80, 160, 176, 304, 512),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_large_in22ft1k': {
-			'depths': (4, 7, 7, 10, 19, 25, 7),
-			'out_dims': (32, 64, 96, 192, 224, 384, 640),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
-		'efficientnetv2_xlarge_in22ft1k': {
-			'depths': (4, 8, 8, 16, 24, 32, 8),
-			'out_dims': (32, 64, 96, 192, 256, 512, 640),
-			'blocks': (ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
-			'strides': (1, 2, 2, 2, 1, 2, 1),
-			'expansion_factors': (1, 4, 4, 4, 6, 6, 6),
-			'norm_stats': NORM_STATS['inception'],
-			},
+		'efficientnetv2_small': dict(
+			model_args=dict(
+				depths=(2, 4, 4, 6, 9, 15),
+				out_dims=(24, 48, 64, 128, 160, 256),
+				blocks=(ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv),
+				strides=(1, 2, 2, 2, 1, 2),
+				expansion_factors=(1, 4, 4, 4, 6, 6),
+				),
+			params={
+				'in1k_300': inception_params_config('efficientnetv2_small'),
+				'in22k_300': inception_params_config('efficientnetv2_small_in22k'),
+				'in22k_ft_in1k_300': inception_params_config('efficientnetv2_small_in22ft1k'),
+				},
+			),
+		'efficientnetv2_medium': dict(
+			model_args=dict(
+				depths=(3, 5, 5, 7, 14, 18, 5),
+				out_dims=(24, 48, 80, 160, 176, 304, 512),
+				blocks=(ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
+				strides=(1, 2, 2, 2, 1, 2, 1),
+				expansion_factors=(1, 4, 4, 4, 6, 6, 6),
+				),
+			params={
+				'in1k_384': inception_params_config('efficientnetv2_medium'),
+				'in22k_384': inception_params_config('efficientnetv2_medium_in22k'),
+				'in22k_ft_in1k_384': inception_params_config('efficientnetv2_medium_in22ft1k'),
+				},
+			),
+		'efficientnetv2_large': dict(
+			model_args=dict(
+				depths=(4, 7, 7, 10, 19, 25, 7),
+				out_dims=(32, 64, 96, 192, 224, 384, 640),
+				blocks=(ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
+				strides=(1, 2, 2, 2, 1, 2, 1),
+				expansion_factors=(1, 4, 4, 4, 6, 6, 6),
+				),
+			params={
+				'in1k_384': inception_params_config('efficientnetv2_large'),
+				'in22k_384': inception_params_config('efficientnetv2_large_in22k'),
+				'in22k_ft_in1k_384': inception_params_config('efficientnetv2_large_in22ft1k'),
+				},
+			),
+		'efficientnetv2_xlarge': dict(
+			model_args=dict(
+				depths=(4, 8, 8, 16, 24, 32, 8),
+				out_dims=(32, 64, 96, 192, 256, 512, 640),
+				blocks=(ResConvBNAct, FusedMBConv, FusedMBConv, MBConv, MBConv, MBConv, MBConv),
+				strides=(1, 2, 2, 2, 1, 2, 1),
+				expansion_factors=(1, 4, 4, 4, 6, 6, 6),
+				),
+			params={
+				'in22k_384': inception_params_config('efficientnetv2_xlarge_in22k'),
+				'in22k_ft_in1k_384': inception_params_config('efficientnetv2_xlarge_in22ft1k'),
+				},
+			),
 		}
 	return EfficientNetV2, configs
