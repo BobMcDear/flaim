@@ -13,6 +13,7 @@ from . import (
 	hornet,
 	maxvit,
 	nest,
+    pit,
 	pvtv2,
 	regnet,
 	resnet,

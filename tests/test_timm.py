@@ -153,6 +153,7 @@ def main() -> None:
 		('gcvit_xxtiny', 'in1k_224'): 'gcvit_xxtiny',
 		('maxvit_tiny', 'in1k_224'): 'maxvit_tiny_tf_224.in1k',
 		('nest_tiny', 'in1k_224'): 'jx_nest_tiny',
+		('pit_tiny', 'in1k_224'): 'pit_ti_224',
 		('pvtv2_b0', 'in1k_224'): 'pvt_v2_b0',
 		('regnetx_200mf', 'in1k_224'): 'regnetx_002',
 		('regnety_200mf', 'in1k_224'): 'regnety_002',

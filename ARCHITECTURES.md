@@ -1,6 +1,6 @@
 # Available Architectures
 
-The following is a list of all available architectures and their pre-trained parameters, with brief descriptions and references, classified into network families. Unless otherwise noted, the pre-trained parameters were learned through supervised training.
+The following is a list of all available architectures and their pre-trained parameters, with brief descriptions and references, classified into network families. Unless otherwise mentioned, the pre-trained parameters were learned through supervised training.
 
 • <strong>[CaiT](#cait)</strong><br>
 • <strong>[ConvMixer](#convmixer)</strong><br>
@@ -12,6 +12,7 @@ The following is a list of all available architectures and their pre-trained par
 • <strong>[HorNet](#hornet)</strong><br>
 • <strong>[MaxViT](#maxvit)</strong><br>
 • <strong>[NesT](#nest)</strong><br>
+• <strong>[PiT](#pit)</strong><br>
 • <strong>[PVT V2](#pvt-v2)</strong><br>
 • <strong>[RegNet](#regnet)</strong><br>
 • <strong>[ResNet](#resnet)</strong><br>
@@ -314,7 +315,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 ## NesT
 
-Nested transformer (NesT) from _[Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and Interpretable Visual Understanding](https://arxiv.org/abs/2105.12723)_ by Zhang et al. NesT partitions the input into non-overlapping blocks, separately processes them using transformer layers, and aggregates them via convolutions & pooling to obtain competitive performance - especially on small-scale datasets - without sacrificing the simplicity of the original ViT.
+Nested transformer (NesT) from _[Nested Hierarchical Transformer: Towards Accurate, Data-Efficient and Interpretable Visual Understanding](https://arxiv.org/abs/2105.12723)_ by Zhang et al. NesT partitions the input into non-overlapping blocks, separately processes them using transformer layers, and aggregates them via convolutions & pooling to obtain competitive performance - especially on small-scale datasets - without sacrificing the simplicity of the original ViT.<br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/nest.py).
 
@@ -325,6 +326,24 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 &emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 • ```nest_base```: NesT-Base.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+## PiT
+
+Pooling-based vision transformer (PiT) from _[Rethinking Spatial Dimensions of Vision Transformers](https://arxiv.org/abs/2103.16302)_ by Heo et al. PiT notes that convolutional neural networks, unlike transformers, have a pyramidal configuration where the number of channels gradually increase in later layers whereas the spatial dimensions decrease, and applies a similar design principle to ViTs for better performance.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/pit.py).
+
+• ```pit_tiny```: PiT-Tiny.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+• ```pit_xsmall```: PiT-XSmall.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+• ```pit_small```: PiT-Small.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+• ```pit_base```: PiT-Base.<br>
 &emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## PVT V2

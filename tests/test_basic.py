@@ -96,6 +96,7 @@ def main(
 			('gcvit_xxtiny', 'in1k_224'),
 			('maxvit_tiny', 'in1k_224'),
 			('nest_tiny', 'in1k_224'),
+			('pit_tiny', 'in1k_224'),
 			('pvtv2_b0', 'in1k_224'),
 			('regnetx_200mf', 'in1k_224'),
 			('regnety_200mf', 'in1k_224'),

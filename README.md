@@ -105,7 +105,7 @@ All available architectures and their pre-trained parameters, plus short descrip
 ```flaim.list_models``` also returns a list of (name of model, name of pre-trained parameters) pairs, e.g., (```resnet50```, ```in1k_224```) and has two arguments:
 
 * ```model_pattern``` (```str```): A regex pattern that, if not an empty string, ensures only pairs where the model name contains this expression are returned.
-* ```params_pattern``` (```T.Union[str, int]```): If ```params_pattern``` is a non-empty string, only pairs where the pre-trained parameters' name contains this regex pattern are returned. When an integer, only pairs where the pre-trained parameters were trained on images of this resolution are returned.
+* ```params_pattern``` (```Union[str, int]```): If ```params_pattern``` is a non-empty string, only pairs where the pre-trained parameters' name contains this regex pattern are returned. When an integer, only pairs where the pre-trained parameters were trained on images of this resolution are returned.
 
 This function is demonstrated below.
 
