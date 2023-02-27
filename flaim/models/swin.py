@@ -114,17 +114,15 @@ class WindowMHSA(nn.Module):
 
 	@nn.compact
 	def __call__(self, input):
-		n_tokens, token_dim = input.shape[-2:]
+		img_size, token_dim = input.shape[-2:]
 		window_size = self.window_size
 		shift = self.shift
-		img_size = int(sqrt(n_tokens))
 
 		if img_size <= window_size:
 			window_size = img_size
 			shift = 0
 
-		output = jnp.reshape(input, (-1, img_size, img_size, token_dim))
-		output = layers.cyclic_shift(output, shift)
+		output = layers.cyclic_shift(input, shift)
 		output = layers.window_partition(output, window_size)
 		output = jnp.reshape(output, (-1, window_size ** 2, token_dim))
 
@@ -150,7 +148,6 @@ class WindowMHSA(nn.Module):
 			img_size=img_size,
 			)
 		output = layers.cyclic_shift(output, -shift)
-		output = jnp.reshape(output, input.shape)
 
 		return output
 
@@ -161,23 +158,17 @@ class PatchMerge(nn.Module):
 	"""
 	@nn.compact
 	def __call__(self, input):
-		n_tokens, token_dim = input.shape[-2:]
-		img_size = int(sqrt(n_tokens))
-		
-		output = jnp.reshape(input, (-1, img_size, img_size, token_dim))
-		s1 = output[:, 0::2, 0::2, :]
-		s2 = output[:, 1::2, 0::2, :]
-		s3 = output[:, 0::2, 1::2, :]
-		s4 = output[:, 1::2, 1::2, :]
+		s1 = input[:, 0::2, 0::2, :]
+		s2 = input[:, 1::2, 0::2, :]
+		s3 = input[:, 0::2, 1::2, :]
+		s4 = input[:, 1::2, 1::2, :]
 
 		output = jnp.concatenate([s1, s2, s3, s4], -1)
-		output = jnp.reshape(output, (len(output), -1, 4*token_dim))
-
 		output = nn.LayerNorm(
 			epsilon=1e-5,
 			)(output)
 		output = nn.Dense(
-			features=2*token_dim,
+			features=2*input.shape[-1],
 			use_bias=False,
 			)(output)
 
@@ -258,6 +249,7 @@ class Swin(nn.Module):
 			token_dim=self.token_dim,
 			patch_size=self.patch_size,
 			layer_norm_eps=1e-5,
+			flatten=False,
 			)(input)
 		self.sow(
 			col='intermediates',
@@ -278,7 +270,7 @@ class Swin(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-5,
