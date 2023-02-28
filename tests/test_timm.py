@@ -8,10 +8,12 @@ import typing as T
 from io import BytesIO
 
 import flax
+import jax
 import timm
 import torch
 import numpy as np
 from PIL import Image
+from flax import traverse_util
 from jax import numpy as jnp
 
 import flaim
@@ -60,13 +62,13 @@ def normalize(
 	return (input - np.array(mean)) / np.array(std)
 
 
-@torch.no_grad()
 def get_outputs(
 	flaim_input: T.Any,
 	flaim_model: flax.linen.Module,
 	flaim_vars: T.Dict,
 	timm_input: torch.Tensor,
 	timm_model: torch.nn.Module,
+	train_only: bool = False,
 	) -> T.Tuple[T.Any, torch.Tensor]:
 	"""
 	Gets the outputs of corresponding flaim and timm models.
@@ -77,35 +79,114 @@ def get_outputs(
 		flaim_vars (T.Dict): The flaim model's parameters.
 		timm_input (torch.Tensor): Corresponding input for the timm model.
 		timm_model (torch.nn.Module): The corresponding timm model.
+		train_only (bool): When the models do not contain batch normalization,
+		this argument is ignored. When the models contain batch normalziation
+		and train_only is True, only the outputs of the models in training mode
+		are returned. Otherwise, the outputs of the models in both training
+		and inference mode are returned.
+		Default is False.
 
 	Returns (T.Tuple[T.Any, torch.Tensor]): The outputs of flaim_model
 	and timm_model.
 	"""
 	if 'batch_stats' in flaim_vars:
-		flaim_output_inf = flaim_model.apply(flaim_vars, flaim_input, training=False, mutable=False)
-		flaim_output_train, new_batch_stats = flaim_model.apply(flaim_vars, flaim_input, training=True, mutable=['batch_stats'])
-		flaim_output = jnp.concatenate([flaim_output_inf, flaim_output_train])
+		if not train_only:
+			flaim_output_inf = flaim_model.apply(flaim_vars, flaim_input, training=False, mutable=False)
+			timm_output_inf = timm_model.eval()(timm_input)
 
-		timm_output_inf = timm_model.eval()(timm_input)
-		timm_output_train = timm_model.train()(timm_input)
-		timm_output = torch.cat([timm_output_inf, timm_output_train])
+		flaim_output, new_batch_stats = flaim_model.apply(flaim_vars, flaim_input, training=True, mutable=['batch_stats'])
+		timm_output = timm_model.train()(timm_input)
+
+		if not train_only:
+			flaim_output = jnp.concatenate([flaim_output_inf, flaim_output])
+			timm_output = torch.cat([timm_output_inf, timm_output])
 
 	else:
 		flaim_output = flaim_model.apply(flaim_vars, flaim_input)
-		timm_output = timm_model.eval()(timm_input)
+		timm_output = timm_model.train()(timm_input)
 
 	return flaim_output, timm_output
 
 
-@torch.no_grad()
 def test_outputs(
+	flaim_input: T.Any,
+	flaim_model: flax.linen.Module,
+	flaim_vars: T.Dict,
+	timm_input: torch.Tensor,
+	timm_model: torch.nn.Module,
+	) -> None:
+	"""
+	Compares the outputs of corresponding flaim and timm models.
+
+	Args:
+		flaim_input (T.Any): Input for the flaim model.
+		flaim_model (flax.linen.Module): The flaim model.
+		flaim_vars (T.Dict): The flaim model's parameters.
+		timm_input (torch.Tensor): Corresponding input for the timm model.
+		timm_model (torch.nn.Module): The corresponding timm model.
+	"""
+	with torch.no_grad():
+		flaim_output, timm_output = get_outputs(
+			flaim_input=flaim_input,
+			flaim_model=flaim_model,
+			flaim_vars=flaim_vars,
+			timm_input=timm_input,
+			timm_model=timm_model,
+			)
+	assert jnp.allclose(flaim_output, jnp.array(timm_output), atol=1e-4), 'Outputs not equal'
+
+
+def test_grads(
+	flaim_input: T.Any,
+	flaim_model: flax.linen.Module,
+	flaim_vars: T.Dict,
+	timm_input: torch.Tensor,
+	timm_model: torch.nn.Module,
+	) -> None:
+	"""
+	Compares the gradients of corresponding flaim and timm models.
+
+	Args:
+		flaim_input (T.Any): Input for the flaim model.
+		flaim_model (flax.linen.Module): The flaim model.
+		flaim_vars (T.Dict): The flaim model's parameters.
+		timm_input (torch.Tensor): Corresponding input for the timm model.
+		timm_model (torch.nn.Module): The corresponding timm model.
+	"""
+	def get_summed_outputs(flaim_vars: T.Dict):
+		flaim_output, timm_output = get_outputs(
+			flaim_input=flaim_input,
+			flaim_model=flaim_model,
+			flaim_vars=flaim_vars,
+			timm_input=timm_input,
+			timm_model=timm_model,
+			train_only=True,
+			)
+		return flaim_output.sum(), timm_output.sum()
+
+	flaim_grads, timm_summed_output = jax.grad(get_summed_outputs, has_aux=True, allow_int=True)(flaim_vars)
+
+	flaim_grads = traverse_util.flatten_dict(flaim_grads['params'])
+	flaim_summed_grads = 0
+	for param_name in flaim_grads:
+		flaim_summed_grads += jnp.mean(jnp.abs(flaim_grads[param_name]))
+
+	timm_summed_output.backward()
+	timm_summed_grads = 0
+	for param in timm_model.parameters():
+		timm_summed_grads += param.grad.abs().mean()
+
+	assert jnp.allclose(flaim_summed_grads, jnp.array(timm_summed_grads), rtol=1e-2), 'Gradients not equal'
+
+
+def test_models(
 	input: np.ndarray,
 	flaim_model_name: str,
 	flaim_params_name: str,
 	timm_model_name: str,
 	) -> None:
 	"""
-	Compares the outputs of corresponding flaim and timm models.
+	Compares the outputs and gradients of corresponding flaim and timm models.
 
 	Args:
 		input (np.ndarray): NumPy array to be used as input data.
@@ -123,20 +204,27 @@ def test_outputs(
 		model_name=timm_model_name,
 		pretrained=True,
 		num_classes=0,
+		drop_path_rate=0.0,
 		)
 	timm_norm_stats = {'mean': timm_model.default_cfg['mean'], 'std': timm_model.default_cfg['std']}
 
 	flaim_input = jnp.array(normalize(input, **flaim_norm_stats), dtype=jnp.float32)
 	timm_input = torch.tensor(normalize(input, **timm_norm_stats), dtype=torch.float32).permute(0, 3, 1, 2)
 
-	flaim_output, timm_output = get_outputs(
+	test_outputs(
 		flaim_input=flaim_input,
 		flaim_model=flaim_model,
 		flaim_vars=flaim_vars,
 		timm_input=timm_input,
 		timm_model=timm_model,
 		)
-	assert jnp.allclose(flaim_output, jnp.array(timm_output), atol=1e-4), 'Outputs not equal'
+	test_grads(
+		flaim_input=flaim_input,
+		flaim_model=flaim_model,
+		flaim_vars=flaim_vars,
+		timm_input=timm_input,
+		timm_model=timm_model,
+		)
 
 
 def main() -> None:
@@ -178,7 +266,7 @@ def main() -> None:
 	input = get_input_img()
 	for flaim_model_name, flaim_params_name in flaim_to_timm:
 		print(flaim_model_name, flaim_params_name)
-		test_outputs(
+		test_models(
 			input=input,
 			flaim_model_name=flaim_model_name,
 			flaim_params_name=flaim_params_name,
