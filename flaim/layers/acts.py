@@ -1,11 +1,13 @@
 """
 Activation functions:
-- gelu: Identical to Flax's GeLU but approximate is fixed at False.
+- gelu: Identical to Flax's GELU but approximate is fixed at False.
+- quick_gelu: Faster but more inaccurate approximation of GELU by Hendrycks et al.
 - mish: Mish by Misra.
 - square_relu: Squared ReLU by So et al.
 - StarReLU: StarReLU by Yu et al.
 
 References: 
+- Hendrycks et al. Gaussian Error Linear Units (GELUs).
 - Misra. Mish: A Self Regularized Non-Monotonic Activation Function.
 - So et al. Primer: Searching for Efficient Transformers for Language Modeling.
 - Yu et al. MetaFormer Baselines for Vision.
@@ -14,6 +16,7 @@ References:
 
 __all__ = [
 	'gelu',
+	'quick_gelu',
 	'mish',
 	'squared_relu',
 	'StarReLU',
@@ -27,6 +30,18 @@ from jax import numpy as jnp
 
 
 gelu = partial(nn.gelu, approximate=False)
+
+
+def quick_gelu(input):
+	"""
+	Faster but more inaccurate approximation of GELU.
+
+	Args:
+		input: Input.
+	
+	Returns: Result of quick GELU.
+	"""
+	return input * nn.sigmoid(1.702*input)
 
 
 def mish(input):
