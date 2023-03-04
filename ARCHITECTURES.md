@@ -135,6 +135,12 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 &emsp; &emsp; • ```clip_laiona_augreg_320```: Trained using CLIP on LAION-Aesthetics with additional augmentation & regularization at resolution 320 x 320.
 
 • ```convnext_large```: ConvNeXt-Large.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
+
+• ```convnext_xlarge```: ConvNeXt-XLarge.<br>
 &emsp; &emsp; • ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 &emsp; &emsp; • ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 &emsp; &emsp; • ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
