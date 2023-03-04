@@ -193,7 +193,8 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				depth=12,
 				token_dim=384,
 				n_heads=6,
-				patch_size=8,				),
+				patch_size=8,
+				),
 			params={
 				'dino_in1k_224': imagenet_params_config('vit_small_patch8_224_dino'),
 				},
