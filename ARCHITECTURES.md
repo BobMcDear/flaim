@@ -145,6 +145,10 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 &emsp; &emsp; • ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 &emsp; &emsp; • ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
+• ```convnext_xxlarge```: ConvNeXt-XXLarge.<br>
+&emsp; &emsp; • ```clip_laion2b_rewind_256```: Trained using CLIP on LAION-2B at resolution 256 x 256, last 10% of training rewinded and resumed with slightly different settings.<br>
+&emsp; &emsp; • ```clip_laion2b_soup_256```: Trained using CLIP on LAION-2B at resolution 256 x 256, a soup (i.e., parameters averaged) of the original and rewinded training runs.<br>
+
 ## ConvNeXt V2
 
 ConvNeXt V2 from _[ConvNeXt V2: Co-designing and Scaling ConvNets with Masked Autoencoders](https://arxiv.org/abs/2301.00808)_ by Woo et al. ConvNeXt V2 is based on ConvNeXt but is trained using a fully convolutional masked autoencoder training scheme (FCMAE) and also incorporates global response normalization (GRN), a normalization module that abates inter-channel feature redundancies and is particularly important for effective learning with FCMAE.

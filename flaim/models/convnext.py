@@ -24,10 +24,14 @@ class ConvNeXtBlock(nn.Module):
 		Default is 1e-6.
 		grn (bool): Whether to use global response normalization inside the MLP.
 		Default is False.
+		layer_norm_eps (float): Epsilon value passed to layer
+		normalization.
+		Default is 1e-6.
 	"""
 	out_dim: T.Optional[int] = None
 	layer_scale_init_value: T.Optional[float] = 1e-6
 	grn: bool = False
+	layer_norm_eps: float = 1e-6
 
 	@nn.compact
 	def __call__(self, input):
@@ -41,6 +45,7 @@ class ConvNeXtBlock(nn.Module):
 				layers.gelu,
 				layers.GRN(),
 				]) if self.grn else layers.gelu,
+			layer_norm_eps=self.layer_norm_eps,
 			layer_scale_init_value=self.layer_scale_init_value,
 			residual=False,
 			)(output)
@@ -61,12 +66,16 @@ class ConvNeXtStage(nn.Module):
 		Default is 1e-6.
 		grn (bool): Whether to use global response normalization inside the MLP.
 		Default is False.
+		layer_norm_eps (float): Epsilon value passed to layer
+		normalization.
+		Default is 1e-6.
 	"""
 	depth: int
 	out_dim: int
 	stride: int = 1
 	layer_scale_init_value: T.Optional[float] = 1e-6
 	grn: bool = False
+	layer_norm_eps: float = 1e-6
 
 	@nn.compact
 	def __call__(self, input):
@@ -74,7 +83,7 @@ class ConvNeXtStage(nn.Module):
 			input = layers.PatchEmbed(
 				token_dim=self.out_dim,
 				patch_size=self.stride,
-				layer_norm_eps=1e-6,
+				layer_norm_eps=self.layer_norm_eps,
 				norm_first=True,
 				flatten=False,
 				)(input)
@@ -83,6 +92,7 @@ class ConvNeXtStage(nn.Module):
 			input = ConvNeXtBlock(
 				layer_scale_init_value=self.layer_scale_init_value,
 				grn=self.grn,
+				layer_norm_eps=self.layer_norm_eps,
 				)(input)
 
 		return input
@@ -100,6 +110,9 @@ class ConvNeXt(nn.Module):
 		Default is 1e-6.
 		grn (bool): Whether to use global response normalization inside the MLP.
 		Default is False.
+		layer_norm_eps (float): Epsilon value passed to layer
+		normalization.
+		Default is 1e-6.
 		n_classes (int): Number of output classes. If 0, there is no head,
 		and the raw final features are returned. If -1, all stages of the 
 		head, other than the final linear layer, are applied and the output
@@ -110,6 +123,7 @@ class ConvNeXt(nn.Module):
 	out_dims: T.Tuple[int, ...]
 	layer_scale_init_value: T.Optional[float] = 1e-6
 	grn: bool = False
+	layer_norm_eps: float = 1e-6
 	n_classes: int = 0
 
 	@nn.compact
@@ -117,7 +131,7 @@ class ConvNeXt(nn.Module):
 		output = layers.PatchEmbed(
 			token_dim=self.out_dims[0],
 			patch_size=4,
-			layer_norm_eps=1e-6,
+			layer_norm_eps=self.layer_norm_eps,
 			flatten=False,
 			)(input)
 		self.sow(
@@ -133,6 +147,7 @@ class ConvNeXt(nn.Module):
 				stride=1 if stage_ind == 0 else 2,
 				layer_scale_init_value=self.layer_scale_init_value,
 				grn=self.grn,
+				layer_norm_eps=self.layer_norm_eps,
 				)(output)
 			self.sow(
 				col='intermediates',
@@ -264,6 +279,17 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 				'in22k_224': imagenet_params_config('convnext_xlarge_in22k'),
 				'in22k_ft_in1k_224': imagenet_params_config('convnext_xlarge_in22ft1k'),
 				'in22k_ft_in1k_384': imagenet_params_config('convnext_xlarge_384_in22ft1k'),
+				},
+			),
+		'convnext_xxlarge': dict(
+			model_args=dict(
+				depths=(3, 4, 30, 3),
+				out_dims=(384, 768, 1536, 3072),
+				layer_norm_eps=1e-5,
+				),
+			params={
+				'clip_laion2b_rewind_256': clip_params_config('convnext_xxlarge_clip_laion2b_rewind_256'),
+				'clip_laion2b_soup_256': clip_params_config('convnext_xxlarge_clip_laion2b_soup_256'),
 				},
 			),
 		'convnextv2_atto': dict(
