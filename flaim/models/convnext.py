@@ -49,7 +49,7 @@ class ConvNeXtBlock(nn.Module):
 			layer_scale_init_value=self.layer_scale_init_value,
 			residual=False,
 			)(output)
-		return input+output
+		return input+output if input.shape == output.shape else output
 
 
 class ConvNeXtStage(nn.Module):
