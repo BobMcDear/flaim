@@ -17,6 +17,8 @@ import typing as T
 from flax import linen as nn
 from jax import numpy as jnp
 
+from .identity import identity
+from .mlp import MLP
 from .pool import global_avg_pool
 
 
@@ -31,6 +33,14 @@ class Head(nn.Module):
 		Default is 0.
 		pool_fn (T.Callable): Pooling function.
 		Default is global_avg_pool.
+		hidden_dim (T.Optional[int]): If not None, the logits are transformed
+		to this dimension using a linear layer followed by an activation function
+		before being passed to the final linear layer, that is, the head turns into an 
+		MLP. hidden_act is ignored if hidden_dim is None.
+		Default is None.
+		hidden_act (T.Callable): Activation function used if hidden_dim is
+		not None.
+		Default is nn.tanh.
 		layer_norm_eps (T.Optional[float]): Epsilon value
 		passed to layer normalization. If None, no normalization is applied,
 		and norm_first is ignored.
@@ -44,6 +54,8 @@ class Head(nn.Module):
 	"""
 	n_classes: int = 0
 	pool_fn: T.Callable = global_avg_pool
+	hidden_dim: T.Optional[int] = None
+	hidden_act: T.Callable = nn.tanh
 	layer_norm_eps: T.Optional[float] = None
 	norm_first: bool = False
 	bias: bool = True
@@ -53,17 +65,23 @@ class Head(nn.Module):
 		if self.n_classes == 0:
 			return input
 
+		layer_norm = nn.LayerNorm(
+			epsilon=self.layer_norm_eps,
+			) if self.layer_norm_eps else identity
+		
 		if self.norm_first:
-			output = nn.LayerNorm(
-				epsilon=self.layer_norm_eps,
-				)(input) if self.layer_norm_eps else input
+			output = layer_norm(input)
 			output = self.pool_fn(output, keep_axis=False)
 		
 		else:
 			output = self.pool_fn(input, keep_axis=False)
-			output = nn.LayerNorm(
-				epsilon=self.layer_norm_eps,
-				)(output) if self.layer_norm_eps else output
+			output = layer_norm(output)
+		
+		if self.hidden_dim:
+			output = nn.Sequential([
+				nn.Dense(features=self.hidden_dim),
+				self.hidden_act,
+				])(output)
 		
 		if self.n_classes != -1:
 			output = nn.Dense(
@@ -88,6 +106,14 @@ class ViTHead(nn.Module):
 		generating predictions. If False, the first token
 		in the input, assumed to be the class token, is used
 		to generate predictions.
+		hidden_dim (T.Optional[int]): If not None, the logits are transformed
+		to this dimension using a linear layer followed by an activation function
+		before being passed to the final linear layer, that is, the head turns into an 
+		MLP. hidden_act is ignored if hidden_dim is None.
+		Default is None.
+		hidden_act (T.Callable): Activation function used if hidden_dim is
+		not None.
+		Default is nn.tanh.
 		layer_norm_eps (T.Optional[float]): Epsilon value
 		passed to layer normalization applied at the beginning.
 		If None, no normalization is applied.
@@ -101,6 +127,8 @@ class ViTHead(nn.Module):
 	"""
 	n_classes: int = 0
 	pool: bool = False
+	hidden_dim: T.Optional[int] = None
+	hidden_act: T.Callable = nn.tanh
 	layer_norm_eps: T.Optional[float] = None
 	norm_first: bool = True
 	bias: bool = True
@@ -109,18 +137,24 @@ class ViTHead(nn.Module):
 	def __call__(self, input):
 		if self.n_classes == 0:
 			return input
+		
+		layer_norm = nn.LayerNorm(
+			epsilon=self.layer_norm_eps,
+			) if self.layer_norm_eps else identity
 
 		if self.norm_first:
-			output = nn.LayerNorm(
-				epsilon=self.layer_norm_eps,
-				)(input) if self.layer_norm_eps else input
+			output = layer_norm(input)
 			output = jnp.mean(output, axis=-2) if self.pool else output[:, 0]
 	
 		else:
 			output = jnp.mean(input, axis=-2) if self.pool else input[:, 0]
-			output = nn.LayerNorm(
-				epsilon=self.layer_norm_eps,
-				)(output) if self.layer_norm_eps else output
+			output = layer_norm(output)
+
+		if self.hidden_dim:
+			output = nn.Sequential([
+				nn.Dense(features=self.hidden_dim),
+				self.hidden_act,
+				])(output)
 
 		if self.n_classes != -1:
 			output = nn.Dense(
