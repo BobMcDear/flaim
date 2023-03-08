@@ -118,6 +118,11 @@ class ConvNeXt(nn.Module):
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
+		hidden_dim (T.Optional[int]): If not None, the logits are transformed
+		to this dimension using a linear layer followed by an activation function
+		before being passed to the final linear layer in the head, that is, the head turns
+		into an  MLP.
+		Default is None.
 	"""
 	depths: T.Tuple[int, ...]
 	out_dims: T.Tuple[int, ...]
@@ -125,6 +130,7 @@ class ConvNeXt(nn.Module):
 	grn: bool = False
 	layer_norm_eps: float = 1e-6
 	n_classes: int = 0
+	head_hidden_dim: T.Optional[int] = None
 
 	@nn.compact
 	def __call__(self, input):
@@ -157,7 +163,9 @@ class ConvNeXt(nn.Module):
 		
 		output = layers.Head(
 			n_classes=self.n_classes,
-			layer_norm_eps=1e-6,
+			hidden_dim=self.head_hidden_dim,
+			hidden_act=layers.gelu,
+			layer_norm_eps=self.layer_norm_eps,
 			)(output)
 			
 		return output
@@ -268,6 +276,18 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 				'in22k_224': imagenet_params_config('convnext_large_in22k'),
 				'in22k_ft_in1k_224': imagenet_params_config('convnext_large_in22ft1k'),
 				'in22k_ft_in1k_384': imagenet_params_config('convnext_large_384_in22ft1k'),
+				},
+			),
+		'convnext_large_mlp': dict(
+			model_args=dict(
+				depths=(3, 3, 27, 3),
+				out_dims=(192, 384, 768, 1536),
+				head_hidden_dim=1536,
+				),
+			params={
+				'clip_laion2b_augreg_256': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_256'),
+				'clip_laion2b_augreg_256_ft_320': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_256_ft_320'),
+				'clip_laion2b_soup_augreg_256_ft_320': clip_params_config('convnext_large_mlp_clip_laion2b_soup_augreg_256_ft_320'),
 				},
 			),
 		'convnext_xlarge': dict(
