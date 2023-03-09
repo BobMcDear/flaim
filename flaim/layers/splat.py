@@ -1,5 +1,5 @@
 """
-Split attention (SplAt) by Wang et al.
+Split attention (SplAt) by Zhang et al.
 
 References:
 - Zhang et al. ResNeSt: Split-Attention Networks.
@@ -26,7 +26,8 @@ class RadixSoftmax(nn.Module):
 	Softmax along the radix axis.
 
 	Args:
-		radix (int): Radix.
+		radix (int): Radix. When radix is 1, sigmoid
+		is applied.
 		Default is 2.
 		groups (int): Number of cardinal groups.
 		Default is 1.
@@ -36,9 +37,16 @@ class RadixSoftmax(nn.Module):
 
 	def __call__(self, input):
 		bs, h, w, in_dim = input.shape
-		output = jnp.reshape(input, (bs, h, w, self.groups, self.radix, -1))
-		output = nn.softmax(output, axis=-2) if 1 < self.radix else nn.sigmoid(output)
-		output = jnp.reshape(output, (bs, h, w, self.radix, -1))
+
+		if 1 < self.radix:
+			output = jnp.reshape(input, (bs, h, w, self.groups, self.radix, -1))
+			output = jnp.swapaxes(output, axis1=-3, axis2=-2)
+			output = nn.softmax(output, axis=-3)
+			output = jnp.reshape(output, (bs, h, w, self.radix, -1))
+		
+		else:
+			output = nn.sigmoid(input)
+
 		return output
 
 
@@ -93,8 +101,8 @@ class SplAt(nn.Module):
 			)(input, training=training)
 
 		if 1 < self.radix:
-			attention = jnp.reshape(output, (bs, h, w, self.radix, -1))
-			attention = jnp.sum(attention, axis=-2)
+			output = jnp.reshape(output, (bs, h, w, self.radix, out_dim))
+			attention = jnp.sum(output, axis=-2)
 		
 		else:
 			attention = output
@@ -102,7 +110,7 @@ class SplAt(nn.Module):
 		attention = global_avg_pool(attention)
 		attention = ConvMLP(
 			out_dim=width,
-			hidden_dim=max(output.shape[-1]//self.reduction_factor, self.min_reduction_dim),
+			hidden_dim=max(width//self.reduction_factor, self.min_reduction_dim),
 			groups=self.groups,
 			act=self.act,
 			bias_force=True,
@@ -113,7 +121,8 @@ class SplAt(nn.Module):
 			groups=self.groups,
 			)(attention)
 
-		output = jnp.reshape(output, (bs, h, w, self.radix, out_dim))
 		output = attention*output
-		output = jnp.sum(output, axis=-2)
+		if 1 < self.radix:
+			output = jnp.sum(output, axis=-2)
+		
 		return output
