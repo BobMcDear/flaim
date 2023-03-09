@@ -987,6 +987,20 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 				'in1k_224': imagenet_params_config('resnest26_2s1x64d'),
 				},
 			),
+		'resnest50_1s4x24d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				conv_bn_relu=partial(layers.SplAt, radix=1),
+				cardinality=4,
+				dim_per_cardinal_first_stage=24,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='pre',
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnest50_1s4x24d_in1k_224'),
+				},
+			),
 		'resnest50_2s1x64d': dict(
 			model_args=dict(
 				depths=(3, 4, 6, 3),
@@ -997,6 +1011,20 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			),
 			params={
 				'in1k_224': imagenet_params_config('resnest50_2s1x64d'),
+				},
+			),
+		'resnest50_4s2x40d': dict(
+			model_args=dict(
+				depths=(3, 4, 6, 3),
+				conv_bn_relu=partial(layers.SplAt, radix=4),
+				cardinality=2,
+				dim_per_cardinal_first_stage=40,
+				stem=ResNetDStem,
+				downsample=partial(ResNetDownsample, avg_pool=True),
+				avg_downsample='pre',
+			),
+			params={
+				'in1k_224': imagenet_params_config('resnest50_4s2x40d_in1k_224'),
 				},
 			),
 		'resnest101_2s1x64d': dict(

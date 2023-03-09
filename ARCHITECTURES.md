@@ -700,7 +700,13 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```resnest26_2s1x64d```: ResNeSt-26, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 &emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
+• ```resnest50_1s4x24d```: ResNeSt-50, radix 1, cardinality 4, dimensionality per radix group in the first stage 24.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
 • ```resnest50_2s1x64d```: ResNeSt-50, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+• ```resnest50_4s2x40d```: ResNeSt-50, radix 4, cardinality 2, dimensionality per radix group in the first stage 40.<br>
 &emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 • ```resnest101_2s1x64d```: ResNeSt-101, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
