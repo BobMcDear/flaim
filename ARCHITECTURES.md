@@ -132,7 +132,9 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 &emsp; &emsp; • ```clip_laion2b_augreg_256```: Trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256.<br>
 &emsp; &emsp; • ```clip_laiona_256```: Trained using CLIP on LAION-Aesthetics at resolution 256 x 256.<br>
 &emsp; &emsp; • ```clip_laiona_320```: Trained using CLIP on LAION-Aesthetics at resolution 320 x 320.<br>
-&emsp; &emsp; • ```clip_laiona_augreg_320```: Trained using CLIP on LAION-Aesthetics with additional augmentation & regularization at resolution 320 x 320.
+&emsp; &emsp; • ```clip_laiona_augreg_320```: Trained using CLIP on LAION-Aesthetics with additional augmentation & regularization at resolution 320 x 320.<br>
+&emsp; &emsp; • ```clip_laion2b_augreg_ft_in1k_256```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 256 x 256.<br>
+&emsp; &emsp; • ```clip_laiona_augreg_ft_in1k_384```: Pre-trained using CLIP on LAION-Aesthetics with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
 • ```convnext_large```: ConvNeXt-Large.<br>
 &emsp; &emsp; • ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
@@ -144,6 +146,8 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 &emsp; &emsp; • ```clip_laion2b_augreg_256```: Trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256.<br>
 &emsp; &emsp; • ```clip_laion2b_augreg_256_ft_320```: Trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256 and fine-tuned at resolution 320 x 320.<br>
 &emsp; &emsp; • ```clip_laion2b_soup_augreg_256_ft_320```: A soup (i.e., parameters averaged) of 3 models trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256 and fine-tuned at resolution 320 x 320.<br>
+&emsp; &emsp; • ```clip_laion2b_augreg_ft_in1k_256```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 256 x 256.<br>
+&emsp; &emsp; • ```clip_laion2b_augreg_ft_in1k_384```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
 • ```convnext_xlarge```: ConvNeXt-XLarge.<br>
 &emsp; &emsp; • ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>

@@ -264,6 +264,8 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 				'clip_laiona_256': clip_params_config('convnext_base_clip_laiona'),
 				'clip_laiona_320': clip_params_config('convnext_base_clip_320_laiona'),
 				'clip_laiona_augreg_320': clip_params_config('convnext_base_clip_320_laiona_augreg'),
+				'clip_laion2b_augreg_ft_in1k_256': clip_params_config('convnext_base_clip_laion2b_augreg_ft_in1k_256'),
+				'clip_laiona_augreg_ft_in1k_384': clip_params_config('convnext_base_clip_laiona_augreg_ft_in1k_384'),
 				},
 			),
 		'convnext_large': dict(
@@ -288,6 +290,8 @@ def get_convnext_configs() -> T.Tuple[T.Type[ConvNeXt], T.Dict]:
 				'clip_laion2b_augreg_256': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_256'),
 				'clip_laion2b_augreg_256_ft_320': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_256_ft_320'),
 				'clip_laion2b_soup_augreg_256_ft_320': clip_params_config('convnext_large_mlp_clip_laion2b_soup_augreg_256_ft_320'),
+				'clip_laion2b_augreg_ft_in1k_256': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_ft_in1k_256'),
+				'clip_laion2b_augreg_ft_in1k_384': clip_params_config('convnext_large_mlp_clip_laion2b_augreg_ft_in1k_384'),
 				},
 			),
 		'convnext_xlarge': dict(
