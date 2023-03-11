@@ -313,7 +313,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'clip_openai_224': clip_params_config('vit_large_clip_patch14_224_openai'),
-				'clip_laion2b_224': clip_params_config('vit_large_clip_patch14_224_laion2b'),
+				'clip_laion2b_224': inception_params_config('vit_large_clip_patch14_224_laion2b'),
 				},
 			),
 		'vit_huge_clip_patch14': dict(
