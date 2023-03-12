@@ -873,23 +873,33 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 • ```vit_huge_patch14```: ViT-Huge, patch size 14 x 14.<br>
 &emsp; &emsp; • ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
 
-```vit_base_clip_patch32```: ViT-Base, patch size 32 x 32.<br>
+• ```vit_base_clip_patch32```: ViT-Base with an extra layer normalization before the transformer layers, patch size 32 x 32.<br>
 &emsp; &emsp; • ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
-&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.
+&emsp; &emsp; • ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
-```vit_base_clip_patch16```: ViT-Base, patch size 16 x 16.<br>
+• ```vit_base_clip_patch16```: ViT-Base with an extra layer normalization before the transformer layers, patch size 16 x 16.<br>
 &emsp; &emsp; • ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
-&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.
+&emsp; &emsp; • ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_openai_ft_in1k_384```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
+&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_384```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
-```vit_large_clip_patch14```: ViT-Large, patch size 14 x 14.<br>
+• ```vit_large_clip_patch14```: ViT-Large with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
 &emsp; &emsp; • ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
-&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.
+&emsp; &emsp; • ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_336```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 336 x 336.<br>
 
-```vit_huge_clip_patch14```: ViT-Huge, patch size 14 x 14.<br>
-&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.
+• ```vit_huge_clip_patch14```: ViT-Huge with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
+&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
+&emsp; &emsp; • ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
-```vit_giant_clip_patch14```: ViT-Giant, patch size 14 x 14.<br>
-&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.
+```vit_giant_clip_patch14```: ViT-Giant with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
+&emsp; &emsp; • ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
 
 ## DeiT 3
 

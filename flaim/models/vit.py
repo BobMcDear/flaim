@@ -286,7 +286,9 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'clip_openai_224': clip_params_config('vit_base_clip_patch32_224_openai'),
+				'clip_openai_ft_in1k_224': clip_params_config('vit_base_clip_patch32_clip_openai_ft_in1k_224'),
 				'clip_laion2b_224': clip_params_config('vit_base_clip_patch32_224_laion2b'),
+				'clip_laion2b_ft_in1k_224': clip_params_config('vit_base_clip_patch32_clip_laion2b_ft_in1k_224'),
 				},
 			),
 		'vit_base_clip_patch16': dict(
@@ -299,7 +301,11 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'clip_openai_224': clip_params_config('vit_base_clip_patch16_224_openai'),
+				'clip_openai_ft_in1k_224': clip_params_config('vit_base_clip_patch16_clip_openai_ft_in1k_224'),
+				'clip_openai_ft_in1k_384': clip_params_config('vit_base_clip_patch16_clip_openai_ft_in1k_384'),
 				'clip_laion2b_224': clip_params_config('vit_base_clip_patch16_224_laion2b'),
+				'clip_laion2b_ft_in1k_224': clip_params_config('vit_base_clip_patch16_clip_laion2b_ft_in1k_224'),
+				'clip_laion2b_ft_in1k_384': clip_params_config('vit_base_clip_patch16_clip_laion2b_ft_in1k_384'),
 				},
 			),
 		'vit_large_clip_patch14': dict(
@@ -313,7 +319,10 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'clip_openai_224': clip_params_config('vit_large_clip_patch14_224_openai'),
+				'clip_openai_ft_in1k_224': clip_params_config('vit_large_clip_patch14_clip_openai_ft_in1k_224'),
 				'clip_laion2b_224': inception_params_config('vit_large_clip_patch14_224_laion2b'),
+				'clip_laion2b_ft_in1k_224': inception_params_config('vit_large_clip_patch14_clip_laion2b_ft_in1k_224'),
+				'clip_laion2b_ft_in1k_336': inception_params_config('vit_large_clip_patch14_clip_laion2b_ft_in1k_336'),
 				},
 			),
 		'vit_huge_clip_patch14': dict(
@@ -327,6 +336,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'clip_laion2b_224': clip_params_config('vit_huge_clip_patch14_224_laion2b'),
+				'clip_laion2b_ft_in1k_224': clip_params_config('vit_huge_clip_patch14_clip_laion2b_ft_in1k_224'),
 				},
 			),
 		'vit_giant_clip_patch14': dict(
