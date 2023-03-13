@@ -2,38 +2,37 @@
 
 The following is a list of all available architectures and their pre-trained parameters, with brief descriptions and references, classified into network families. Unless otherwise mentioned, the pre-trained parameters were learned through supervised training.
 
-• <strong>[CaiT](#cait)</strong><br>
-• <strong>[ConvMixer](#convmixer)</strong><br>
-• <strong>[ConvNeXt](#convnext)</strong><br>
-• <strong>[ConvNeXt V2](#convnext-v2)</strong><br>
-• <strong>[DaViT](#davit)</strong><br>
-• <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
-• <strong>[GC ViT](#gc-vit)</strong><br>
-• <strong>[HorNet](#hornet)</strong><br>
-• <strong>[MaxViT](#maxvit)</strong><br>
-• <strong>[NesT](#nest)</strong><br>
-• <strong>[PiT](#pit)</strong><br>
-• <strong>[PVT V2](#pvt-v2)</strong><br>
-• <strong>[RegNet](#regnet)</strong><br>
-• <strong>[ResNet](#resnet)</strong><br>
-• <strong>[ResNet-D](#resnet-d)</strong><br>
-• <strong>[ResNet-T](#resnet-t)</strong><br>
-• <strong>[Wide ResNet](#wide-resnet)</strong><br>
-• <strong>[ResNeXt](#resnext)</strong><br>
-• <strong>[SENet](#senet)</strong><br>
-• <strong>[ECANet](#ecanet)</strong><br>
-• <strong>[ResNet-RS](#resnet-rs)</strong><br>
-• <strong>[SKNet](#sknet)</strong><br>
-• <strong>[ResNeSt](#resnest)</strong><br>
-• <strong>[Swin](#swin)</strong><br>
-• <strong>[Swin-S3](#swin-s3)</strong><br>
-• <strong>[VAN](#van)</strong><br>
-• <strong>[VGG](#vgg)</strong><br>
-• <strong>[ViT](#vit)</strong><br>
-• <strong>[DeiT 3](#deit-3)</strong><br>
-• <strong>[BEiT](#beit)</strong><br>
-• <strong>[XCiT](#xcit)</strong><br>
-
+&#x25cf; <strong>[CaiT](#cait)</strong><br>
+&#x25cf; <strong>[ConvMixer](#convmixer)</strong><br>
+&#x25cf; <strong>[ConvNeXt](#convnext)</strong><br>
+&#x25cf; <strong>[ConvNeXt V2](#convnext-v2)</strong><br>
+&#x25cf; <strong>[DaViT](#davit)</strong><br>
+&#x25cf; <strong>[EfficientNetV2](#efficientnetv2)</strong><br>
+&#x25cf; <strong>[GC ViT](#gc-vit)</strong><br>
+&#x25cf; <strong>[HorNet](#hornet)</strong><br>
+&#x25cf; <strong>[MaxViT](#maxvit)</strong><br>
+&#x25cf; <strong>[NesT](#nest)</strong><br>
+&#x25cf; <strong>[PiT](#pit)</strong><br>
+&#x25cf; <strong>[PVT V2](#pvt-v2)</strong><br>
+&#x25cf; <strong>[RegNet](#regnet)</strong><br>
+&#x25cf; <strong>[ResNet](#resnet)</strong><br>
+&#x25cf; <strong>[ResNet-D](#resnet-d)</strong><br>
+&#x25cf; <strong>[ResNet-T](#resnet-t)</strong><br>
+&#x25cf; <strong>[Wide ResNet](#wide-resnet)</strong><br>
+&#x25cf; <strong>[ResNeXt](#resnext)</strong><br>
+&#x25cf; <strong>[SENet](#senet)</strong><br>
+&#x25cf; <strong>[ECANet](#ecanet)</strong><br>
+&#x25cf; <strong>[ResNet-RS](#resnet-rs)</strong><br>
+&#x25cf; <strong>[SKNet](#sknet)</strong><br>
+&#x25cf; <strong>[ResNeSt](#resnest)</strong><br>
+&#x25cf; <strong>[Swin](#swin)</strong><br>
+&#x25cf; <strong>[Swin-S3](#swin-s3)</strong><br>
+&#x25cf; <strong>[VAN](#van)</strong><br>
+&#x25cf; <strong>[VGG](#vgg)</strong><br>
+&#x25cf; <strong>[ViT](#vit)</strong><br>
+&#x25cf; <strong>[DeiT 3](#deit-3)</strong><br>
+&#x25cf; <strong>[BEiT](#beit)</strong><br>
+&#x25cf; <strong>[XCiT](#xcit)</strong><br>
 
 ## CaiT
 
@@ -43,28 +42,28 @@ at greater depths.<br>
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/cait.py).
 
-• ```cait_xxsmall24```: CaiT-XXSmall, depth 24.<br>
+&#x25cf; ```cait_xxsmall24```: CaiT-XXSmall, depth 24.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_xxsmall36```: CaiT-XXSmall, depth 36.<br>
+&#x25cf; ```cait_xxsmall36```: CaiT-XXSmall, depth 36.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_small24_224```: CaiT-Small, depth 24.<br>
+&#x25cf; ```cait_small24_224```: CaiT-Small, depth 24.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_xsmall24```: CaiT-XSmall, depth 24.<br>
+&#x25cf; ```cait_xsmall24```: CaiT-XSmall, depth 24.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_small36```: CaiT-Small, depth 36.<br>
+&#x25cf; ```cait_small36```: CaiT-Small, depth 36.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_medium36```: CaiT-Medium, depth 36.<br>
+&#x25cf; ```cait_medium36```: CaiT-Medium, depth 36.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.
 
-• ```cait_medium48```: CaiT-Medium, depth 48.<br>
+&#x25cf; ```cait_medium48```: CaiT-Medium, depth 48.<br>
 * ```in1k_448```: Trained on ImageNet1K at resolution 448 x 448.
 
 ## ConvMixer
@@ -74,13 +73,13 @@ is similar to isotropic architectures like ViT but uses convolutions with large 
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convmixer.py).
 
-• ```convmixer20_1024d_patch14_kernel9```: ConvMixer, depth 20, token dimension 1024, patch size 14 x 14, kernel size 9 x 9.<br>
+&#x25cf; ```convmixer20_1024d_patch14_kernel9```: ConvMixer, depth 20, token dimension 1024, patch size 14 x 14, kernel size 9 x 9.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```convmixer20_1536d_patch7_kernel9```: ConvMixer, depth 20, token dimension 1536, patch size 7 x 7, kernel size 9 x 9.<br>
+&#x25cf; ```convmixer20_1536d_patch7_kernel9```: ConvMixer, depth 20, token dimension 1536, patch size 7 x 7, kernel size 9 x 9.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```convmixer32_768d_patch7_kernel7```: ConvMixer, depth 32, token dimension 768, patch size 7 x 7, kernel size 7 x 7.<br>
+&#x25cf; ```convmixer32_768d_patch7_kernel7```: ConvMixer, depth 32, token dimension 768, patch size 7 x 7, kernel size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ConvNeXt
@@ -91,21 +90,21 @@ vision transformers like Swin using a purely convolutional network.
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convnext.py).
 
-• ```convnext_atto```: ConvNeXt-Atto.<br>
+&#x25cf; ```convnext_atto```: ConvNeXt-Atto.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```convnext_femto```: ConvNeXt-Femto.<br>
+&#x25cf; ```convnext_femto```: ConvNeXt-Femto.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```convnext_pico```: ConvNeXt-Pico.<br>
+&#x25cf; ```convnext_pico```: ConvNeXt-Pico.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```convnext_nano```: ConvNeXt-Nano.<br>
+&#x25cf; ```convnext_nano```: ConvNeXt-Nano.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in12k_224```: Trained on ImageNet12K at resolution 224 x 224.<br>
 * ```in12k_ft_in1k_224```: Pre-trained on ImageNet12K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```convnext_tiny```: ConvNeXt-Tiny.<br>
+&#x25cf; ```convnext_tiny```: ConvNeXt-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in12k_224```: Trained on ImageNet12K at resolution 224 x 224.<br>
 * ```in12k_ft_in1k_224```: Pre-trained on ImageNet12K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
@@ -114,7 +113,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```convnext_small```: ConvNeXt-Small.<br>
+&#x25cf; ```convnext_small```: ConvNeXt-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in12k_224```: Trained on ImageNet12K at resolution 224 x 224.<br>
 * ```in12k_ft_in1k_224```: Pre-trained on ImageNet12K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
@@ -123,7 +122,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```convnext_base```: ConvNeXt-Base.<br>
+&#x25cf; ```convnext_base```: ConvNeXt-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
@@ -136,25 +135,25 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```clip_laion2b_augreg_ft_in1k_256```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 256 x 256.<br>
 * ```clip_laiona_augreg_ft_in1k_384```: Pre-trained using CLIP on LAION-Aesthetics with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
-• ```convnext_large```: ConvNeXt-Large.<br>
+&#x25cf; ```convnext_large```: ConvNeXt-Large.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```convnext_large_mlp```: ConvNeXt-Large with an MLP in the head.<br>
+&#x25cf; ```convnext_large_mlp```: ConvNeXt-Large with an MLP in the head.<br>
 * ```clip_laion2b_augreg_256```: Trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256.<br>
 * ```clip_laion2b_augreg_256_ft_320```: Trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256 and fine-tuned at resolution 320 x 320.<br>
 * ```clip_laion2b_soup_augreg_256_ft_320```: A soup (i.e., parameters averaged) of 3 models trained using CLIP on LAION-2B with additional augmentation & regularization at resolution 256 x 256 and fine-tuned at resolution 320 x 320.<br>
 * ```clip_laion2b_augreg_ft_in1k_256```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 256 x 256.<br>
 * ```clip_laion2b_augreg_ft_in1k_384```: Pre-trained using CLIP on LAION-2B with additional augmentation & regularization and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
-• ```convnext_xlarge```: ConvNeXt-XLarge.<br>
+&#x25cf; ```convnext_xlarge```: ConvNeXt-XLarge.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```convnext_xxlarge```: ConvNeXt-XXLarge.<br>
+&#x25cf; ```convnext_xxlarge```: ConvNeXt-XXLarge.<br>
 * ```clip_laion2b_rewind_256```: Trained using CLIP on LAION-2B at resolution 256 x 256, last 10% of training rewinded and resumed with slightly different settings.<br>
 * ```clip_laion2b_soup_256```: Trained using CLIP on LAION-2B at resolution 256 x 256, a soup (i.e., parameters averaged) of the original and rewinded training runs.<br>
 
@@ -165,19 +164,19 @@ ConvNeXt V2 from _[ConvNeXt V2: Co-designing and Scaling ConvNets with Masked Au
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/convnext.py).
 
-• ```convnextv2_atto```: ConvNeXtV2-Atto.<br>
+&#x25cf; ```convnextv2_atto```: ConvNeXtV2-Atto.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.
 
-• ```convnextv2_femto```: ConvNeXtV2-Femto.<br>
+&#x25cf; ```convnextv2_femto```: ConvNeXtV2-Femto.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.
 
-• ```convnextv2_pico```: ConvNeXtV2-Pico.<br>
+&#x25cf; ```convnextv2_pico```: ConvNeXtV2-Pico.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.
 
-• ```convnextv2_nano```: ConvNeXtV2-Nano.<br>
+&#x25cf; ```convnextv2_nano```: ConvNeXtV2-Nano.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
@@ -185,7 +184,7 @@ and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_384```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 384 x 384.
 
-• ```convnextv2_tiny```: ConvNeXtV2-Tiny.<br>
+&#x25cf; ```convnextv2_tiny```: ConvNeXtV2-Tiny.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
@@ -193,7 +192,7 @@ and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_384```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 384 x 384.
 
-• ```convnextv2_base```: ConvNeXtV2-Base.<br>
+&#x25cf; ```convnextv2_base```: ConvNeXtV2-Base.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
@@ -201,7 +200,7 @@ and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_384```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 384 x 384.
 
-• ```convnextv2_large```: ConvNeXtV2-Large.<br>
+&#x25cf; ```convnextv2_large```: ConvNeXtV2-Large.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
@@ -209,7 +208,7 @@ and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_384```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 384 x 384.
 
-• ```convnextv2_huge```: ConvNeXtV2-Huge.<br>
+&#x25cf; ```convnextv2_huge```: ConvNeXtV2-Huge.<br>
 * ```fcmae_in1k_224```: Trained using FCMAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in1k_ft_in1k_224```: Pre-trained using FCMAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```fcmae_in22k_ft_in22k_ft_in1k_384```: Pre-trained using FCMAE with no labels on ImageNet22K, fine-tuned with labels on ImageNet22K,
@@ -223,13 +222,13 @@ DaViT from _[DaViT: Dual Attention Vision Transformers](https://arxiv.org/abs/22
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/davit.py).
 
-• ```davit_tiny```: DaViT-Tiny.<br>
+&#x25cf; ```davit_tiny```: DaViT-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```davit_small```: DaViT-Small.<br>
+&#x25cf; ```davit_small```: DaViT-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```davit_base```: DaViT-Base.<br>
+&#x25cf; ```davit_base```: DaViT-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## EfficientNetV2
@@ -239,22 +238,22 @@ builds on EfficientNet but refines the architecture search space by introducing 
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/efficientnet.py).
 
-• ```efficientnetv2_small```: EfficientNetV2-Small.<br>
+&#x25cf; ```efficientnetv2_small```: EfficientNetV2-Small.<br>
 * ```in1k_300```: Trained on ImageNet1K at resolution 300 x 300.<br>
 * ```in22k_300```: Trained on ImageNet22K at resolution 300 x 300.<br>
 * ```in22k_ft_in1k_300```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 300 x 300.
 
-• ```efficientnetv2_medium```: EfficientNetV2-Medium.<br>
+&#x25cf; ```efficientnetv2_medium```: EfficientNetV2-Medium.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```efficientnetv2_large```: EfficientNetV2-Large.<br>
+&#x25cf; ```efficientnetv2_large```: EfficientNetV2-Large.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```efficientnetv2_xlarge```: EfficientNetV2-XLarge.<br>
+&#x25cf; ```efficientnetv2_xlarge```: EfficientNetV2-XLarge.<br>
 * ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
@@ -264,19 +263,19 @@ Global context vision transformer (GC ViT) from _[Global Context Vision Transfor
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/gcvit.py).
 
-• ```gcvit_xxtiny```: GCViT-XXTiny.<br>
+&#x25cf; ```gcvit_xxtiny```: GCViT-XXTiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```gcvit_xtiny```: GCViT-XTiny.<br>
+&#x25cf; ```gcvit_xtiny```: GCViT-XTiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```gcvit_tiny```: GCViT-Tiny.<br>
+&#x25cf; ```gcvit_tiny```: GCViT-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```gcvit_small```: GCViT-Small.<br>
+&#x25cf; ```gcvit_small```: GCViT-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```gcvit_base```: GCViT-Base.<br>
+&#x25cf; ```gcvit_base```: GCViT-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## HorNet
@@ -285,16 +284,16 @@ High-order spatial interaction network (HorNet) from _[HorNet: Efficient High-Or
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/raoyongming/HorNet).
 
-• ```hornet_tiny```: HorNet-Tiny, kernel size 7 x 7.<br>
+&#x25cf; ```hornet_tiny```: HorNet-Tiny, kernel size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```hornet_small```: HorNet-Small, kernel size 7 x 7.<br>
+&#x25cf; ```hornet_small```: HorNet-Small, kernel size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```hornet_base```: HorNet-Base, kernel size 7 x 7.<br>
+&#x25cf; ```hornet_base```: HorNet-Base, kernel size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```hornet_large```: HorNet-Large, kernel size 7 x 7.<br>
+&#x25cf; ```hornet_large```: HorNet-Large, kernel size 7 x 7.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.
 
 ## MaxViT
@@ -338,13 +337,13 @@ Nested transformer (NesT) from _[Nested Hierarchical Transformer: Towards Accura
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/nest.py).
 
-• ```nest_tiny```: NesT-Tiny.<br>
+&#x25cf; ```nest_tiny```: NesT-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```nest_small```: NesT-Small.<br>
+&#x25cf; ```nest_small```: NesT-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```nest_base```: NesT-Base.<br>
+&#x25cf; ```nest_base```: NesT-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## PiT
@@ -353,16 +352,16 @@ Pooling-based vision transformer (PiT) from _[Rethinking Spatial Dimensions of V
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/pit.py).
 
-• ```pit_tiny```: PiT-Tiny.<br>
+&#x25cf; ```pit_tiny```: PiT-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pit_xsmall```: PiT-XSmall.<br>
+&#x25cf; ```pit_xsmall```: PiT-XSmall.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pit_small```: PiT-Small.<br>
+&#x25cf; ```pit_small```: PiT-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pit_base```: PiT-Base.<br>
+&#x25cf; ```pit_base```: PiT-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## PVT V2
@@ -371,22 +370,22 @@ Pyramid vision transformer V2 (PVT V2) from _[PVT v2: Improved Baselines with Py
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/pvt_v2.py).
 
-• ```pvtv2_b0```: PVTV2-B0.<br>
+&#x25cf; ```pvtv2_b0```: PVTV2-B0.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pvtv2_b1```: PVTV2-B1.<br>
+&#x25cf; ```pvtv2_b1```: PVTV2-B1.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pvtv2_b2```: PVTV2-B2.<br>
+&#x25cf; ```pvtv2_b2```: PVTV2-B2.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pvtv2_b3```: PVTV2-B3.<br>
+&#x25cf; ```pvtv2_b3```: PVTV2-B3.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pvtv2_b4```: PVTV2-B4.<br>
+&#x25cf; ```pvtv2_b4```: PVTV2-B4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```pvtv2_b5```: PVTV2-B5.<br>
+&#x25cf; ```pvtv2_b5```: PVTV2-B5.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## RegNet
@@ -475,26 +474,26 @@ to facilitate the propagation of information throughout the network and for the 
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```resnet18```: ResNet-18.<br>
+&#x25cf; ```resnet18```: ResNet-18.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnet34```: ResNet-34.<br>
+&#x25cf; ```resnet34```: ResNet-34.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet26```: ResNet-26.<br>
+&#x25cf; ```resnet26```: ResNet-26.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet50```: ResNet-50.<br>
+&#x25cf; ```resnet50```: ResNet-50.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnet101```: ResNet-101.<br>
+&#x25cf; ```resnet101```: ResNet-101.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet152```: ResNet-152.<br>
+&#x25cf; ```resnet152```: ResNet-152.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ResNet-D
@@ -506,25 +505,25 @@ and delegates spatial reduction in the identity branch of residual blocks to ave
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```resnet18d```: ResNet-D-18.<br>
+&#x25cf; ```resnet18d```: ResNet-D-18.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet34d```: ResNet-D-34.<br>
+&#x25cf; ```resnet34d```: ResNet-D-34.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet26d```: ResNet-D-26.<br>
+&#x25cf; ```resnet26d```: ResNet-D-26.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet50d```: ResNet-D-50.<br>
+&#x25cf; ```resnet50d```: ResNet-D-50.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet101d```: ResNet-D-101.<br>
+&#x25cf; ```resnet101d```: ResNet-D-101.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet152d```: ResNet-D-152.<br>
+&#x25cf; ```resnet152d```: ResNet-D-152.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet200d```: ResNet-D-200.<br>
+&#x25cf; ```resnet200d```: ResNet-D-200.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ResNet-T
@@ -534,13 +533,13 @@ stem is tiered, i.e., the output dimension of the convolutions are 24, 32, and 6
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```resnet10t```: ResNet-T-10.<br>
+&#x25cf; ```resnet10t```: ResNet-T-10.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet14t```: ResNet-T-14.<br>
+&#x25cf; ```resnet14t```: ResNet-T-14.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnet26t```: ResNet-T-26.<br>
+&#x25cf; ```resnet26t```: ResNet-T-26.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## Wide ResNet
@@ -549,10 +548,10 @@ Wide ResNet from _[Wide Residual Networks](https://arxiv.org/abs/1605.07146)_ by
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```wide_resnet50_2```: Wide ResNet-50, width multiplier 2x.<br>
+&#x25cf; ```wide_resnet50_2```: Wide ResNet-50, width multiplier 2x.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```wide_resnet101_2```: Wide ResNet-101, width multiplier 2x.<br>
+&#x25cf; ```wide_resnet101_2```: Wide ResNet-101, width multiplier 2x.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ResNeXt
@@ -562,33 +561,33 @@ ResNeXt from _[Aggregated Residual Transformations for Deep Neural Networks](htt
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```resnext50_32x4d```: ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```resnext50_32x4d```: ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_32x4d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```resnext101_32x4d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_32x8d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
+&#x25cf; ```resnext101_32x8d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```wsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using weakly-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_32x16d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 16.<br>
+&#x25cf; ```resnext101_32x16d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 16.<br>
 * ```ssl_ft_in1k_224```: Pre-trained on a subset of YFCC100M using semi-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```wsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using weakly-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```swsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using semi-weakly supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_32x32d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 32.<br>
+&#x25cf; ```resnext101_32x32d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 32.<br>
 * ```wsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using weakly-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_32x48d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 48.<br>
+&#x25cf; ```resnext101_32x48d```: ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 48.<br>
 * ```wsl_ft_in1k_224```: Pre-trained on 940 million Instagram images using weakly-supervised learning and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```resnext101_64x4d```: ResNeXt-101, cardinality 64, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```resnext101_64x4d```: ResNeXt-101, cardinality 64, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## SENet
@@ -598,25 +597,25 @@ Squeeze-and-excitation network (SENet) from _[Squeeze-and-Excitation Networks](h
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```seresnet50```: SE-ResNet-50.<br>
+&#x25cf; ```seresnet50```: SE-ResNet-50.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```seresnet152d```: SE-ResNet-D-152.<br>
+&#x25cf; ```seresnet152d```: SE-ResNet-D-152.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```seresnext26d_32x4d```: SE-ResNeXt-D-26, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```seresnext26d_32x4d```: SE-ResNeXt-D-26, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```seresnext26t_32x4d```: SE-ResNeXt-T-26, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```seresnext26t_32x4d```: SE-ResNeXt-T-26, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```seresnext50_32x4d```: SE-ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```seresnext50_32x4d```: SE-ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```seresnext101_32x8d```: SE-ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
+&#x25cf; ```seresnext101_32x8d```: SE-ResNeXt-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```seresnext101d_32x8d```: SE-ResNeXt-D-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
+&#x25cf; ```seresnext101d_32x8d```: SE-ResNeXt-D-101, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ECANet
@@ -627,22 +626,22 @@ for better accuracy, in addition to being cheaper.
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```ecaresnet26t```: ECA-ResNet-T-26.<br>
+&#x25cf; ```ecaresnet26t```: ECA-ResNet-T-26.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```ecaresnet50_light```: Lightweight ECA-ResNet-50 where most of the layers are in stage 3.<br>
+&#x25cf; ```ecaresnet50_light```: Lightweight ECA-ResNet-50 where most of the layers are in stage 3.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```ecaresnet50d```: ECA-ResNet-D-50.<br>
+&#x25cf; ```ecaresnet50d```: ECA-ResNet-D-50.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```ecaresnet50t```: ECA-ResNet-T-50.<br>
+&#x25cf; ```ecaresnet50t```: ECA-ResNet-T-50.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```ecaresnet101d```: ECA-ResNet-D-101.<br>
+&#x25cf; ```ecaresnet101d```: ECA-ResNet-D-101.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```ecaresnet269d```: ECA-ResNet-D-269.<br>
+&#x25cf; ```ecaresnet269d```: ECA-ResNet-D-269.<br>
 * ```in1k_320```: Trained on ImageNet1K at resolution 320 x 320.
 
 ## ResNet-RS
@@ -652,25 +651,25 @@ ResNet-RS from _[Revisiting ResNets: Improved Training and Scaling Strategies](h
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnet.py).
 
-• ```resnetrs50```: ResNet-RS-50.<br>
+&#x25cf; ```resnetrs50```: ResNet-RS-50.<br>
 * ```in1k_160```: Trained on ImageNet1K at resolution 160 x 160.
 
-• ```resnetrs101```: ResNet-RS-101.<br>
+&#x25cf; ```resnetrs101```: ResNet-RS-101.<br>
 * ```in1k_192```: Trained on ImageNet1K at resolution 192 x 192.
 
-• ```resnetrs152```: ResNet-RS-152.<br>
+&#x25cf; ```resnetrs152```: ResNet-RS-152.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```resnetrs200```: ResNet-RS-200.<br>
+&#x25cf; ```resnetrs200```: ResNet-RS-200.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```resnetrs270```: ResNet-RS-270.<br>
+&#x25cf; ```resnetrs270```: ResNet-RS-270.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```resnetrs350```: ResNet-RS-350.<br>
+&#x25cf; ```resnetrs350```: ResNet-RS-350.<br>
 * ```in1k_288```: Trained on ImageNet1K at resolution 288 x 288.
 
-• ```resnetrs420```: ResNet-RS-420.<br>
+&#x25cf; ```resnetrs420```: ResNet-RS-420.<br>
 * ```in1k_320```: Trained on ImageNet1K at resolution 320 x 320.
 
 ## SKNet
@@ -681,13 +680,13 @@ kernel size according to the input.
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/sknet.py).
 
-• ```skresnet18```: SK-ResNet-18.<br>
+&#x25cf; ```skresnet18```: SK-ResNet-18.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```skresnet34```: SK-Resnet-34.<br>
+&#x25cf; ```skresnet34```: SK-Resnet-34.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```skresnext50_32x4d```: SK-ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
+&#x25cf; ```skresnext50_32x4d```: SK-ResNeXt-50, cardinality 32, bottleneck dimensionality per cardinal group in the first stage 4.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ResNeSt
@@ -698,28 +697,28 @@ using a mechanism known as split attention (SplAt) that can be considered a gene
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnest.py).
 
-• ```resnest14_2s1x64d```: ResNeSt-14, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest14_2s1x64d```: ResNeSt-14, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnest26_2s1x64d```: ResNeSt-26, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest26_2s1x64d```: ResNeSt-26, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnest50_1s4x24d```: ResNeSt-50, radix 1, cardinality 4, dimensionality per radix group in the first stage 24.<br>
+&#x25cf; ```resnest50_1s4x24d```: ResNeSt-50, radix 1, cardinality 4, dimensionality per radix group in the first stage 24.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnest50_2s1x64d```: ResNeSt-50, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest50_2s1x64d```: ResNeSt-50, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnest50_4s2x40d```: ResNeSt-50, radix 4, cardinality 2, dimensionality per radix group in the first stage 40.<br>
+&#x25cf; ```resnest50_4s2x40d```: ResNeSt-50, radix 4, cardinality 2, dimensionality per radix group in the first stage 40.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```resnest101_2s1x64d```: ResNeSt-101, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest101_2s1x64d```: ResNeSt-101, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_256```: Trained on ImageNet1K at resolution 256 x 256.
 
-• ```resnest200_2s1x64d```: ResNeSt-200, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest200_2s1x64d```: ResNeSt-200, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_320```: Trained on ImageNet1K at resolution 320 x 320.
 
-• ```resnest269_2s1x64d```: ResNeSt-269, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
+&#x25cf; ```resnest269_2s1x64d```: ResNeSt-269, radix 2, cardinality 1, dimensionality per radix group in the first stage 64.<br>
 * ```in1k_416```: Trained on ImageNet1K at resolution 416 x 416.
 
 ## Swin
@@ -729,25 +728,25 @@ Shifted window attention transformer (Swin transformer) from _[Swin Transformer:
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
 
-• ```swin_tiny_window7```: Swin-Tiny, window size 7 x 7.<br>
+&#x25cf; ```swin_tiny_window7```: Swin-Tiny, window size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```swin_small_window7```: Swin-Small, window size 7 x 7.<br>
+&#x25cf; ```swin_small_window7```: Swin-Small, window size 7 x 7.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```swin_base_window7```: Swin-Base, window size 7 x 7.<br>
+&#x25cf; ```swin_base_window7```: Swin-Base, window size 7 x 7.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```swin_base_window12```: Swin-Base, window size 12 x 12.<br>
+&#x25cf; ```swin_base_window12```: Swin-Base, window size 12 x 12.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```swin_large_window7```: Swin-Large, window size 7 x 7.<br>
+&#x25cf; ```swin_large_window7```: Swin-Large, window size 7 x 7.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```swin_large_window12```: Swin-Large, window size 7 x 7.<br>
+&#x25cf; ```swin_large_window12```: Swin-Large, window size 7 x 7.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
@@ -758,13 +757,13 @@ Swin-S3 from _[Searching the Search Space of Vision Transformer](https://arxiv.o
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
 
-• ```swin_s3_tiny_224```: Swin-S3-Tiny, resolution 224 x 224.<br>
+&#x25cf; ```swin_s3_tiny_224```: Swin-S3-Tiny, resolution 224 x 224.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```swin_s3_small_224```: Swin-S3-Small, resolution 224 x 224.<br>
+&#x25cf; ```swin_s3_small_224```: Swin-S3-Small, resolution 224 x 224.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```swin_s3_base_224```: Swin-S3-Base, resolution 224 x 224.<br>
+&#x25cf; ```swin_s3_base_224```: Swin-S3-Base, resolution 224 x 224.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## VAN
@@ -774,16 +773,16 @@ Visual attention network (VAN) from _[Visual Attention Network](https://arxiv.or
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/Visual-Attention-Network/VAN-Classification).
 
-• ```van_b0```: VAN-B0.<br>
+&#x25cf; ```van_b0```: VAN-B0.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```van_b1```: VAN-B1.<br>
+&#x25cf; ```van_b1```: VAN-B1.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```van_b2```: VAN-B2.<br>
+&#x25cf; ```van_b2```: VAN-B2.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```van_b3```: VAN-B3.<br>
+&#x25cf; ```van_b3```: VAN-B3.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## VGG
@@ -793,28 +792,28 @@ VGG from _[Very Deep Convolutional Networks for Large-Scale Image Recognition](h
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vgg.py).
 
-• ```vgg11```: VGG-11.<br>
+&#x25cf; ```vgg11```: VGG-11.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg11_bn```: VGG-11 with batch normalization.<br>
+&#x25cf; ```vgg11_bn```: VGG-11 with batch normalization.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg13```: VGG-13.<br>
+&#x25cf; ```vgg13```: VGG-13.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg13_bn```: VGG-13 with batch normalization.<br>
+&#x25cf; ```vgg13_bn```: VGG-13 with batch normalization.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg16```: VGG-16.<br>
+&#x25cf; ```vgg16```: VGG-16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg16_bn```: VGG-16 with batch normalization.<br>
+&#x25cf; ```vgg16_bn```: VGG-16 with batch normalization.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg19```: VGG-19.<br>
+&#x25cf; ```vgg19```: VGG-19.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-• ```vgg19_bn```: VGG-19 with batch normalization.<br>
+&#x25cf; ```vgg19_bn```: VGG-19 with batch normalization.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ViT
@@ -824,62 +823,62 @@ Vision transformer (ViT) from _[An Image is Worth 16x16 Words: Transformers for 
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/vision_transformer.py).
 
-• ```vit_tiny_patch16```: ViT-Tiny, patch size 16 x 16.<br>
+&#x25cf; ```vit_tiny_patch16```: ViT-Tiny, patch size 16 x 16.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_small_patch32```: ViT-Small, patch size 32 x 32.<br>
+&#x25cf; ```vit_small_patch32```: ViT-Small, patch size 32 x 32.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_small_patch16```: ViT-Small, patch size 16 x 16.<br>
+&#x25cf; ```vit_small_patch16```: ViT-Small, patch size 16 x 16.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_small_patch8```: ViT-Small, patch size 8 x 8.<br>
+&#x25cf; ```vit_small_patch8```: ViT-Small, patch size 8 x 8.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 
-• ```vit_base_patch32```: ViT-Base, patch size 32 x 32.<br>
+&#x25cf; ```vit_base_patch32```: ViT-Base, patch size 32 x 32.<br>
 * ```sam_in1k_224```: Trained using SAM on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_base_patch16```: ViT-Base, patch size 16 x 16.<br>
+&#x25cf; ```vit_base_patch16```: ViT-Base, patch size 16 x 16.<br>
 * ```sam_in1k_224```: Trained using SAM on ImageNet1K at resolution 224 x 224.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_base_patch8```: ViT-Base, patch size 8 x 8.<br>
+&#x25cf; ```vit_base_patch8```: ViT-Base, patch size 8 x 8.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 
-• ```vit_large_patch32```: ViT-Large, patch size 32 x 32.<br>
+&#x25cf; ```vit_large_patch32```: ViT-Large, patch size 32 x 32.<br>
 * ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
 * ```orig_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K (original weights) at resolution 224 x 224.<br>
 
-• ```vit_large_patch16```: ViT-Large, patch size 16 x 16.<br>
+&#x25cf; ```vit_large_patch16```: ViT-Large, patch size 16 x 16.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
-• ```vit_huge_patch14```: ViT-Huge, patch size 14 x 14.<br>
+&#x25cf; ```vit_huge_patch14```: ViT-Huge, patch size 14 x 14.<br>
 * ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
 
-• ```vit_base_clip_patch32```: ViT-Base with an extra layer normalization before the transformer layers, patch size 32 x 32.<br>
+&#x25cf; ```vit_base_clip_patch32```: ViT-Base with an extra layer normalization before the transformer layers, patch size 32 x 32.<br>
 * ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
 * ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
 * ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
-• ```vit_base_clip_patch16```: ViT-Base with an extra layer normalization before the transformer layers, patch size 16 x 16.<br>
+&#x25cf; ```vit_base_clip_patch16```: ViT-Base with an extra layer normalization before the transformer layers, patch size 16 x 16.<br>
 * ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
 * ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```clip_openai_ft_in1k_384```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
@@ -887,14 +886,14 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```clip_laion2b_ft_in1k_384```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
-• ```vit_large_clip_patch14```: ViT-Large with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
+&#x25cf; ```vit_large_clip_patch14```: ViT-Large with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
 * ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>
 * ```clip_openai_ft_in1k_224```: Pre-trained using CLIP on 400 million (image, text) pairs and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
 * ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```clip_laion2b_ft_in1k_336```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 336 x 336.<br>
 
-• ```vit_huge_clip_patch14```: ViT-Huge with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
+&#x25cf; ```vit_huge_clip_patch14```: ViT-Huge with an extra layer normalization before the transformer layers, patch size 14 x 14.<br>
 * ```clip_laion2b_224```: Trained using CLIP on LAION-2B at resolution 224 x 224.<br>
 * ```clip_laion2b_ft_in1k_224```: Pre-trained using CLIP on LAION-2B and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
@@ -907,29 +906,29 @@ Data-efficient image transformer III (DeiT 3) from _[DeiT III: Revenge of the Vi
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/deit.py).
 
-• ```deit3_small_patch16```: DeiT3-Small, patch size 16 x 16.<br>
+&#x25cf; ```deit3_small_patch16```: DeiT3-Small, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```deit3_medium_patch16```: DeiT3-Medium, patch size 16 x 16.<br>
+&#x25cf; ```deit3_medium_patch16```: DeiT3-Medium, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-• ```deit3_base_patch16```: DeiT3-Base, patch size 16 x 16.<br>
+&#x25cf; ```deit3_base_patch16```: DeiT3-Base, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```deit3_large_patch16```: DeiT3-Large, patch size 16 x 16.<br>
+&#x25cf; ```deit3_large_patch16```: DeiT3-Large, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
-• ```deit3_huge_patch14_224```: DeiT3-Huge, patch size 14 x 14.<br>
+&#x25cf; ```deit3_huge_patch14_224```: DeiT3-Huge, patch size 14 x 14.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
@@ -940,7 +939,7 @@ BEiT from _[BEiT: BERT Pre-Training of Image Transformers](https://arxiv.org/abs
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/beit.py).
 
-• ```beit_base_patch16```: BEiT-Base, patch size 16 x 16.<br>
+&#x25cf; ```beit_base_patch16```: BEiT-Base, patch size 16 x 16.<br>
 * ```beit_in22k_ft_in22k_224```: Pre-trained using BeiT on ImageNet22K and fine-tuned with labels on ImageNet22K at resolution 224 x 224.<br>
 * ```beit_in22k_ft_in22k_ft_in1k_224```: Pre-trained using BeiT on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
@@ -950,7 +949,7 @@ and fine-tuned with labels on ImageNet1K at resolution 384 x 384.<br>
 * ```beitv2_in1k_ft_in22k_ft_in1k_224```: Pre-trained using BeiT V2 on ImageNet1K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 224 x 224.
 
-• ```beit_large_patch16```: BEiT-Large, patch size 16 x 16.<br>
+&#x25cf; ```beit_large_patch16```: BEiT-Large, patch size 16 x 16.<br>
 * ```beit_in22k_ft_in22k_224```: Pre-trained using BeiT on ImageNet22K and fine-tuned with labels on ImageNet22K at resolution 224 x 224.<br>
 * ```beit_in22k_ft_in22k_ft_in1k_224```: Pre-trained using BeiT on ImageNet22K, fine-tuned with labels on ImageNet22K,
 and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
@@ -967,72 +966,72 @@ eliminates the quadratic complexity of traditional transformers using cross-cova
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/xcit.py).
 
-• ```xcit_nano12_patch16```: XCiT-Nano, depth 12, patch size 16 x 16.<br>
+&#x25cf; ```xcit_nano12_patch16```: XCiT-Nano, depth 12, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-• ```xcit_nano12_patch8```: XCiT-Nano, depth 12, patch size 8 x 8.<br>
+&#x25cf; ```xcit_nano12_patch8```: XCiT-Nano, depth 12, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-• ```xcit_tiny12_patch16```: XCiT-Tiny, depth 12, patch size 16 x 16.<br>
+&#x25cf; ```xcit_tiny12_patch16```: XCiT-Tiny, depth 12, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-• ```xcit_tiny12_patch8```: XCiT-Tiny, depth 12, patch size 8 x 8.<br>
+&#x25cf; ```xcit_tiny12_patch8```: XCiT-Tiny, depth 12, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-• ```xcit_tiny24_patch16```: XCiT-Tiny, depth 24, patch size 16 x 16.<br>
+&#x25cf; ```xcit_tiny24_patch16```: XCiT-Tiny, depth 24, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_tiny24_patch8```: XCiT-Tiny, depth 24, patch size 8 x 8.<br>
+&#x25cf;  ```xcit_tiny24_patch8```: XCiT-Tiny, depth 24, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_small12_patch16```: XCiT-Small, depth 12, patch size 16 x 16.<br>
+&#x25cf;  ```xcit_small12_patch16```: XCiT-Small, depth 12, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_small12_patch8```: XCiT-Small, depth 12, patch size 8 x 8.<br>
+&#x25cf;  ```xcit_small12_patch8```: XCiT-Small, depth 12, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_small24_patch16```: XCiT-Small, depth 24, patch size 16 x 16.<br>
+&#x25cf;  ```xcit_small24_patch16```: XCiT-Small, depth 24, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_small24_patch8```: XCiT-Small, depth 24, patch size 8 x 8.<br>
+&#x25cf;  ```xcit_small24_patch8```: XCiT-Small, depth 24, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_medium24_patch16```: XCiT-Medium, depth 24, patch size 16 x 16.<br>
+&#x25cf;  ```xcit_medium24_patch16```: XCiT-Medium, depth 24, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_medium24_patch8```: XCiT-Medium, depth 24, patch size 8 x 8.<br>
+&#x25cf;  ```xcit_medium24_patch8```: XCiT-Medium, depth 24, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_large24_patch16```: XCiT-Large, depth 24, patch size 16 x 16.<br>
+&#x25cf;  ```xcit_large24_patch16```: XCiT-Large, depth 24, patch size 16 x 16.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
 
-•  ```xcit_large24_patch8```: XCiT-Large, depth 24, patch size 8 x 8.<br>
+&#x25cf;  ```xcit_large24_patch8```: XCiT-Large, depth 24, patch size 8 x 8.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
 * ```dist_in1k_384```: Trained using distillation on ImageNet1K at resolution 384 x 384.
