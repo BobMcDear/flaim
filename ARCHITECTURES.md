@@ -303,31 +303,31 @@ dilated global attention, a method for efficiently expressing global interaction
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/maxxvit.py).
 
-```maxvit_tiny```: MaxViT-Tiny.<br>
+&#x25cf; ```maxvit_tiny```: MaxViT-Tiny.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in1k_512```: Trained on ImageNet1K at resolution 512 x 512.
 
-```maxvit_small```: MaxViT-Small.<br>
+&#x25cf; ```maxvit_small```: MaxViT-Small.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in1k_512```: Trained on ImageNet1K at resolution 512 x 512.
 
-```maxvit_base```: MaxViT-Base.<br>
+&#x25cf; ```maxvit_base```: MaxViT-Base.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in1k_512```: Trained on ImageNet1K at resolution 512 x 512.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_512```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 512 x 512.
 
-```maxvit_large```: MaxViT-Large.<br>
+&#x25cf; ```maxvit_large```: MaxViT-Large.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
 * ```in1k_512```: Trained on ImageNet1K at resolution 512 x 512.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_512```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 512 x 512.
 
-```maxvit_xlarge```: MaxViT-XLarge.<br>
+&#x25cf; ```maxvit_xlarge```: MaxViT-XLarge.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_512```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 512 x 512.
 
@@ -395,76 +395,76 @@ RegNet from _[Designing Network Design Spaces](https://arxiv.org/abs/2003.13678)
 For the reference implementation, source of pre-trained parameters, and copyrights,
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/regnet.py).
 
-```regnetx_200mf```: RegNetX costing approximately 200 mega FLOPS/0.2 giga FLOPS.<br>
+&#x25cf; ```regnetx_200mf```: RegNetX costing approximately 200 mega FLOPS/0.2 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_400mf```: RegNetX costing approximately 400 mega FLOPS/0.4 giga FLOPS.<br>
+&#x25cf; ```regnetx_400mf```: RegNetX costing approximately 400 mega FLOPS/0.4 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_600mf```: RegNetX costing approximately 600 mega FLOPS/0.6 giga FLOPS.<br>
+&#x25cf; ```regnetx_600mf```: RegNetX costing approximately 600 mega FLOPS/0.6 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_800mf```: RegNetX costing approximately 800 mega FLOPS/0.8 giga FLOPS.<br>
+&#x25cf; ```regnetx_800mf```: RegNetX costing approximately 800 mega FLOPS/0.8 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_1600mf```: RegNetX costing approximately 1600 mega FLOPS/1.6 giga FLOPS.<br>
+&#x25cf; ```regnetx_1600mf```: RegNetX costing approximately 1600 mega FLOPS/1.6 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_3200mf```: RegNetX costing approximately 3200 mega FLOPS/3.2 giga FLOPS.<br>
+&#x25cf; ```regnetx_3200mf```: RegNetX costing approximately 3200 mega FLOPS/3.2 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_4000mf```: RegNetX costing approximately 4000 mega FLOPS/4.0 giga FLOPS.<br>
+&#x25cf; ```regnetx_4000mf```: RegNetX costing approximately 4000 mega FLOPS/4.0 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_6400mf```: RegNetX costing approximately 6400 mega FLOPS/6.4 giga FLOPS.<br>
+&#x25cf; ```regnetx_6400mf```: RegNetX costing approximately 6400 mega FLOPS/6.4 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_8000mf```: RegNetX costing approximately 8000 mega FLOPS/8.0 giga FLOPS.<br>
+&#x25cf; ```regnetx_8000mf```: RegNetX costing approximately 8000 mega FLOPS/8.0 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_12gf```: RegNetX costing approximately 12000 mega FLOPS/12 giga FLOPS.<br>
+&#x25cf; ```regnetx_12gf```: RegNetX costing approximately 12000 mega FLOPS/12 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_16gf```: RegNetX costing approximately 16000 mega FLOPS/16 giga FLOPS.<br>
+&#x25cf; ```regnetx_16gf```: RegNetX costing approximately 16000 mega FLOPS/16 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnetx_32gf```: RegNetX costing approximately 32000 mega FLOPS/32 giga FLOPS.<br>
+&#x25cf; ```regnetx_32gf```: RegNetX costing approximately 32000 mega FLOPS/32 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_200mf```: RegNetY costing approximately 200 mega FLOPS/0.2 giga FLOPS.<br>
+&#x25cf; ```regnety_200mf```: RegNetY costing approximately 200 mega FLOPS/0.2 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_400mf```: RegNetY costing approximately 400 mega FLOPS/0.4 giga FLOPS.<br>
+&#x25cf; ```regnety_400mf```: RegNetY costing approximately 400 mega FLOPS/0.4 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_600mf```: RegNetY costing approximately 600 mega FLOPS/0.6 giga FLOPS.<br>
+&#x25cf; ```regnety_600mf```: RegNetY costing approximately 600 mega FLOPS/0.6 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_800mf```: RegNetY costing approximately 800 mega FLOPS/0.8 giga FLOPS.<br>
+&#x25cf; ```regnety_800mf```: RegNetY costing approximately 800 mega FLOPS/0.8 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_1600mf```: RegNetY costing approximately 1600 mega FLOPS/1.6 giga FLOPS.<br>
+&#x25cf; ```regnety_1600mf```: RegNetY costing approximately 1600 mega FLOPS/1.6 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_3200mf```: RegNetY costing approximately 3200 mega FLOPS/3.2 giga FLOPS.<br>
+&#x25cf; ```regnety_3200mf```: RegNetY costing approximately 3200 mega FLOPS/3.2 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_4000mf```: RegNetY costing approximately 4000 mega FLOPS/4.0 giga FLOPS.<br>
+&#x25cf; ```regnety_4000mf```: RegNetY costing approximately 4000 mega FLOPS/4.0 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_6400mf```: RegNetY costing approximately 6400 mega FLOPS/6.4 giga FLOPS.<br>
+&#x25cf; ```regnety_6400mf```: RegNetY costing approximately 6400 mega FLOPS/6.4 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_8000mf```: RegNetY costing approximately 8000 mega FLOPS/8.0 giga FLOPS.<br>
+&#x25cf; ```regnety_8000mf```: RegNetY costing approximately 8000 mega FLOPS/8.0 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_12gf```: RegNetY costing approximately 12000 mega FLOPS/12 giga FLOPS.<br>
+&#x25cf; ```regnety_12gf```: RegNetY costing approximately 12000 mega FLOPS/12 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_16gf```: RegNetY costing approximately 16000 mega FLOPS/16 giga FLOPS.<br>
+&#x25cf; ```regnety_16gf```: RegNetY costing approximately 16000 mega FLOPS/16 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
-```regnety_32gf```: RegNetY costing approximately 32000 mega FLOPS/32 giga FLOPS.<br>
+&#x25cf; ```regnety_32gf```: RegNetY costing approximately 32000 mega FLOPS/32 giga FLOPS.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 ## ResNet
