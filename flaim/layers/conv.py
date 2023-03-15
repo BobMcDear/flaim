@@ -1,6 +1,6 @@
 """
 Convolution similar to that of Flax but can automatically calulate
-padding, accepts integer kernel size, etc.
+padding, accepts integer kernel sizes, supports weight standardization, etc.
 """
 
 
@@ -10,7 +10,9 @@ __all__ = [
 
 
 import typing as T
+from functools import partial
 
+import jax
 from flax import linen as nn
 
 from .tuplify import tuplify
@@ -54,10 +56,35 @@ def get_kernel_size_stride_padding(
 	return kernel_size, stride, padding
 
 
+class WSConv(nn.Conv):
+	"""
+	Convolution with weight standardization.
+	
+	Args:
+		eps (float): Epsilon value used in the denominator 
+		when standardizing.
+		Default is 1e-5.
+
+	Please also see flax.linen.Conv
+	"""
+	eps: float = 1e-5
+
+	def param(
+		self,
+		name: str,
+		*args,
+		**kwargs,
+		):
+		params = super().param(name, *args, **kwargs)
+		if name == 'kernel':
+			params = jax.nn.standardize(params, axis=(0, 1, 2), epsilon=self.eps)
+		return params
+
+
 class Conv(nn.Module):
 	"""
-	Similar to Flax's convolution but accepts integer kernel size, 
-	supports depthwise convolution, etc.
+	Convolution similar to that of Flax but can automatically calulate
+	padding, accepts integer kernel sizes, supports weight standardization, etc.
 
 	Args:
 		out_dim (T.Optional[int]): Number of output channels.
@@ -79,6 +106,9 @@ class Conv(nn.Module):
 		Default is 1.
 		bias (bool): Whether to have a bias term.
 		Default is True.
+		ws_eps (T.Optional[float]): Epsilon value for weight standardization. If None,
+		no weight standardization is performed.
+		Default is None.
 	"""
 	out_dim: T.Optional[int] = None
 	kernel_size: T.Union[T.Tuple[int, int], int] = 3
@@ -87,6 +117,7 @@ class Conv(nn.Module):
 	groups: T.Union[int, str] = 1
 	dilation: int = 1
 	bias: bool = True
+	ws_eps: T.Optional[float] = None
 
 	@nn.compact
 	def __call__(self, input):
@@ -98,7 +129,8 @@ class Conv(nn.Module):
 			padding=self.padding,
 			dilation=self.dilation,
 			)
-		return nn.Conv(
+		conv = partial(WSConv, eps=self.ws_eps) if self.ws_eps else nn.Conv
+		return conv(
 			features=out_dim,
 			kernel_size=kernel_size,
 			strides=stride,
