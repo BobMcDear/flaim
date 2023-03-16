@@ -1,6 +1,10 @@
 """
 Convolution similar to that of Flax but can automatically calulate
-padding, accepts integer kernel sizes, supports weight standardization, etc.
+padding, accepts integer kernel sizes, supports (possible scaled) weight standardization, etc.
+
+References:
+- Brock et al. Characterizing signal propagation to close the performance gap in unnormalized ResNets.
+- Qiao et al. Micro-Batch Training with Batch-Channel Normalization and Weight Standardization.
 """
 
 
@@ -13,6 +17,8 @@ import typing as T
 from functools import partial
 
 import jax
+import numpy as np
+from jax import numpy as jnp
 from flax import linen as nn
 
 from .tuplify import tuplify
@@ -58,15 +64,19 @@ def get_kernel_size_stride_padding(
 
 class WSConv(nn.Conv):
 	"""
-	Convolution with weight standardization.
+	Convolution with (possible scaled) weight standardization.
 	
 	Args:
+		gamma (T.Optional[float]): If None, regular weight standardization
+		is applied. If a float, this is the gamma value used to perform
+		scaled weight standardization.
 		eps (float): Epsilon value used in the denominator 
 		when standardizing.
 		Default is 1e-5.
 
 	Please also see flax.linen.Conv
 	"""
+	gamma: T.Optional[float] = None
 	eps: float = 1e-5
 
 	def param(
@@ -78,13 +88,20 @@ class WSConv(nn.Conv):
 		params = super().param(name, *args, **kwargs)
 		if name == 'kernel':
 			params = jax.nn.standardize(params, axis=(0, 1, 2), epsilon=self.eps)
+			if self.gamma:
+				scale = self.gamma * (np.prod(params.shape[:-1]) ** -0.5)
+				gain = self.param(
+					name='gain',
+					init_fn=lambda prng: jnp.ones((params.shape[-1],)),
+					)
+				params = scale*gain*params
 		return params
 
 
 class Conv(nn.Module):
 	"""
 	Convolution similar to that of Flax but can automatically calulate
-	padding, accepts integer kernel sizes, supports weight standardization, etc.
+	padding, accepts integer kernel sizes, supports (possible scaled) weight standardization, etc.
 
 	Args:
 		out_dim (T.Optional[int]): Number of output channels.
@@ -107,7 +124,12 @@ class Conv(nn.Module):
 		bias (bool): Whether to have a bias term.
 		Default is True.
 		ws_eps (T.Optional[float]): Epsilon value for weight standardization. If None,
-		no weight standardization is performed.
+		no weight standardization is performed, and gamma is ignored.
+		Default is None.
+		gamma (T.Optional[float]): If None, regular weight standardization
+		is applied. If a float, this is the gamma value used to perform
+		scaled weight standardization. This argument is used only when ws_eps
+		is not None.
 		Default is None.
 	"""
 	out_dim: T.Optional[int] = None
@@ -118,6 +140,7 @@ class Conv(nn.Module):
 	dilation: int = 1
 	bias: bool = True
 	ws_eps: T.Optional[float] = None
+	gamma: T.Optional[float] = None
 
 	@nn.compact
 	def __call__(self, input):
@@ -129,7 +152,7 @@ class Conv(nn.Module):
 			padding=self.padding,
 			dilation=self.dilation,
 			)
-		conv = partial(WSConv, eps=self.ws_eps) if self.ws_eps else nn.Conv
+		conv = partial(WSConv, gamma=self.gamma, eps=self.ws_eps) if self.ws_eps else nn.Conv
 		return conv(
 			features=out_dim,
 			kernel_size=kernel_size,
