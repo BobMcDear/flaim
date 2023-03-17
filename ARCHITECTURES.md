@@ -849,6 +849,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
 &#x25cf; ```vit_base_patch16```: ViT-Base, patch size 16 x 16.<br>
+* ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```sam_in1k_224```: Trained using SAM on ImageNet1K at resolution 224 x 224.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
@@ -865,11 +866,13 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```orig_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K (original weights) at resolution 224 x 224.<br>
 
 &#x25cf; ```vit_large_patch16```: ViT-Large, patch size 16 x 16.<br>
+* ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
 &#x25cf; ```vit_huge_patch14```: ViT-Huge, patch size 14 x 14.<br>
+* ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
 
 &#x25cf; ```vit_base_clip_patch32```: ViT-Base with an extra layer normalization before the transformer layers, patch size 32 x 32.<br>
