@@ -14,6 +14,28 @@ from jax import numpy as jnp
 import flaim
 
 
+def str_to_bool(
+	input: str,
+	) -> bool:
+	"""
+	Converts a string to a boolean by returning
+	True if it is 'True' and False if it is 'False'.
+
+	Args:
+		input (str): Input to be converted to a boolean.
+
+	Returns (bool): The input converted into a boolean.
+	"""
+	if input == 'True':
+		return True
+	
+	elif input == 'False':
+		return False
+	
+	else:
+		raise ValueError(f'{input} not valid for conversion into a boolean')
+
+
 def parse_args() -> argparse.Namespace:
 	"""
 	Parses arguments.
@@ -25,19 +47,19 @@ def parse_args() -> argparse.Namespace:
 
 	parser.add_argument(
 		'--small_sample',
-		type=eval,
+		type=str_to_bool,
 		default='True',
 		help='Whether to test a small sample of the models.',
 		)
 	parser.add_argument(
 		'--pretrained',
-		type=eval,
+		type=str_to_bool,
 		default='True',
 		help='Whether to test the pre-trained parameters.',
 		)
 	parser.add_argument(
 		'--jit',
-		type=eval,
+		type=str_to_bool,
 		default='False',
 		help='Whether to JIT.',
 		)
@@ -85,6 +107,7 @@ def main(
 		jit (bool): Whether to JIT.
 		Default is True.
 	"""
+	print(small_sample, pretrained, jit)
 	if small_sample:
 		models = [
 			('cait_xxsmall24', 'in1k_224'),
@@ -141,5 +164,5 @@ if __name__ == '__main__':
 	main(
 		small_sample=args.small_sample,
 		pretrained=args.pretrained,
-		jit=args.pretrained,
+		jit=args.jit,
 		)
