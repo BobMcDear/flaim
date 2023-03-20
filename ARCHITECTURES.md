@@ -856,6 +856,9 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
+&#x25cf; ```vit_base_pool_patch16```: ViT-Base with global average pooling in the head, patch size 16 x 16.<br>
+* ```mae_in1k_ft_in1k_224```: Pre-trained using MAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
+
 &#x25cf; ```vit_base_patch8```: ViT-Base, patch size 8 x 8.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
@@ -871,9 +874,15 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
 
+&#x25cf; ```vit_large_pool_patch16```: ViT-Large with global average pooling in the head, patch size 16 x 16.<br>
+* ```mae_in1k_ft_in1k_224```: Pre-trained using MAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
+
 &#x25cf; ```vit_huge_patch14```: ViT-Huge, patch size 14 x 14.<br>
 * ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
+
+&#x25cf; ```vit_huge_pool_patch14```: ViT-Huge with global average pooling in the head, patch size 14 x 14.<br>
+* ```mae_in1k_ft_in1k_224```: Pre-trained using MAE with no labels on ImageNet1K and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 
 &#x25cf; ```vit_base_clip_patch32```: ViT-Base with an extra layer normalization before the transformer layers, patch size 32 x 32.<br>
 * ```clip_openai_224```: Trained using CLIP on 400 million (image, text) pairs at resolution 224 x 224.<br>

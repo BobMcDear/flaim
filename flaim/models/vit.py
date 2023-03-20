@@ -228,6 +228,18 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_base_patch16_384'),
 				},
 			),
+		'vit_base_pool_patch16': dict(
+			model_args=dict(
+				depth=12,
+				token_dim=768,
+				n_heads=12,
+				head_pool=True,
+				head_norm_first=False,
+				),
+			params={
+				'mae_in1k_ft_in1k_224': imagenet_params_config('vit_base_pool_patch16_mae_in1k_ft_in1k_224'),
+				},
+			),
 		'vit_base_patch8': dict(
 			model_args=dict(
 				depth=12,
@@ -266,6 +278,18 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_large_patch16_384'),
 				},
 			),
+		'vit_large_pool_patch16': dict(
+			model_args=dict(
+				depth=24,
+				token_dim=1024,
+				n_heads=16,
+				head_pool=True,
+				head_norm_first=False,
+				),
+			params={
+				'mae_in1k_ft_in1k_224': imagenet_params_config('vit_large_pool_patch16_mae_in1k_ft_in1k_224'),
+				},
+			),
 		'vit_huge_patch14': dict(
 			model_args=dict(
 				depth=32,
@@ -276,6 +300,19 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 			params={
 				'mae_in1k_224': imagenet_params_config('vit_huge_patch14_mae_in1k_224'),
 				'orig_in22k_224': inception_params_config('vit_huge_patch14_224_in22k'),
+				},
+			),
+		'vit_huge_pool_patch14': dict(
+			model_args=dict(
+				depth=32,
+				token_dim=1280,
+				n_heads=16,
+				patch_size=14,
+				head_pool=True,
+				head_norm_first=False,
+				),
+			params={
+				'mae_in1k_ft_in1k_224': imagenet_params_config('vit_huge_pool_patch14_mae_in1k_ft_in1k_224'),
 				},
 			),
 		'vit_base_clip_patch32': dict(
