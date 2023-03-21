@@ -297,6 +297,8 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				n_heads=(3, 6, 12, 24),
 				),
 			params={
+				'in22k_224': imagenet_params_config('swin_tiny_window7_in22k_224'),
+				'in22k_ft_in1k_224': imagenet_params_config('swin_tiny_window7_in22k_ft_in1k_224'),
 				'in1k_224': imagenet_params_config('swin_tiny_window7_224'),
 				},
 			),
@@ -308,6 +310,8 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				),
 			params={
 				'in1k_224': imagenet_params_config('swin_small_window7_224'),
+				'in22k_224': imagenet_params_config('swin_small_window7_in22k_224'),
+				'in22k_ft_in1k_224': imagenet_params_config('swin_small_window7_in22k_ft_in1k_224'),
 				},
 			),
 		'swin_base_window7': dict(
@@ -317,6 +321,7 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				n_heads=(4, 8, 16, 32),
 				),
 			params={
+				'in1k_224': imagenet_params_config('swin_base_window7_in1k_224'),
 				'in22k_224': imagenet_params_config('swin_base_window7_224_in22k'),
 				'in22k_ft_in1k_224': imagenet_params_config('swin_base_window7_224'),
 				},
@@ -329,6 +334,7 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				window_size=12,
 				),
 			params={
+				'in1k_384': imagenet_params_config('swin_base_window12_in1k_384'),
 				'in22k_384': imagenet_params_config('swin_base_window12_384_in22k'),
 				'in22k_ft_in1k_384': imagenet_params_config('swin_base_window12_384'),
 				},

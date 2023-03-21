@@ -729,26 +729,32 @@ For the reference implementation, source of pre-trained parameters, and copyrigh
 please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/swin_transformer.py).
 
 &#x25cf; ```swin_tiny_window7```: Swin-Tiny, window size 7 x 7.<br>
-* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
 &#x25cf; ```swin_small_window7```: Swin-Small, window size 7 x 7.<br>
-* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
 &#x25cf; ```swin_base_window7```: Swin-Base, window size 7 x 7.<br>
+* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
-* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
+* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
 &#x25cf; ```swin_base_window12```: Swin-Base, window size 12 x 12.<br>
-* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
-* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
+* ```in1k_384```: Trained on ImageNet1K at resolution 384 x 384.<br>
+* ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
+* ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
 &#x25cf; ```swin_large_window7```: Swin-Large, window size 7 x 7.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
 &#x25cf; ```swin_large_window12```: Swin-Large, window size 7 x 7.<br>
-* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
-* ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
+* ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
+* ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
 
 ## Swin-S3
 
