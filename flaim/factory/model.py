@@ -112,18 +112,14 @@ class Model:
 
 	def get_params(
 		self,
-		pretrained: T.Union[str, int, bool] = True,
+		params_name: str,
 		n_classes: int = 0,
 		) -> T.Tuple[T.Dict, T.Dict]:
 		"""
-		Gets the desired set of pre-trained parameters according to pretrained.
+		Gets the desired set of pre-trained parameters.
 
 		Args:
-			pretrained (T.Union[str, int, bool]): If a string, the collection of pre-trained
-			parameters of this name is returned. If an int, a collection of pre-trained
-			parameters of this input size is returned. If True, a default collection
-			of pre-trained parameters is returned.
-			Default is True.
+			params_name (str): Name of pre-trained parameters to return.
 			n_classes (int): Number of output classes. If 0, the head's parameters
 			are removed.
 			Default is 0.
@@ -131,7 +127,6 @@ class Model:
 		Returns (T.Tuple[T.Dict, T.Dict]): The desired set of pre-trained parameters
 		and its associated normalization statistics.
 		"""
-		params_name = self.get_params_name(pretrained)
 		params_config = self.params[params_name]
 		pretrained_vars = load_params(
 			repo_name=params_config['repo_name'],
@@ -177,6 +172,10 @@ class Model:
 		The model, its parameters, and, if pretrained is not False, the normalization statistics
 		associated with the pre-trained parameters.
 		"""
+		if pretrained:
+			params_name = self.get_params_name(pretrained)
+			input_size = int(params_name[-3:])
+
 		model = self.model_cls(
 			**self.model_args,
 			**model_kwargs,
@@ -191,7 +190,7 @@ class Model:
 
 		if pretrained:
 			pretrained_vars, norm_stats = self.get_params(
-				pretrained=pretrained,
+				params_name=params_name,
 				n_classes=n_classes,
 				)
 			vars = merge_vars(vars, pretrained_vars)
