@@ -486,6 +486,40 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnety_32gf'),
+				'seer_224': imagenet_params_config('regnety_32gf_seer_224'),
+				'seer_ft_in1k_384': imagenet_params_config('regnety_32gf_seer_ft_in1k_384'),
+				},
+			),
+		'regnety_64gf': dict(
+			model_args=dict(
+				**get_regnet_args(depth=20, out_dim_slope=147.48, out_dim_base=352, log_step=2.4, dim_per_cardinal=328),
+				dim_per_cardinal=328,
+				attention=layers.SE,
+				),
+			params={
+				'seer_224': imagenet_params_config('regnety_64gf_seer_224'),
+				'seer_ft_in1k_384': imagenet_params_config('regnety_64gf_seer_ft_in1k_384'),
+				},
+			),
+		'regnety_128gf': dict(
+			model_args=dict(
+				**get_regnet_args(depth=27, out_dim_slope=160.83, out_dim_base=456, log_step=2.52, dim_per_cardinal=264),
+				dim_per_cardinal=264,
+				attention=layers.SE,
+				),
+			params={
+				'seer_224': imagenet_params_config('regnety_128gf_seer_224'),
+				'seer_ft_in1k_384': imagenet_params_config('regnety_128gf_seer_ft_in1k_384'),
+				},
+			),
+		'regnety_256gf': dict(
+			model_args=dict(
+				**get_regnet_args(depth=27, out_dim_slope=230.83, out_dim_base=640, log_step=2.53, dim_per_cardinal=373),
+				dim_per_cardinal=373,
+				attention=layers.SE,
+				),
+			params={
+				'seer_ft_in1k_384': imagenet_params_config('regnety_256gf_seer_ft_in1k_384'),
 				},
 			),
 		}

@@ -465,7 +465,20 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
 
 &#x25cf; ```regnety_32gf```: RegNetY costing approximately 32000 mega FLOPS/32 giga FLOPS.<br>
-* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+* ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
+* ```seer_224```: Trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) at resolution 224 x 224.<br>
+* ```seer_ft_in1k_384```:  Pre-trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
+
+&#x25cf; ```regnety_64gf```: RegNetY costing approximately 64000 mega FLOPS/64 giga FLOPS.<br>
+* ```seer_224```: Trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) at resolution 224 x 224.<br>
+* ```seer_ft_in1k_384```:  Pre-trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
+
+&#x25cf; ```regnety_128gf```: RegNetY costing approximately 128000 mega FLOPS/128 giga FLOPS.<br>
+* ```seer_224```: Trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) at resolution 224 x 224.<br>
+* ```seer_ft_in1k_384```:  Pre-trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
+
+&#x25cf; ```regnety_256gf```: RegNetY costing approximately 256000 mega FLOPS/256 giga FLOPS.<br>
+* ```seer_ft_in1k_384```:  Pre-trained using SwAV with no labels on 1 billion Instagram images (Facebook's SEER) and fine-tuned on ImageNet1K at resolution 384 x 384.<br>
 
 ## ResNet
 
