@@ -247,6 +247,7 @@ def get_regnet_args(
 	return {
 		'depths': tuple(depths.tolist()),
 		'out_dims': tuple(out_dims_per_stage.tolist()),
+		'dim_per_cardinal': dim_per_cardinal,
 		}
 
 
@@ -263,7 +264,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_200mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=13, out_dim_slope=36.44, out_dim_base=24, log_step=2.49, dim_per_cardinal=8),
-				dim_per_cardinal=8,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_200mf'),
@@ -272,7 +272,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_400mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=22, out_dim_slope=24.48, out_dim_base=24, log_step=2.54, dim_per_cardinal=16),
-				dim_per_cardinal=16,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_400mf'),
@@ -281,7 +280,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_600mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=16, out_dim_slope=36.97, out_dim_base=48, log_step=2.24, dim_per_cardinal=24),
-				dim_per_cardinal=24,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_600mf'),
@@ -290,7 +288,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_800mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=16, out_dim_slope=35.73, out_dim_base=56, log_step=2.28, dim_per_cardinal=16),
-				dim_per_cardinal=16,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_800mf'),
@@ -299,7 +296,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_1600mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=18, out_dim_slope=34.01, out_dim_base=80, log_step=2.25, dim_per_cardinal=24),
-				dim_per_cardinal=24,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_1600mf'),
@@ -308,7 +304,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_3200mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=25, out_dim_slope=26.31, out_dim_base=88, log_step=2.25, dim_per_cardinal=48),
-				dim_per_cardinal=48,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_3200mf'),
@@ -317,7 +312,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_4000mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=23, out_dim_slope=38.65, out_dim_base=96, log_step=2.43, dim_per_cardinal=40),
-				dim_per_cardinal=40,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_4000mf'),
@@ -326,7 +320,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_6400mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=17, out_dim_slope=60.83, out_dim_base=184, log_step=2.07, dim_per_cardinal=56),
-				dim_per_cardinal=56,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_6400mf'),
@@ -335,7 +328,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_8000mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=23, out_dim_slope=49.56, out_dim_base=80, log_step=2.88, dim_per_cardinal=120),
-				dim_per_cardinal=120,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_8000mf'),
@@ -344,7 +336,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_12gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=19, out_dim_slope=73.36, out_dim_base=168, log_step=2.37, dim_per_cardinal=112),
-				dim_per_cardinal=112,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_12gf'),
@@ -353,7 +344,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_16gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=22, out_dim_slope=55.59, out_dim_base=216, log_step=2.1, dim_per_cardinal=128),
-				dim_per_cardinal=128,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_16gf'),
@@ -362,7 +352,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnetx_32gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=23, out_dim_slope=69.86, out_dim_base=320, log_step=2., dim_per_cardinal=168),
-				dim_per_cardinal=168,
 				),
 			params={
 				'in1k_224': imagenet_params_config('regnetx_32gf'),
@@ -371,7 +360,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_200mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=13, out_dim_slope=36.44, out_dim_base=24, log_step=2.49, dim_per_cardinal=8),
-				dim_per_cardinal=8,
 				attention=layers.SE,
 				),
 			params={
@@ -381,7 +369,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_400mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=16, out_dim_slope=27.89, out_dim_base=48, log_step=2.09, dim_per_cardinal=8),
-				dim_per_cardinal=8,
 				attention=layers.SE,
 				),
 			params={
@@ -391,7 +378,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_600mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=15, out_dim_slope=32.54, out_dim_base=48, log_step=2.32, dim_per_cardinal=16),
-				dim_per_cardinal=16,
 				attention=layers.SE,
 				),
 			params={
@@ -401,7 +387,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_800mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=14, out_dim_slope=38.84, out_dim_base=56, log_step=2.4, dim_per_cardinal=16),
-				dim_per_cardinal=16,
 				attention=layers.SE,
 				),
 			params={
@@ -411,7 +396,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_1600mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=27, out_dim_slope=20.71, out_dim_base=48, log_step=2.65, dim_per_cardinal=24),
-				dim_per_cardinal=24,
 				attention=layers.SE,
 				),
 			params={
@@ -421,7 +405,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_3200mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=21, out_dim_slope=42.63, out_dim_base=80, log_step=2.66, dim_per_cardinal=24),
-				dim_per_cardinal=24,
 				attention=layers.SE,
 				),
 			params={
@@ -431,7 +414,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_4000mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=22, out_dim_slope=31.41, out_dim_base=96, log_step=2.24, dim_per_cardinal=64),
-				dim_per_cardinal=64,
 				attention=layers.SE,
 				),
 			params={
@@ -441,7 +423,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_6400mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=25, out_dim_slope=33.22, out_dim_base=112, log_step=2.27, dim_per_cardinal=72),
-				dim_per_cardinal=72,
 				attention=layers.SE,
 				),
 			params={
@@ -451,7 +432,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_8000mf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=17, out_dim_slope=76.82, out_dim_base=192, log_step=2.19, dim_per_cardinal=56),
-				dim_per_cardinal=56,
 				attention=layers.SE,
 				),
 			params={
@@ -461,7 +441,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_12gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=19, out_dim_slope=73.36, out_dim_base=168, log_step=2.37, dim_per_cardinal=112),
-				dim_per_cardinal=112,
 				attention=layers.SE,
 				),
 			params={
@@ -471,7 +450,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_16gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=18, out_dim_slope=106.23, out_dim_base=200, log_step=2.48, dim_per_cardinal=112),
-				dim_per_cardinal=112,
 				attention=layers.SE,
 				),
 			params={
@@ -481,7 +459,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_32gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=20, out_dim_slope=115.89, out_dim_base=232, log_step=2.53, dim_per_cardinal=232),
-				dim_per_cardinal=232,
 				attention=layers.SE,
 				),
 			params={
@@ -493,7 +470,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_64gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=20, out_dim_slope=147.48, out_dim_base=352, log_step=2.4, dim_per_cardinal=328),
-				dim_per_cardinal=328,
 				attention=layers.SE,
 				),
 			params={
@@ -504,7 +480,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_128gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=27, out_dim_slope=160.83, out_dim_base=456, log_step=2.52, dim_per_cardinal=264),
-				dim_per_cardinal=264,
 				attention=layers.SE,
 				),
 			params={
@@ -515,7 +490,6 @@ def get_regnet_configs() -> T.Tuple[T.Type[RegNet], T.Dict]:
 		'regnety_256gf': dict(
 			model_args=dict(
 				**get_regnet_args(depth=27, out_dim_slope=230.83, out_dim_base=640, log_step=2.53, dim_per_cardinal=373),
-				dim_per_cardinal=373,
 				attention=layers.SE,
 				),
 			params={
