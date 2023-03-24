@@ -314,6 +314,19 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				'in22k_ft_in1k_224': imagenet_params_config('swin_small_window7_in22k_ft_in1k_224'),
 				},
 			),
+		'swin_base_window6': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=128,
+				n_heads=(4, 8, 16, 32),
+				window_size=6,
+				),
+			params={
+				'simmim_in1k_100ep_192': imagenet_params_config('swin_base_window6_simmim_in1k_100ep_192'),
+				'simmim_in1k_800ep_192': imagenet_params_config('swin_base_window6_simmim_in1k_800ep_192'),
+				'simmim_in1k_100ep_ft_in1k_192': imagenet_params_config('swin_base_window6_simmim_in1k_100ep_ft_in1k_192'),
+				},
+			),
 		'swin_base_window7': dict(
 			model_args=dict(
 				depths=(2, 2, 18, 2),
@@ -321,6 +334,8 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				n_heads=(4, 8, 16, 32),
 				),
 			params={
+				'simmim_in1k_100ep_ft_in1k_224': imagenet_params_config('swin_base_window7_simmim_in1k_100ep_ft_in1k_224'),
+				'simmim_in1k_800ep_ft_in1k_224': imagenet_params_config('swin_base_window7_simmim_in1k_800ep_ft_in1k_224'),
 				'in1k_224': imagenet_params_config('swin_base_window7_in1k_224'),
 				'in22k_224': imagenet_params_config('swin_base_window7_224_in22k'),
 				'in22k_ft_in1k_224': imagenet_params_config('swin_base_window7_224'),
@@ -358,8 +373,20 @@ def get_swin_configs() -> T.Tuple[T.Type[Swin], T.Dict]:
 				window_size=12,
 				),
 			params={
+				'simmim_in1k_800ep_192': imagenet_params_config('swin_large_window12_simmim_in1k_800ep_192'),
 				'in22k_384': imagenet_params_config('swin_large_window12_384_in22k'),
 				'in22k_ft_in1k_384': imagenet_params_config('swin_large_window12_384'),
+				},
+			),
+		'swin_large_window14': dict(
+			model_args=dict(
+				depths=(2, 2, 18, 2),
+				token_dim=192,
+				n_heads=(6, 12, 24, 48),
+				window_size=14,
+				),
+			params={
+				'simmim_in1k_800ep_ft_in1k_224': imagenet_params_config('swin_large_window14_simmim_in1k_800ep_ft_in1k_224'),
 				},
 			),
 		'swin_s3_tiny': dict(

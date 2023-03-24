@@ -751,7 +751,14 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
 
+&#x25cf; ```swin_base_window6```: Swin-Base, window size 6 x 6.<br>
+* ```simmim_in1k_100ep_192```: Trained using SimMIM with no labels on ImageNet1K for 100 epochs at resolution 192 x 192.<br>
+* ```simmim_in1k_800ep_192```: Trained using SimMIM with no labels on ImageNet1K for 800 epochs at resolution 192 x 192.<br>
+* ```simmim_in1k_100ep_ft_in1k_192```: Pre-trained using SimMIM with no labels on ImageNet1K for 100 epochs and fine-tuned with labels on ImageNet1K at resolution 192 x 192.<br>
+
 &#x25cf; ```swin_base_window7```: Swin-Base, window size 7 x 7.<br>
+* ```simmim_in1k_100ep_ft_in1k_224```: Pre-trained using SimMIM with no labels on ImageNet1K for 100 epochs and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
+* ```simmim_in1k_800ep_ft_in1k_224```: Pre-trained using SimMIM with no labels on ImageNet1K for 800 epochs and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.<br>
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.<br>
@@ -765,9 +772,13 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
 * ```in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224.
 
-&#x25cf; ```swin_large_window12```: Swin-Large, window size 7 x 7.<br>
+&#x25cf; ```swin_large_window12```: Swin-Large, window size 12 x 12.<br>
+* ```simmim_in1k_800ep_192```: Trained using SimMIM with no labels on ImageNet1K for 800 epochs at resolution 192 x 192.<br>
 * ```in22k_384```: Trained on ImageNet22K at resolution 384 x 384.<br>
 * ```in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384.
+
+&#x25cf; ```swin_large_window14```: Swin-Large, window size 14 x 14.<br>
+* ```simmim_in1k_800ep_ft_in1k_224```: Pre-trained using SimMIM with no labels on ImageNet1K for 800 epochs and fine-tuned with labels on ImageNet1K at resolution 224 x 224.<br>
 
 ## Swin-S3
 
