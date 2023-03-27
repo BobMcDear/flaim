@@ -902,7 +902,7 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 &#x25cf; ```vit_large_patch32```: ViT-Large, patch size 32 x 32.<br>
 * ```orig_in22k_224```: Trained on ImageNet22K (original weights) at resolution 224 x 224.<br>
-* ```orig_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K (original weights) at resolution 224 x 224.<br>
+* ```orig_in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K (original weights) at resolution 384 x 384.<br>
 
 &#x25cf; ```vit_large_patch16```: ViT-Large, patch size 16 x 16.<br>
 * ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>

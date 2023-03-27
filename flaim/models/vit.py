@@ -268,7 +268,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'orig_in22k_224': inception_params_config('vit_large_patch32_224_in22k'),
-				'orig_in22k_ft_in1k_224': inception_params_config('vit_large_patch32_384'),
+				'orig_in22k_ft_in1k_384': inception_params_config('vit_large_patch32_384'),
 				},
 			),
 		'vit_large_patch16': dict(
