@@ -865,6 +865,8 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 &#x25cf; ```vit_small_patch16```: ViT-Small, patch size 16 x 16.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
+* ```augreg_in1k_224```: Trained on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
+* ```augreg_in1k_384```: Trained on ImageNet1K with additional augmentation & regularization at resolution 384 x 384.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
@@ -874,6 +876,8 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 &#x25cf; ```vit_base_patch32```: ViT-Base, patch size 32 x 32.<br>
 * ```sam_in1k_224```: Trained using SAM on ImageNet1K at resolution 224 x 224.<br>
+* ```augreg_in1k_224```: Trained on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
+* ```augreg_in1k_384```: Trained on ImageNet1K with additional augmentation & regularization at resolution 384 x 384.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.
@@ -882,6 +886,8 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 * ```mae_in1k_224```: Trained using MAE with no labels on ImageNet1K at resolution 224 x 224.<br>
 * ```sam_in1k_224```: Trained using SAM on ImageNet1K at resolution 224 x 224.<br>
 * ```dino_in1k_224```: Trained using DINO on ImageNet1K at resolution 224 x 224.<br>
+* ```augreg_in1k_224```: Trained on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
+* ```augreg_in1k_384```: Trained on ImageNet1K with additional augmentation & regularization at resolution 384 x 384.<br>
 * ```augreg_in22k_224```: Trained on ImageNet22K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K with additional augmentation & regularization at resolution 224 x 224.<br>
 * ```augreg_in22k_ft_in1k_384```: Trained on ImageNet22K with additional augmentation & regularization at resolution 384 x 384.

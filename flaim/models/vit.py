@@ -183,6 +183,8 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'dino_in1k_224': imagenet_params_config('vit_small_patch16_224_dino'),
+				'augreg_in1k_224': inception_params_config('vit_small_patch16_augreg_in1k_224'),
+				'augreg_in1k_384': inception_params_config('vit_small_patch16_augreg_in1k_384'),
 				'augreg_in22k_224': inception_params_config('vit_small_patch16_224_in22k'),
 				'augreg_in22k_ft_in1k_224': inception_params_config('vit_small_patch16_224'),
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_small_patch16_384'),
@@ -208,6 +210,8 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				),
 			params={
 				'sam_in1k_224': inception_params_config('vit_base_patch32_224_sam'),
+				'augreg_in1k_224': inception_params_config('vit_base_patch32_augreg_in1k_224'),
+				'augreg_in1k_384': inception_params_config('vit_base_patch32_augreg_in1k_384'),
 				'augreg_in22k_224': inception_params_config('vit_base_patch32_224_in22k'),
 				'augreg_in22k_ft_in1k_224': inception_params_config('vit_base_patch32_224'),
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_base_patch32_384'),
@@ -223,6 +227,8 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				'mae_in1k_224': imagenet_params_config('vit_base_patch16_mae_in1k_224'),
 				'sam_in1k_224': inception_params_config('vit_base_patch16_224_sam'),
 				'dino_in1k_224': imagenet_params_config('vit_base_patch16_224_dino'),
+				'augreg_in1k_224': inception_params_config('vit_base_patch16_augreg_in1k_224'),
+				'augreg_in1k_384': inception_params_config('vit_base_patch16_augreg_in1k_384'),
 				'augreg_in22k_224': inception_params_config('vit_base_patch16_224_in22k'),
 				'augreg_in22k_ft_in1k_224': inception_params_config('vit_base_patch16_224'),
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_base_patch16_384'),
