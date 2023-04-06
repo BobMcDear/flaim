@@ -16,7 +16,7 @@ from ..factory import imagenet_params_config, register_models
 
 class SRAQKV(nn.Module):
 	"""
-	Query-key-value extractor for spatial reduction attention. 
+	Query-key-value extractor for spatial reduction attention.
 
 	Args:
 		n_heads (int): Number of heads.
@@ -32,7 +32,7 @@ class SRAQKV(nn.Module):
 		input_kv = input
 		token_dim = input.shape[-1]
 		head_dim = token_dim//self.n_heads
-		
+
 		if 1 < self.sr_factor:
 			img_size = int(sqrt(input.shape[-2]))
 			input_kv = jnp.reshape(input, (-1, img_size, img_size, token_dim))
@@ -41,17 +41,17 @@ class SRAQKV(nn.Module):
 				patch_size=self.sr_factor,
 				layer_norm_eps=1e-5,
 				)(input_kv)
-		
+
 			q = nn.Dense(
 				features=token_dim,
 				)(input)
 			kv = nn.Dense(
 				features=2*token_dim,
 				)(input_kv)
-		
+
 			q = jnp.reshape(q, (len(input), -1, self.n_heads, head_dim))
 			kv = jnp.reshape(kv, (len(input), -1, 2, self.n_heads, head_dim))
-		
+
 			q = jnp.swapaxes(q, axis1=1, axis2=2)
 			kv = jnp.transpose(kv, (2, 0, 3, 1, 4))
 			k, v = jnp.split(
@@ -60,14 +60,14 @@ class SRAQKV(nn.Module):
 				axis=0,
 				)
 			k, v = jnp.squeeze(k, axis=0), jnp.squeeze(v, axis=0)
-		
+
 		else:
 			q, k, v = layers.QKV(
 				n_heads=self.n_heads,
 				)(input)
-		
+
 		return q, k, v
-		
+
 
 class PVTV2Stage(nn.Module):
 	"""
@@ -138,7 +138,7 @@ class PVTV2(nn.Module):
 		for the hidden neurons of the MLP of each stage.
 		Default is (8, 8, 4, 4).
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -163,7 +163,7 @@ class PVTV2(nn.Module):
 			name='stage_0',
 			value=output,
 			)
-		
+
 		for stage_ind in range(len(self.depths)):
 			output = PVTV2Stage(
 				depth=self.depths[stage_ind],
@@ -178,11 +178,11 @@ class PVTV2(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
-		
+
 		return output
 
 

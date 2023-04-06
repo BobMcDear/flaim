@@ -40,7 +40,7 @@ class DeepPatchEmbed(nn.Module):
 					stride=2,
 					act=self.act,
 					)(input, training=training)
-		
+
 			output = layers.ConvBNAct(
 					out_dim=self.token_dim//4,
 					stride=2,
@@ -55,7 +55,7 @@ class DeepPatchEmbed(nn.Module):
 				out_dim=self.token_dim,
 				stride=2,
 				)(output, training=training)
-		
+
 		output = jnp.reshape(output, (len(input), -1, self.token_dim))
 		return output
 
@@ -113,7 +113,7 @@ class XCiTSinePosEmbed(nn.Module):
 			jnp.cos(pos_embed_y[:, :, :, 1::2]),
 			],
 			axis=4)
-		
+
 		pos_embed_x = jnp.reshape(pos_embed_x, (1, img_size, img_size, -1))
 		pos_embed_y = jnp.reshape(pos_embed_y, (1, img_size, img_size, -1))
 		pos_embed = jnp.concatenate([pos_embed_y, pos_embed_x], axis=3)
@@ -155,7 +155,7 @@ class LPI(nn.Module):
 			groups='dw',
 			)(output)
 		output = jnp.reshape(output, input.shape)
-		
+
 		return output
 
 
@@ -201,7 +201,7 @@ class XCiTBlock(nn.Module):
 			act=self.act,
 			layer_scale_init_value=self.layer_scale_init_value,
 			)(output)
-		
+
 		return output
 
 
@@ -236,7 +236,7 @@ class XCiTClassAttentionBlock(nn.Module):
 
 		if self.norm_all_tokens:
 			output = nn.LayerNorm()(output)
-		
+
 		else:
 			class_token = nn.LayerNorm()(output[:, :1])
 			output = jnp.concatenate([class_token, output[:, 1:]], axis=1)
@@ -258,7 +258,7 @@ class XCiT(nn.Module):
 	Cross-covariance image transformer.
 
 	Args:
-		depth (int): Depth of the no-class-token 
+		depth (int): Depth of the no-class-token
 		part of the model.
 		token_dim (int): Token dimension.
 		n_heads (int): Number of heads.
@@ -275,7 +275,7 @@ class XCiT(nn.Module):
 		tokens and not merely the class token in class attention.
 		Default is True.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -325,12 +325,12 @@ class XCiT(nn.Module):
 				name=f'block_{self.depth+block_ind+1}',
 				value=output[:, 0],
 				)
-		
+
 		output = layers.ViTHead(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-6,
 			)(output)
-			
+
 		return output
 
 

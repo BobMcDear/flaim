@@ -4,7 +4,7 @@ Some of the smaller modules used by the vision transformer by Dosovitskiy et al.
 - ClassToken: ClassToken module.
 - AbsPosEmbed: Absolution position embedding.
 
-References: 
+References:
 - Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale.
 """
 
@@ -37,11 +37,11 @@ class PatchEmbed(nn.Module):
 		patch_size (T.Union[T.Tuple[int, int], int]): Patch size. If an
 		int, this value is used along both spatial dimensions.
 		Default is 16.
-		patch_stride (T.Optional[T.Union[T.Tuple[int, int], int]]): Stride of each patch. 
+		patch_stride (T.Optional[T.Union[T.Tuple[int, int], int]]): Stride of each patch.
 		If None, it is the same as the patch size. If an int,
 		this value is used along both spatial dimensions.
 		Default is None.
-		patch_padding (T.Optional[T.Union[str, int]]): Padding for patches. 
+		patch_padding (T.Optional[T.Union[str, int]]): Padding for patches.
 		If an int, this value is used along both spatial dimensions. If None
 		and patch_size and patch_stride are the same, it is set to 0. If None
 		and patch_size and patch_stride are different, it is set so the spatial
@@ -49,11 +49,11 @@ class PatchEmbed(nn.Module):
 		Default is None.
 		bias (bool): Whether the linear transformation should have a bias term.
 		Default is True.
-		layer_norm_eps (T.Optional[float]): Epsilon value passed to 
+		layer_norm_eps (T.Optional[float]): Epsilon value passed to
 		layer normalization. If None, no normalization is applied, and norm_first
 		is ignored.
 		Default is None.
-		norm_first (bool): Whether to apply layer normalization before the 
+		norm_first (bool): Whether to apply layer normalization before the
 		linear transformation instead of after.
 		Default is False.
 		flatten (bool): Whether the output should be flattened along the spatial
@@ -75,7 +75,7 @@ class PatchEmbed(nn.Module):
 		layer_norm = nn.LayerNorm(self.layer_norm_eps) if self.layer_norm_eps else identity
 		patch_stride = self.patch_stride or self.patch_size
 		patch_padding = 0 if self.patch_size == patch_stride else None
-		
+
 		if self.norm_first:
 			output = layer_norm(input)
 			output = Conv(
@@ -85,7 +85,7 @@ class PatchEmbed(nn.Module):
 				padding=patch_padding,
 				bias=self.bias,
 				)(output)
-		
+
 		else:
 			output = Conv(
 				out_dim=token_dim,
@@ -95,7 +95,7 @@ class PatchEmbed(nn.Module):
 				bias=self.bias,
 				)(input)
 			output = layer_norm(output)
-		
+
 		if self.flatten:
 			output = jnp.reshape(output, (len(input), -1, token_dim))
 

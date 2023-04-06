@@ -13,7 +13,7 @@ from ..factory import clip_params_config, imagenet_params_config, register_model
 
 class ConvNeXtBlock(nn.Module):
 	"""
-	ConvNeXt block. 
+	ConvNeXt block.
 
 	Args:
 		out_dim (T.Optional[int]): Number of output channels.
@@ -114,7 +114,7 @@ class ConvNeXt(nn.Module):
 		normalization.
 		Default is 1e-6.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -160,14 +160,14 @@ class ConvNeXt(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			hidden_dim=self.head_hidden_dim,
 			hidden_act=layers.gelu,
 			layer_norm_eps=self.layer_norm_eps,
 			)(output)
-			
+
 		return output
 
 

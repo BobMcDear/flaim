@@ -24,12 +24,12 @@ class SE(nn.Module):
 	Squeeze-and-excitation.
 
 	Args:
-		reduction_factor (T.Optional[int]): Factor of reduction for the 
+		reduction_factor (T.Optional[int]): Factor of reduction for the
 		hidden layer of the excitation module. If None, reduction_dim
 		must be provided. If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
 		Default is 16.
-		reduction_dim (T.Optional[int]): Number of channels in the 
+		reduction_dim (T.Optional[int]): Number of channels in the
 		hidden layer of the excitation module. If None, reduction_factor
 		must be provided. If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
@@ -47,12 +47,12 @@ class SE(nn.Module):
 		bn (bool): Whether to add batch normalization to the excitation module.
 		If False, the training argument is ignored.
 		Default is False.
-		bottleneck (bool): If True, SE's usual MLP is used, i.e., one with 
-		a single hidden layer. Otherwise, a single fully-connected layer 
+		bottleneck (bool): If True, SE's usual MLP is used, i.e., one with
+		a single hidden layer. Otherwise, a single fully-connected layer
 		with no non-linearities is used, and reduction_factor, reduction_dim,
 		act, and bn are ignored.
 		Default is True.
-		return_attn (bool): Whether to return the raw attention values instead 
+		return_attn (bool): Whether to return the raw attention values instead
 		of gating them and multiplying them by the input. If True, gate is ignored.
 		Default is False.
 	"""
@@ -78,15 +78,15 @@ class SE(nn.Module):
 				bias=self.bias,
 				bn=self.bn,
 				)(attention, training=training)
-		
+
 		else:
 			attention = nn.Dense(
 				features=input.shape[-1],
 				use_bias=self.bias,
 				)(attention)
-			
+
 		if self.return_attn:
 			return attention
-		
+
 		attention = self.gate(attention)
 		return attention*input

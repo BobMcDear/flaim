@@ -22,7 +22,7 @@ def identity(input, *args, **kwargs):
 		input: Input.
 		*args.
 		**kwargs.
-	
+
 	Returns: Input.
 	"""
 	return input

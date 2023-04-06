@@ -99,7 +99,7 @@ class ConvMixer(nn.Module):
 		act (T.Callable): Activation function.
 		Default is layers.gelu.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -125,7 +125,7 @@ class ConvMixer(nn.Module):
 			name='block_0',
 			value=output,
 			)
-		
+
 		for block_ind in range(self.depth):
 			output = ConvMixerBlock(
 				kernel_size=self.kernel_size,
@@ -140,7 +140,7 @@ class ConvMixer(nn.Module):
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
-		
+
 		return output
 
 

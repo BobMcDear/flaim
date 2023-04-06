@@ -44,7 +44,7 @@ class XCA(nn.Module):
 			axis=0,
 			)
 		q, k, v = jnp.squeeze(q, axis=0), jnp.squeeze(k, axis=0), jnp.squeeze(v, axis=0)
-		
+
 		norm_q, norm_k = jnp.linalg.norm(q, ord=2, axis=-1, keepdims=True), jnp.linalg.norm(k, ord=2, axis=-1, keepdims=True)
 		norm_q, norm_k = jnp.clip(norm_q, a_min=self.eps), jnp.clip(norm_k, a_min=self.eps)
 		q, k = q / norm_q, k / norm_k

@@ -25,7 +25,7 @@ def tuplify(
 		of item is returned.
 		seq_len (int): How many times to repeat item
 		when converting it to a tuple.
-	
+
 	Returns (T.Tuple): Tuplified version of item.
 	"""
 	return item if isinstance(item, T.Sequence) else seq_len*(item,)

@@ -39,5 +39,5 @@ class GRN(nn.Module):
 
 		gx = jnp.linalg.norm(input, axis=(1, 2), keepdims=True)
 		nx = gx / (jnp.mean(gx, axis=-1, keepdims=True) + self.eps)
-		
+
 		return input + gamma * (input * nx) + beta

@@ -76,7 +76,7 @@ class HorNet(nn.Module):
 		LayerScale. If None, no LayerScale is applied.
 		Default is 1e-6.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -101,7 +101,7 @@ class HorNet(nn.Module):
 			name='stage_0',
 			value=output,
 			)
-		
+
 		for stage_ind in range(len(self.depths)):
 			output = HorNetStage(
 				depth=self.depths[stage_ind],
@@ -116,7 +116,7 @@ class HorNet(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-6,

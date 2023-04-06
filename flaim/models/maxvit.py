@@ -64,13 +64,13 @@ class PreNormMBConvDownsample(nn.Module):
 				stride=self.stride,
 				padding=0,
 				)
-		
+
 		if input.shape[-1] != self.out_dim:
 			input = layers.Conv(
 				out_dim=self.out_dim,
 				kernel_size=1,
 				)(input)
-			
+
 		return input
 
 
@@ -125,7 +125,7 @@ class PreNormMBConv(nn.Module):
 			out_dim=self.out_dim,
 			kernel_size=1,
 			)(output)
-		
+
 		return output + PreNormMBConvDownsample(
 			out_dim=self.out_dim,
 			stride=self.stride,
@@ -143,7 +143,7 @@ def grid_partition(
 		input: Input.
 		grid_size (T.Union[T.Tuple[int, int], int]): Grid size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The input partitioned into grids.
 	"""
 	bs, h, w, in_dim = input.shape
@@ -170,7 +170,7 @@ def grid_merge(
 		If an int, this value is used along both spatial dimensions.
 		grid_size (T.Union[T.Tuple[int, int], int]): Grid size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The merged version of the input's grids.
 	"""
 	in_dim = input.shape[-1]
@@ -193,7 +193,7 @@ def get_maxvit_rel_pos_ind(
 	Args:
 		window_size (int): Window size. This value is used along
 		both spatial dimesnoins.
-	
+
 	Returns (jnp.ndarray): Matrix used to index MaxViT's relative position bias
 	table.
 	"""
@@ -216,14 +216,14 @@ def index_maxvit_rel_pos_table(
 	rel_pos_ind,
 	):
 	"""
-	Indexes a relative position bias table given a matrix of indices 
+	Indexes a relative position bias table given a matrix of indices
 	for MaxViT.
 
 	Args:
 		rel_pos_table: Relative position bias table to index.
 		rel_pos_ind: Matrix used to index rel_pos_table.
 
-	Returns: Desired elements of rel_pos_table. 
+	Returns: Desired elements of rel_pos_table.
 	"""
 	rel_pos_table = jnp.einsum('nhw,ixh->nixw', rel_pos_table, rel_pos_ind)
 	rel_pos_table = jnp.einsum('nixw,jyw->nijxy', rel_pos_table, rel_pos_ind)
@@ -268,7 +268,7 @@ class PartitionMHSA(nn.Module):
 	partitioning.
 
 	Args:
-		partition_fn (T.Callable): T.Callable used to 
+		partition_fn (T.Callable): T.Callable used to
 		partition the input.
 		merge_fn (T.Callable): T.Callable used to
 		merge the data after its partitioning.
@@ -397,7 +397,7 @@ class MaxViTStage(nn.Module):
 	stride: int = 1
 	head_dim: int = 32
 	tf: bool = True
-	
+
 	@nn.compact
 	def __call__(self, input, training: bool = False):
 		for block_ind in range(self.depth):
@@ -419,7 +419,7 @@ class MaxViTHead(nn.Module):
 	Args:
 		n_classes (int): Number of output classes. If 0, the input is returned.
 		If -1, all stages of the head, other than the final linear layer,
-		are applied and the output returned. 
+		are applied and the output returned.
 		Default is 0.
 		tf (bool): Whether to use batch normalization epsilon of
 		1e-3, layer normalization epsilon of 1e-5, padding of 'same',
@@ -439,12 +439,12 @@ class MaxViTHead(nn.Module):
 			layer_norm_eps=1e-5 if self.tf else 1e-6,
 			)(input)
 		output = nn.tanh(output)
-		
+
 		if self.n_classes != -1:
 			output = nn.Dense(
 				features=self.n_classes,
 				)(output)
-		
+
 		return output
 
 
@@ -468,7 +468,7 @@ class MaxViT(nn.Module):
 		and an approximation of GELU for compatibility with TensorFlow.
 		Default is True.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -508,11 +508,11 @@ class MaxViT(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = MaxViTHead(
 			n_classes=self.n_classes,
 			)(output)
-		
+
 		return output
 
 

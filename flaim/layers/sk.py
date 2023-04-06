@@ -65,7 +65,7 @@ class SK(nn.Module):
 				indices_or_sections=self.n_branches,
 				axis=-1,
 				)
-		
+
 		bs, h, w, in_dim = input.shape
 		out_dim = self.out_dim or in_dim
 		output = []

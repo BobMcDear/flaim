@@ -28,10 +28,10 @@ def str_to_bool(
 	"""
 	if input == 'True':
 		return True
-	
+
 	elif input == 'False':
 		return False
-	
+
 	else:
 		raise ValueError(f'{input} not valid for conversion into a boolean')
 
@@ -107,7 +107,6 @@ def main(
 		jit (bool): Whether to JIT.
 		Default is True.
 	"""
-	print(small_sample, pretrained, jit)
 	if small_sample:
 		models = [
 			('cait_xxsmall24', 'in1k_224'),

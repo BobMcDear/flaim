@@ -26,7 +26,7 @@ class BAMSpatialAttention(nn.Module):
 	BAM's spatial attention module.
 
 	Args:
-		reduction_factor (T.Optional[int]): Factor of reduction for the 
+		reduction_factor (T.Optional[int]): Factor of reduction for the
 		3 x 3 convolutions. If None, reduction_dim must be provided.
 		If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
@@ -53,7 +53,7 @@ class BAMSpatialAttention(nn.Module):
 			kernel_size=1,
 			act=self.act,
 			)(input, training=training)
-		
+
 		output = ConvBNAct(
 			dilation=self.dilation,
 			act=self.act,
@@ -62,12 +62,12 @@ class BAMSpatialAttention(nn.Module):
 			dilation=self.dilation,
 			act=self.act,
 			)(output, training=training)
-		
+
 		output = Conv(
 			out_dim=1,
 			kernel_size=1,
 			)(output)
-		
+
 		return output
 
 
@@ -76,7 +76,7 @@ class BAM(nn.Module):
 	Bottleneck attention module.
 
 	Args:
-		reduction_factor (T.Optional[int]): Factor of reduction for the 
+		reduction_factor (T.Optional[int]): Factor of reduction for the
 		bottlenecks. If None, reduction_dim must be provided.
 		If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
@@ -119,6 +119,6 @@ class BAM(nn.Module):
 			dilation=self.dilation,
 			act=self.act,
 			)(input, training=training)
-			
+
 		attention = self.gate(channel_attn * spatial_attn) + 1
 		return attention * input

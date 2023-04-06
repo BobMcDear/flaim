@@ -46,7 +46,7 @@ def get_kernel_size_stride_padding(
 		Default is None.
 		dilation (int): Dilation.
 		Default is 1.
-	
+
 	Returns (T.Tuple[T.Tuple[int, int], T.Tuple[int, int], T.Tuple[T.Tuple[int, int], T.Tuple[int, int]]]):
 	Kernel size, stride, and padding.
 	"""
@@ -58,19 +58,19 @@ def get_kernel_size_stride_padding(
 
 	elif padding is None:
 		padding = (tuplify((dilation * (kernel_size[0]-1)) // 2), tuplify((dilation * (kernel_size[1]-1)) // 2))
-	
+
 	return kernel_size, stride, padding
 
 
 class WSConv(nn.Conv):
 	"""
 	Convolution with (possible scaled) weight standardization.
-	
+
 	Args:
 		gamma (T.Optional[float]): If None, regular weight standardization
 		is applied. If a float, this is the gamma value used to perform
 		scaled weight standardization.
-		eps (float): Epsilon value used in the denominator 
+		eps (float): Epsilon value used in the denominator
 		when standardizing.
 		Default is 1e-5.
 

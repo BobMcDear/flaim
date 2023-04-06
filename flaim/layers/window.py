@@ -34,7 +34,7 @@ def cyclic_shift(
 		input: Input.
 		shift_size (T.Union[T.Tuple[int, int], int]): Shift size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: Cyclic-shifted version of input.
 	"""
 	shift_size = tuplify(shift_size)
@@ -56,7 +56,7 @@ def window_partition(
 		input: Input.
 		window_size (T.Union[T.Tuple[int, int], int]): Window size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The input partitioned into windows.
 	"""
 	bs, h, w, in_dim = input.shape
@@ -82,7 +82,7 @@ def window_merge(
 		If an int, this value is used along both spatial dimensions.
 		window_size (T.Union[T.Tuple[int, int], int]): Window size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The merged version of the input's windows.
 	"""
 	c = input.shape[-1]

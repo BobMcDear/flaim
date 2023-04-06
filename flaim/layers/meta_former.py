@@ -26,7 +26,7 @@ class MetaFormerBlock(nn.Module):
 
 	Args:
 		token_mixer (T.Callable): T.Callable returning the token mixer.
-		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the 
+		mlp_hidden_dim_expansion_factor (float): Factor of expansion for the
 		hidden layer of the MLP.
 		Default is 4.
 		act (T.Callable): Activation for the hidden layer of the MLP.
@@ -35,7 +35,7 @@ class MetaFormerBlock(nn.Module):
 		applied immediately after the first linear layer of the MLP. If None,
 		no depthwise convolution is applied.
 		Default is None.
-		layer_norm_eps (T.Optional[float]): Epsilon value passed to 
+		layer_norm_eps (T.Optional[float]): Epsilon value passed to
 		layer normalization. If None, no normalization is applied.
 		Default is 1e-6.
 		layer_scale_init_value (T.Optional[float]): Value

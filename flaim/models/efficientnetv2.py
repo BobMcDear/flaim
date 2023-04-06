@@ -215,7 +215,7 @@ class EfficientNetV2Head(nn.Module):
 	Args:
 		n_classes (int): Number of output classes. If 0, the input is returned.
 		If -1, all stages of the head, other than the final linear layer,
-		are applied and the output returned. 
+		are applied and the output returned.
 		Default is 0.
 		conv_bn_act_dim (int): Number of output channels of
 		the pre-pooling convolution-normalization-activation block.
@@ -232,7 +232,7 @@ class EfficientNetV2Head(nn.Module):
 	def __call__(self, input, training: bool = True):
 		if self.n_classes == 0:
 			return input
-		
+
 		output = layers.ConvBNAct(
 			out_dim=self.conv_bn_act_dim,
 			kernel_size=1,
@@ -242,7 +242,7 @@ class EfficientNetV2Head(nn.Module):
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
-			
+
 		return output
 
 
@@ -276,7 +276,7 @@ class EfficientNetV2(nn.Module):
 	expansion_factors: T.Tuple[int, ...]
 	tf: bool = True
 	n_classes: int = 0
-	head_conv_bn_act_dim: int = 1280 
+	head_conv_bn_act_dim: int = 1280
 
 	@nn.compact
 	def __call__(self, input, training: bool = True):
@@ -306,13 +306,13 @@ class EfficientNetV2(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = EfficientNetV2Head(
 			n_classes=self.n_classes,
 			conv_bn_act_dim=self.head_conv_bn_act_dim,
 			tf=self.tf,
 			)(output, training=training)
-		
+
 		return output
 
 

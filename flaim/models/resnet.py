@@ -15,7 +15,7 @@ from ..factory import imagenet_params_config, register_models
 class ResNetStem(nn.Module):
 	"""
 	ResNet stem.
-	
+
 	Args:
 		out_dim (int): Number of output channels.
 		Default is 64.
@@ -35,7 +35,7 @@ class ResNetStem(nn.Module):
 			stride=2,
 			)
 		return output
-	
+
 
 class ResNetDStem(nn.Module):
 	"""
@@ -43,7 +43,7 @@ class ResNetDStem(nn.Module):
 
 	Args:
 		out_dims (T.Tuple[int, int, int]): Number of output
-		channels of each 3 x 3 convolution. 
+		channels of each 3 x 3 convolution.
 		Default is (32, 32, 64).
 		max_pool (bool): Whether to use max pool as the
 		final downsampling module. If False, a 3 x 3 convolution
@@ -74,7 +74,7 @@ class ResNetDStem(nn.Module):
 				input=output,
 				stride=2,
 				)
-		
+
 		else:
 			output = layers.ConvBNAct(
 				out_dim=self.out_dims[-1],
@@ -128,7 +128,7 @@ class BasicBlock(nn.Module):
 		out_dim (T.Optional[int]): Number of output channels of the second convolution.
 		If None, it is set to bottleneck_dim.
 		Default is None.
-		conv_bn_relu (T.Callable): Layer used as the 
+		conv_bn_relu (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module.
 		Default is layers.ConvBNAct.
 		cardinality (int): Cardinality.
@@ -195,7 +195,7 @@ class BasicBlock(nn.Module):
 				out_dim=self.out_dim or self.bottleneck_dim,
 				stride=self.stride,
 				)(input, training=training)
-		
+
 		output = input+output
 		output = nn.relu(output)
 		return output
@@ -208,7 +208,7 @@ class BottleneckBlock(nn.Module):
 	Args:
 		out_dim (int): Number of output channels.
 		bottleneck_dim (int): Number of bottleneck channels.
-		conv_bn_relu (T.Callable): Layer used as the 
+		conv_bn_relu (T.Callable): Layer used as the
 		middle convolution-batch normalization-ReLU module.
 		Default is layers.ConvBNAct.
 		cardinality (int): Cardinality.
@@ -249,7 +249,7 @@ class BottleneckBlock(nn.Module):
 			kernel_size=1,
 			act=nn.relu,
 			)(input, training=training)
-		
+
 		if self.avg_downsample == 'pre' and self.stride != 1:
 			output = layers.avg_pool(
 				input=output,
@@ -265,7 +265,7 @@ class BottleneckBlock(nn.Module):
 				input=output,
 				stride=self.stride,
 				)
-		
+
 		if self.attention_pre:
 			output = self.attention()(output)
 		output = layers.ConvBNAct(
@@ -274,16 +274,16 @@ class BottleneckBlock(nn.Module):
 			)(output, training=training)
 		if not self.attention_pre:
 			output = self.attention()(output)
-		
+
 		if input.shape != output.shape:
 			input = self.downsample(
 				out_dim=self.out_dim,
 				stride=self.stride,
 				)(input, training=training)
-		
+
 		output = input+output
 		output = nn.relu(output)
-		
+
 		return output
 
 
@@ -297,7 +297,7 @@ class ResNetStage(nn.Module):
 		bottleneck_dim (int): Number of bottleneck channels.
 		block (T.Callable): Block used to construct the stage.
 		Default is BottleneckBlock.
-		conv_bn_relu (T.Callable): Layer used as the 
+		conv_bn_relu (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module
 		of basic blocks or the middle convolution-batch normalization-ReLU
 		module of bottleneck blocks.
@@ -362,7 +362,7 @@ class ResNet(nn.Module):
 		depths (T.Tuple[int, ...]): Depth of each stage.
 		block (T.Callable): Block used to construct the network.
 		Default is BottleneckBlock.
-		conv_bn_relu (T.Callable): Layer used as the 
+		conv_bn_relu (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module
 		of basic blocks or the middle convolution-batch normalization-ReLU
 		module of bottleneck blocks.
@@ -392,7 +392,7 @@ class ResNet(nn.Module):
 		is performed by the first 3 x 3 convolution of each block.
 		Default is None.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -438,11 +438,11 @@ class ResNet(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
-		
+
 		return output
 
 

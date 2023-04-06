@@ -100,7 +100,7 @@ class PiTHead(nn.Module):
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-6,
 			)(input[0])
-		
+
 		return output
 
 

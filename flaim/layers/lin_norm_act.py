@@ -42,7 +42,7 @@ class ConvBNAct(nn.Module):
 		Default is 1.
 		bias (bool): Whether the convolution should have a bias term if bn is False.
 		Default is True.
-		bias_force (bool): Whether to force the convolution to have a bias term 
+		bias_force (bool): Whether to force the convolution to have a bias term
 		even if bn is True.
 		Default is False.
 		bn (bool): Whether to have batch normalization after the convolution.

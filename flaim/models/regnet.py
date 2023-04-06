@@ -21,7 +21,7 @@ class RegNetBottleneckBlock(nn.Module):
 	Args:
 		out_dim (int): Number of output channels.
 		bottleneck_dim (int): Number of bottleneck channels.
-		conv_bn_relu (T.Callable): Layer used as the 
+		conv_bn_relu (T.Callable): Layer used as the
 		middle convolution-batch normalization-ReLU module.
 		Default is layers.ConvBNAct.
 		cardinality (int): Cardinality.
@@ -67,7 +67,7 @@ class RegNetBottleneckBlock(nn.Module):
 			kernel_size=1,
 			act=nn.relu,
 			)(input, training=training)
-		
+
 		if self.avg_downsample == 'pre' and self.stride != 1:
 			output = layers.avg_pool(
 				input=output,
@@ -83,7 +83,7 @@ class RegNetBottleneckBlock(nn.Module):
 				input=output,
 				stride=self.stride,
 				)
-		
+
 		if self.attention_pre:
 			output = self.attention(
 				reduction_dim=input.shape[-1] // self.attention_reduction_factor,
@@ -96,16 +96,16 @@ class RegNetBottleneckBlock(nn.Module):
 			output = self.attention(
 				reduction_dim=input.shape[-1] // self.attention_reduction_factor,
 				)(output)
-		
+
 		if input.shape != output.shape:
 			input = self.downsample(
 				out_dim=self.out_dim,
 				stride=self.stride,
 				)(input, training=training)
-		
+
 		output = input+output
 		output = nn.relu(output)
-		
+
 		return output
 
 
@@ -141,7 +141,7 @@ class RegNet(nn.Module):
 		is performed by the first 3 x 3 convolution of each block.
 		Default is None.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -189,11 +189,11 @@ class RegNet(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			)(output)
-		
+
 		return output
 
 
@@ -207,7 +207,7 @@ def round_to_multiple(
 	Args:
 		input: Input.
 		base (int): Base.
-	
+
 	Returns: Input rounded to the nearest multiple of base.
 	"""
 	return base * np.round(input/base).astype(int)
@@ -221,7 +221,7 @@ def get_regnet_args(
 	dim_per_cardinal: int,
 	) -> T.Dict:
 	"""
-	Gets the appropriate depth and number of output 
+	Gets the appropriate depth and number of output
 	channels per stage for RegNet.
 
 	Args:
@@ -232,7 +232,7 @@ def get_regnet_args(
 		log_step (float): Stepping size for the number of channels
 		in log space.
 		dim_per_cardinal (int): Number of channels per cardinal group.
-	
+
 	Returns (T.Dict): Dictionary containing the appropriate depth and
 	number of output channels per stage for RegNet.
 	"""

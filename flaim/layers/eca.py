@@ -34,7 +34,7 @@ def get_kernel_size(
 		Default is 1.
 		gamma (int): Gamma parameter.
 		Default is 2.
-	
+
 	Returns (int): Optimal kernel size for ECA given in_dim.
 	"""
 	t = int((log(in_dim, 2) + beta) / gamma)
@@ -75,7 +75,7 @@ class ECA(nn.Module):
 		attention = self.pool(input, keep_axis=False)
 		attention = jnp.expand_dims(attention, axis=-2)
 		attention = jnp.swapaxes(attention, axis1=-2, axis2=-1)
-		
+
 		kernel_size = self.kernel_size or get_kernel_size(input.shape[-1])
 		attention = nn.Conv(
 			features=1,

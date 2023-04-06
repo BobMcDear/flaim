@@ -75,7 +75,7 @@ class QKV(nn.Module):
 			indices_or_sections=3,
 			axis=0,
 			)
-			
+
 		return jnp.squeeze(q, axis=0), jnp.squeeze(k, axis=0), jnp.squeeze(v, axis=0)
 
 
@@ -86,7 +86,7 @@ def scaled_dot_product_similarity(q, k):
 	Args:
 		q: Queries.
 		k: Keys.
-	
+
 	Returns: Scaled dot-product similarity between the queries and keys.
 	"""
 	return q @ jnp.swapaxes(k, axis1=-2, axis2=-1) / jnp.sqrt(q.shape[-1])
@@ -113,7 +113,7 @@ class MHSA(nn.Module):
 	Args:
 		to_qkv (T.Optional[T.Union[T.Callable, int]]): If input is not None,
 		to_qkv should return the module used to extract queries, key, and values.
-		If an int, the regular QKV extractor is used, and to_qkv is interpreted 
+		If an int, the regular QKV extractor is used, and to_qkv is interpreted
 		as the number of heads. If input is None, to_qkv is ignored.
 		Default is None.
 		similarity_fn (T.Callable): T.Callable used to calculate
@@ -145,7 +145,7 @@ class MHSA(nn.Module):
 		if input is not None:
 			to_qkv = QKV(n_heads=self.to_qkv) if isinstance(self.to_qkv, int) else self.to_qkv()
 			q, k, v = to_qkv(input)
-		
+
 		attention = self.similarity_fn(q, k)
 
 		attention = self.pre_softmax()(attention)
@@ -154,5 +154,5 @@ class MHSA(nn.Module):
 
 		output = self.weigh_values(attention, v)
 		output = self.proj_out()(output)
-		
+
 		return output

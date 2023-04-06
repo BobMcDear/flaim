@@ -7,9 +7,9 @@ padding, accepts integer kernel size, etc.
 - global_avg_pool: Global average pooling.
 - global_max_pool: Global max pooling.
 - global_avg_max_pool: Returns a tuple of the globally average- and max-pooled input.
-- global_concat_avg_max_pool: Concatenates the results of global 
+- global_concat_avg_max_pool: Concatenates the results of global
 average and max pooling, by Wightman.
-- global_sum_avg_max_pool: Sums the results of global 
+- global_sum_avg_max_pool: Sums the results of global
 average and max pooling, by Wightman.
 
 References:
@@ -44,7 +44,7 @@ def avg_pool(
 	count_include_pad: bool = True,
 	):
 	"""
-	Similar to Flax's average pooling but accepts integer kernel size, 
+	Similar to Flax's average pooling but accepts integer kernel size,
 	supports depthwise convolution, etc.
 
 	Args:
@@ -84,7 +84,7 @@ def max_pool(
 	padding: T.Optional[T.Union[str, int]] = None,
 	):
 	"""
-	Similar to Flax's max pooling but accepts integer kernel size, 
+	Similar to Flax's max pooling but accepts integer kernel size,
 	supports depthwise convolution, etc.
 
 	Args:
@@ -129,7 +129,7 @@ def global_avg_pool(
 		keep_axis (bool): Whether the pooled
 		axis should be kept or squeezed.
 		Default is True.
-	
+
 	Returns: Globally average-pooled input.
 	"""
 	return jnp.mean(input, axis=axis, keepdims=keep_axis)
@@ -151,7 +151,7 @@ def global_max_pool(
 		keep_axis (bool): Whether the pooled
 		axis should be kept or squeezed.
 		Default is True.
-	
+
 	Returns: Globally average-pooled input.
 	"""
 	return jnp.max(input, axis=axis, keepdims=keep_axis)
@@ -173,7 +173,7 @@ def global_avg_max_pool(
 		keep_axis (bool): Whether the pooled
 		axis should be kept or squeezed.
 		Default is True.
-	
+
 	Returns: Tuple of the globally average- and max-pooled input.
 	"""
 	return (
@@ -198,7 +198,7 @@ def global_concat_avg_max_pool(
 		keep_axis (bool): Whether the pooled
 		axis should be kept or squeezed.
 		Default is True.
-	
+
 	Returns: Concatenation of the globally average- and max-pooled input.
 	"""
 	return jnp.concatenate(global_avg_max_pool(input, axis=axis, keep_axis=keep_axis), axis=-1)
@@ -220,7 +220,7 @@ def global_sum_avg_max_pool(
 		keep_axis (bool): Whether the pooled
 		axis should be kept or squeezed.
 		Default is True.
-	
+
 	Returns: Summation of the globally average- and max-pooled input.
 	"""
 	return jnp.sum(global_concat_avg_max_pool(input, axis=axis, keep_axis=keep_axis), axis=-1)

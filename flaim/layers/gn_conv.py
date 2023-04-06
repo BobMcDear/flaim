@@ -60,7 +60,7 @@ class GnConv(nn.Module):
 			indices_or_sections=split_dims[:-1],
 			axis=-1,
 			)
-		
+
 		output = p0 * ps[0]
 		for ord_ind in range(self.order-1):
 			output = ps[ord_ind+1] * Conv(
@@ -70,5 +70,5 @@ class GnConv(nn.Module):
 		output = Conv(
 			kernel_size=1,
 			)(output)
-			
+
 		return output

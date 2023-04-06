@@ -37,13 +37,13 @@ class ViT(nn.Module):
 		for obtaining keys should have a bias term.
 		Default is True.
 		rel_pos_embed (bool): Whether to use relative position
-		embedding instead of absolute position embeddings. 
+		embedding instead of absolute position embeddings.
 		If True, class_token_pos_embed is ignored.
 		Default is False.
 		pre_norm (bool): Whether to have layer normalization
 		immediately before the body of the network.
 		Default is False.
-		class_token_pos_embed (bool): Whether to apply position 
+		class_token_pos_embed (bool): Whether to apply position
 		embedding to the class token.
 		Default is True.
 		n_classes (int): Number of output classes. If 0, there is no head,
@@ -80,19 +80,19 @@ class ViT(nn.Module):
 			patch_size=self.patch_size,
 			bias=not self.pre_norm,
 			)(input)
-			
+
 		if not self.rel_pos_embed:
 			if self.class_token_pos_embed:
 				output = layers.ClassToken()(output)
 				output = layers.AbsPosEmbed()(output)
-			
+
 			else:
 				output = layers.AbsPosEmbed()(output)
 				output = layers.ClassToken()(output)
-		
+
 		else:
 			output = layers.ClassToken()(output)
-		
+
 		output = nn.LayerNorm(
 			epsilon=self.layer_norm_eps,
 			)(output) if self.pre_norm else output
@@ -101,7 +101,7 @@ class ViT(nn.Module):
 			name='block_0',
 			value=output,
 			)
-		
+
 		window_size = (input.shape[-3]//self.patch_size, input.shape[-2]//self.patch_size) if self.rel_pos_embed else None
 		for block_ind in range(self.depth):
 			output = layers.MetaFormerBlock(
@@ -129,14 +129,14 @@ class ViT(nn.Module):
 
 		if self.head_pool and self.n_classes != 0:
 			output = output[:, 1:]
-	
+
 		output = layers.ViTHead(
 			n_classes=self.n_classes,
 			pool=self.head_pool,
 			layer_norm_eps=self.layer_norm_eps,
 			norm_first=self.head_norm_first,
 			)(output)
-		
+
 		return output
 
 
@@ -161,7 +161,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				'augreg_in22k_ft_in1k_224': inception_params_config('vit_tiny_patch16_224'),
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_tiny_patch16_384'),
 				},
-			), 
+			),
 		'vit_small_patch32': dict(
 			model_args=dict(
 				depth=12,
@@ -189,7 +189,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				'augreg_in22k_ft_in1k_224': inception_params_config('vit_small_patch16_224'),
 				'augreg_in22k_ft_in1k_384': inception_params_config('vit_small_patch16_384'),
 				},
-			), 
+			),
 		'vit_small_patch8': dict(
 			model_args=dict(
 				depth=12,
@@ -402,7 +402,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 		'deit3_small_patch16': dict(
 			model_args=dict(
 				depth=12,
-				token_dim=384, 
+				token_dim=384,
 				n_heads=6,
 				layer_scale_init_value=1e-6,
 				class_token_pos_embed=False,
@@ -420,7 +420,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				token_dim=512,
 				n_heads=8,
 				layer_scale_init_value=1e-6,
-				class_token_pos_embed=False,			
+				class_token_pos_embed=False,
 				),
 			params={
 				'in1k_224': imagenet_params_config('deit3_medium_patch16_224'),
@@ -433,7 +433,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				token_dim=768,
 				n_heads=12,
 				layer_scale_init_value=1e-6,
-				class_token_pos_embed=False,			
+				class_token_pos_embed=False,
 				),
 			params={
 				'in1k_224': imagenet_params_config('deit3_base_patch16_224'),
@@ -448,7 +448,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				token_dim=1024,
 				n_heads=16,
 				layer_scale_init_value=1e-6,
-				class_token_pos_embed=False,			
+				class_token_pos_embed=False,
 				),
 			params={
 				'in1k_224': imagenet_params_config('deit3_large_patch16_224'),
@@ -464,7 +464,7 @@ def get_vit_configs() -> T.Tuple[T.Type[ViT], T.Dict]:
 				n_heads=16,
 				patch_size=14,
 				layer_scale_init_value=1e-6,
-				class_token_pos_embed=False,			
+				class_token_pos_embed=False,
 				),
 			params={
 				'in1k_224': imagenet_params_config('deit3_huge_patch14_224'),

@@ -41,7 +41,7 @@ def get_dims(
 		out_dim (T.Optional[int]): Number of output neurons. If None,
 		it is set to the number of input channels.
 		Default is None.
-		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the 
+		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the
 		hidden layer. If None, hidden_dim must be provided. If both
 		hidden_dim_expansion_factor and hidden_dim are provided, the latter takes precedence.
 		Default is None.
@@ -49,7 +49,7 @@ def get_dims(
 		If None, hidden_dim_expansion_factor must be provided. If both
 		hidden_dim_expansion_factor and hidden_dim are provided, the latter takes precedence.
 		Default is None.
-	
+
 	Returns (T.Tuple[int, int]): Hidden and output dimensions.
 	"""
 	return (
@@ -66,7 +66,7 @@ class MLP(nn.Module):
 		out_dim (T.Optional[int]): Number of output neurons. If None,
 		it is set to the number of input channels.
 		Default is None.
-		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the 
+		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the
 		hidden layer. If None, hidden_dim must be provided. If both
 		hidden_dim_expansion_factor and hidden_dim are provided, the latter takes precedence.
 		Default is None.
@@ -77,11 +77,11 @@ class MLP(nn.Module):
 		act (T.Callable): Activation for the hidden layer.
 		Default is nn.relu.
 		output_act (bool): Whether to apply activation on the output.
-		Default is False. 
+		Default is False.
 		bias (bool): Whether the linear layers should have a bias term. If bn is True,
 		the first linear layer would not have a bias term.
 		Default is True.
-		bias_force (bool): Whether to force the first linear layer to have a bias term 
+		bias_force (bool): Whether to force the first linear layer to have a bias term
 		even if bn is True.
 		Default is False.
 		bn (bool): Whether to apply batch normalization before the activation.
@@ -143,14 +143,14 @@ class MLP(nn.Module):
 
 class ConvMLP(nn.Module):
 	"""
-	Multilayer perceptron with one hidden layer, 
+	Multilayer perceptron with one hidden layer,
 	implenented using convolutions.
 
 	Args:
 		out_dim (T.Optional[int]): Number of output channels. If None,
 		it is set to the number of input channels.
 		Default is None.
-		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the 
+		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the
 		hidden layer. If None, hidden_dim must be provided. If both
 		hidden_dim_expansion_factor and hidden_dim are provided, the latter takes precedence.
 		Default is None.
@@ -175,11 +175,11 @@ class ConvMLP(nn.Module):
 		act (T.Callable): Activation for the hidden layer.
 		Default is nn.relu.
 		output_act (bool): Whether to apply activation on the output.
-		Default is False. 
+		Default is False.
 		bias (bool): Whether the convolutions should have a bias term. If bn is True,
 		the first convolution would not have a bias term.
 		Default is True.
-		bias_force (bool): Whether to force the first convolution to have a bias term 
+		bias_force (bool): Whether to force the first convolution to have a bias term
 		even if bn is True.
 		Default is False.
 		bn (bool): Whether to apply batch normalization before the activation.
@@ -244,7 +244,7 @@ class TransformerMLP(nn.Module):
 		out_dim (T.Optional[int]): Number of output neurons. If None,
 		it is set to the number of input channels.
 		Default is None.
-		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the 
+		hidden_dim_expansion_factor (T.Optional[float]): Factor of expansion for the
 		hidden layer. If None, hidden_dim must be provided. If both
 		hidden_dim_expansion_factor and hidden_dim are provided, the latter takes precedence.
 		Default is None.
@@ -258,7 +258,7 @@ class TransformerMLP(nn.Module):
 		applied immediately after the first linear layer. If None,
 		no depthwise convolution is applied.
 		Default is None.
-		layer_norm_eps (T.Optional[float]): Epsilon value passed to 
+		layer_norm_eps (T.Optional[float]): Epsilon value passed to
 		layer normalization. If None, no normalization is applied.
 		Default is 1e-6.
 		layer_scale_init_value (T.Optional[float]): Value

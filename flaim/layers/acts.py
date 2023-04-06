@@ -6,7 +6,7 @@ Activation functions:
 - square_relu: Squared ReLU by So et al.
 - StarReLU: StarReLU by Yu et al.
 
-References: 
+References:
 - Hendrycks et al. Gaussian Error Linear Units (GELUs).
 - Misra. Mish: A Self Regularized Non-Monotonic Activation Function.
 - So et al. Primer: Searching for Efficient Transformers for Language Modeling.
@@ -38,7 +38,7 @@ def quick_gelu(input):
 
 	Args:
 		input: Input.
-	
+
 	Returns: Result of quick GELU.
 	"""
 	return input * nn.sigmoid(1.702*input)
@@ -50,7 +50,7 @@ def mish(input):
 
 	Args:
 		input: Input.
-	
+
 	Returns: Result of mish.
 	"""
 	return input * jnp.tanh(nn.softplus(input))
@@ -62,7 +62,7 @@ def squared_relu(input):
 
 	Args:
 		input: Input.
-	
+
 	Returns: Result of squared ReLU.
 	"""
 	return nn.relu(input) ** 2
@@ -82,7 +82,7 @@ class StarReLU(nn.Module):
 	"""
 	scale_init_value: float = 1.0
 	bias_init_value: float = 0.0
-	
+
 	@nn.compact
 	def __call__(self, input):
 		scale = self.param(

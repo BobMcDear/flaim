@@ -95,7 +95,7 @@ def block_partition(
 		input: Input.
 		block_size (T.Union[T.Tuple[int, int], int]): Block size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The input partitioned into blocks.
 	"""
 	bs, h, w, in_dim = input.shape
@@ -119,7 +119,7 @@ def block_merge(
 		input: Input.
 		block_size (T.Union[T.Tuple[int, int], int]): Block size.
 		If an int, this value is used along both spatial dimensions.
-	
+
 	Returns: The input partitioned into blocks.
 	"""
 	bs, n_blocks, n_tokens, token_dim = input.shape
@@ -151,10 +151,10 @@ class NesTStage(nn.Module):
 	depth: int
 	token_dim: int
 	n_heads: int
-	block_size: T.Union[T.Tuple[int, int], int] 
+	block_size: T.Union[T.Tuple[int, int], int]
 	downsample: bool = False
 	jax: bool = True
-	
+
 	@nn.compact
 	def __call__(self, input):
 		if self.downsample:
@@ -167,12 +167,12 @@ class NesTStage(nn.Module):
 		output = layers.AbsPosEmbed(
 			n_axes=-3,
 			)(output)
-		
+
 		for _ in range(self.depth):
 			output = layers.MetaFormerBlock(
 				token_mixer=partial(BlockMHSA, n_heads=self.n_heads),
 				)(output)
-		output = block_merge(output, self.block_size) 
+		output = block_merge(output, self.block_size)
 
 		return output
 
@@ -193,7 +193,7 @@ class NesT(nn.Module):
 		with JAX.
 		Default is True.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -233,13 +233,13 @@ class NesT(nn.Module):
 				name=f'stage_{stage_ind+1}',
 				value=output,
 				)
-		
+
 		output = layers.Head(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-6,
 			norm_first=True,
 			)(output)
-		
+
 		return output
 
 

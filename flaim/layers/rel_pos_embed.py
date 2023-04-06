@@ -1,7 +1,7 @@
 """
 Relative position embedding by Huang et al., code borrowed from Wightman.
 
-References: 
+References:
 - Huang et al. Music Transformer: Generating Music with Long-Term Structure.
 - Wightman. PyTorch Image Models.
 """
@@ -52,7 +52,7 @@ def get_rel_pos_ind(
 		If an int, this value is used along both spatial dimesnoins.
 		class_token (bool): Whether the input contains a class token.
 		Default is True.
-	
+
 	Returns (jnp.ndarray): Matrix used to index a relative position bias
 	table.
 	"""
@@ -66,7 +66,7 @@ def get_rel_pos_ind(
 
 	rel_coords = coords[:, :, None] - coords[:, None, :]
 	rel_coords = jnp.transpose(rel_coords, (1, 2, 0))
-	
+
 	rel_coords = rel_coords.at[:, :, 0].set(rel_coords[:, :, 0] + window_h - 1)
 	rel_coords = rel_coords.at[:, :, 1].set(rel_coords[:, :, 1] + window_w - 1)
 	rel_coords = rel_coords.at[:, :, 0].set(rel_coords[:, :, 0] * (2 * window_w - 1))
@@ -122,5 +122,5 @@ class RelPosEmbed(nn.Module):
 
 		rel_pos_bias = rel_pos_table(rel_pos_ind)
 		rel_pos_bias = jnp.transpose(rel_pos_bias, (2, 0, 1))
-		
+
 		return input+rel_pos_bias

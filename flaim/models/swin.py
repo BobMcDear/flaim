@@ -38,7 +38,7 @@ def get_mask(
 		slice(-shift, None),
 		)
 	cnt = 0
-	
+
 	for slice_h in slices:
 		for slice_w in slices:
 			mask = mask.at[:, slice_h, slice_w, :].set(cnt)
@@ -86,7 +86,7 @@ class Mask(nn.Module):
 				shift=self.shift,
 				),
 			).value
-	
+
 		output = jnp.reshape(input, (-1, len(mask), n_heads, n_tokens, n_tokens))
 		mask = jnp.expand_dims(mask, (0, 2))
 		output = jnp.reshape(mask+output, (-1, n_heads, n_tokens, n_tokens))
@@ -206,7 +206,7 @@ class SwinStage(nn.Module):
 					),
 				layer_norm_eps=1e-5,
 				)(input)
-		
+
 		if self.downsample:
 			input = PatchMerge()(input)
 
@@ -225,13 +225,13 @@ class Swin(nn.Module):
 		patch_size (int): Patch size. This value is used along
 		both spatial dimensions.
 		Default is 4.
-		window_size (T.Union[T.Tuple[int, ...], int]): Window size for 
+		window_size (T.Union[T.Tuple[int, ...], int]): Window size for
 		relative position embedding and window attention, used along
 		both spatial dimensions. If an int, this value is used for every stage,
 		and if a T.List, it must contain the window size for each stage.
 		Default is 7.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -256,7 +256,7 @@ class Swin(nn.Module):
 			name='stage_0',
 			value=output,
 			)
-		
+
 		window_size = layers.tuplify(self.window_size, len(self.depths))
 		for stage_ind in range(len(self.depths)):
 			output = SwinStage(

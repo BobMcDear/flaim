@@ -25,12 +25,12 @@ class CBAMChannelAttention(nn.Module):
 	CBAM's channel attention module.
 
 	Args:
-		reduction_factor (T.Optional[int]): Factor of reduction for the 
+		reduction_factor (T.Optional[int]): Factor of reduction for the
 		hidden layer of MLP. If None, reduction_dim must be provided.
 		If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
 		Default is 16.
-		reduction_dim (T.Optional[int]): Number of channels in the 
+		reduction_dim (T.Optional[int]): Number of channels in the
 		hidden layer of the MLP. If None, reduction_factor must be provided.
 		If both reduction_factor and reduction_dim are provided,
 		the latter takes precedence.
@@ -56,7 +56,7 @@ class CBAMChannelAttention(nn.Module):
 		avg_attention, max_attention = global_avg_max_pool(input)
 		avg_attention = mlp(avg_attention)
 		max_attention = mlp(max_attention)
-		
+
 		attention = self.gate(avg_attention + max_attention)
 		return attention*input
 
@@ -87,12 +87,12 @@ class CBAM(nn.Module):
 	Convolutional block attention module.
 
 	Args:
-		reduction_factor (T.Optional[int]): Factor of reduction for the 
+		reduction_factor (T.Optional[int]): Factor of reduction for the
 		hidden layer of MLP of the spatial attention module. If None,
 		reduction_dim must be provided. If both reduction_factor and
 		reduction_dim are provided, the latter takes precedence.
 		Default is 16.
-		reduction_dim (T.Optional[int]): Number of channels in the 
+		reduction_dim (T.Optional[int]): Number of channels in the
 		hidden layer of the MLP of the channel attention module.
 		If None, reduction_factor must be provided. If both reduction_factor
 		and reduction_dim are provided, the latter takes precedence.

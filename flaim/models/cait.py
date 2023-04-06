@@ -41,7 +41,7 @@ class ClassAttentionQKV(nn.Module):
 	def __call__(self, input):
 		n_tokens, token_dim = input.shape[-2:]
 		head_dim = token_dim//self.n_heads
-		
+
 		q = nn.Dense(
 			features=token_dim,
 			)(input[:, 0])
@@ -100,7 +100,7 @@ class Cait(nn.Module):
 	Class-attention image transformer.
 
 	Args:
-		depth (int): Depth of the no-class-token 
+		depth (int): Depth of the no-class-token
 		part of the model.
 		token_dim (int): Token dimension.
 		n_heads (int): Number of heads.
@@ -114,7 +114,7 @@ class Cait(nn.Module):
 		LayerScale. If None, no LayerScale is applied.
 		Default is 1e-5.
 		n_classes (int): Number of output classes. If 0, there is no head,
-		and the raw final features are returned. If -1, all stages of the 
+		and the raw final features are returned. If -1, all stages of the
 		head, other than the final linear layer, are applied and the output
 		returned.
 		Default is 0.
@@ -167,13 +167,13 @@ class Cait(nn.Module):
 				name=f'block_{self.depth+block_ind+1}',
 				value=class_token,
 				)
-		
+
 		output = jnp.concatenate((class_token, output), axis=1)
 		output = layers.ViTHead(
 			n_classes=self.n_classes,
 			layer_norm_eps=1e-6,
 			)(output)
-			
+
 		return output
 
 

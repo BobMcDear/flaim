@@ -43,7 +43,7 @@ class RadixSoftmax(nn.Module):
 			output = jnp.swapaxes(output, axis1=-3, axis2=-2)
 			output = nn.softmax(output, axis=-3)
 			output = jnp.reshape(output, (bs, h, w, self.radix, -1))
-		
+
 		else:
 			output = nn.sigmoid(input)
 
@@ -103,7 +103,7 @@ class SplAt(nn.Module):
 		if 1 < self.radix:
 			output = jnp.reshape(output, (bs, h, w, self.radix, out_dim))
 			attention = jnp.sum(output, axis=-2)
-		
+
 		else:
 			attention = output
 
@@ -124,5 +124,5 @@ class SplAt(nn.Module):
 		output = attention*output
 		if 1 < self.radix:
 			output = jnp.sum(output, axis=-2)
-		
+
 		return output

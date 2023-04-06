@@ -1,5 +1,5 @@
 """
-Plain window multi-headed self-attention by Liu et al. without cyclical shifts, 
+Plain window multi-headed self-attention by Liu et al. without cyclical shifts,
 relative position embedding, etc.
 
 References:
@@ -37,11 +37,11 @@ class WindowMHSA(MHSA):
 		output = jnp.reshape(output, (-1, self.window_size ** 2, in_dim))
 
 		output = super().__call__(output)
-		
+
 		output = window_merge(
 			output,
 			window_size=self.window_size,
 			img_size=(h, w),
 			)
-		
+
 		return output
