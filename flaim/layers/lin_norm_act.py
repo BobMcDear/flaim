@@ -2,12 +2,14 @@
 Modules following a linear-normalization-activation structure:
 - ConvBNAct: Convolution followed by batch normalization and an activation function.
 - ConvLNAct: Convolution followed by layer normalization and an activation function.
+- GNActConv: Group normalization followed by an activation function and a convolution.
 """
 
 
 __all__ = [
 	'ConvBNAct',
 	'ConvLNAct',
+	'GNActConv',
 	]
 
 
@@ -140,4 +142,70 @@ class ConvLNAct(nn.Module):
 			epsilon=self.layer_norm_eps,
 			)(output) if self.layer_norm_eps else output
 		output = self.act(output)
+		return output
+
+
+class GNActConv(nn.Module):
+	"""
+	Group normalization followed by an activation function and a convolution.
+
+	Args:
+		out_dim (T.Optional[int]): Number of output channels.
+		If None, it is set to the number of input channels.
+		Default is None.
+		kernel_size (T.Union[T.Tuple[int, int], int]): Kernel size.
+		If an int, this value is used along both spatial dimensions.
+		stride (T.Union[T.Tuple[int, int], int]): Stride. If an int,
+		this value is used along both spatial dimensions.
+		Default is 1.
+		padding (T.Optional[T.Union[str, int]]): Padding. If None,
+		it is set so the spatial dimensions are exactly divided by stride.
+		If an int, this value is used along both spatial dimensions.
+		Default is None.
+		groups (T.Union[int, str]): Number of groups of the convolution.
+		If 'dw', a depthwise convolution is performed.
+		Default is 1.
+		dilation (int): Dilation.
+		Default is 1.
+		bias (bool): Whether to the convolution should have a bias term.
+		Default is True.
+		ws_eps (float): Epsilon value for weight standardization.
+		Default is 1e-8.
+		group_norm_n_groups (int): Number of groups for group normalization.
+		Default is 32.
+		group_norm_eps (T.Optional[float]): Epsilon value passed to group normalization.
+		If None, no normalization is applied.
+		Default is 1e-5.
+		act (T.Callable): Activation function.
+		Default is identity.
+	"""
+	out_dim: T.Optional[int] = None
+	kernel_size: T.Union[T.Tuple[int, int], int] = 3
+	stride: T.Union[T.Tuple[int, int], int] = 1
+	padding: T.Optional[T.Union[str, int]] = None
+	groups: T.Union[int, str] = 1
+	dilation: int = 1
+	bias: bool = True
+	ws_eps: float = 1e-8
+	group_norm_n_groups: int = 32
+	group_norm_eps: T.Optional[float] = 1e-5
+	act: T.Callable = identity
+
+	@nn.compact
+	def __call__(self, input):
+		output = nn.GroupNorm(
+			num_groups=self.group_norm_n_groups,
+			epsilon=self.group_norm_eps,
+			)(input) if self.group_norm_eps else input
+		output = self.act(output)
+		output = Conv(
+			out_dim=self.out_dim,
+			kernel_size=self.kernel_size,
+			stride=self.stride,
+			padding=self.padding,
+			groups=self.groups,
+			dilation=self.dilation,
+			bias=self.bias,
+			ws_eps=self.ws_eps,
+			)(output)
 		return output
