@@ -16,6 +16,7 @@ The following is a list of all available architectures and their pre-trained par
 &#x25cf; <strong>[PVT V2](#pvt-v2)</strong><br>
 &#x25cf; <strong>[RegNet](#regnet)</strong><br>
 &#x25cf; <strong>[ResNet](#resnet)</strong><br>
+&#x25cf; <strong>[ResNet V2](#resnet-v2)</strong><br>
 &#x25cf; <strong>[ResNet-D](#resnet-d)</strong><br>
 &#x25cf; <strong>[ResNet-T](#resnet-t)</strong><br>
 &#x25cf; <strong>[Wide ResNet](#wide-resnet)</strong><br>
@@ -508,6 +509,35 @@ please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/
 
 &#x25cf; ```resnet152```: ResNet-152.<br>
 * ```in1k_224```: Trained on ImageNet1K at resolution 224 x 224.
+
+## ResNet V2
+
+ResNet V2 from _[Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027)_ by He et al. ResNet V2 is a descendant of ResNet that trains more smoothly and generalizes better thanks to its redesigned residual units, which abide by a pre-activation pattern where normalization modules and activations functions precede rather than succeed convolutional layers.<br>
+For the reference implementation, source of pre-trained parameters, and copyrights,
+please visit [here](https://github.com/rwightman/pytorch-image-models/blob/main/timm/models/resnetv2.py).
+
+&#x25cf; ```resnetv2_bit_50x1```: ResNetV2-50 (width multiplier 1x) with group normalization and weight-standardized convolutions, used by Google's Big Transfer (BiT).<br>
+* ```dist_in1k_224```: Trained using distillation on ImageNet1K at resolution 224 x 224.<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_448```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 448 x 448.<br>
+
+&#x25cf; ```resnetv2_bit_50x3```: ResNetV2-50 (width multiplier 3x) with group normalization and weight-standardized convolutions, used by Google's Big Transfer (BiT).<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_448```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 448 x 448.<br>
+
+&#x25cf; ```resnetv2_bit_101x1```: ResNetV2-101 (width multiplier 1x) with group normalization and weight-standardized convolutions, used by Google's Big Transfer (BiT).<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_448```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 448 x 448.<br>
+
+&#x25cf; ```resnetv2_bit_101x3```: ResNetV2-101 (width multiplier 3x) with group normalization and weight-standardized convolutions, used by Google's Big Transfer (BiT).<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_448```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 448 x 448.<br>
+
+&#x25cf; ```resnetv2_bit_152x2```: ResNetV2-152 (width multiplier 2x) with group normalization and weight-standardized convolutions, used by Google's Big Transfer (BiT).<br>
+* ```teacher_in22k_ft_in1k_224```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 224 x 224, used as a teacher model to perform knowledge distillation.<br>
+* ```teacher_in22k_ft_in1k_384```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 384 x 384, used as a teacher model to perform knowledge distillation.<br>
+* ```in22k_224```: Trained on ImageNet22K at resolution 224 x 224.<br>
+* ```in22k_ft_in1k_448```: Pre-trained on ImageNet22K and fine-tuned on ImageNet1K at resolution 448 x 448.<br>
 
 ## ResNet-D
 

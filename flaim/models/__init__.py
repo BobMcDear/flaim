@@ -17,6 +17,7 @@ from . import (
 	pvtv2,
 	regnet,
 	resnet,
+    resnetv2,
 	swin,
 	van,
 	vgg,

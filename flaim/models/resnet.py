@@ -128,7 +128,7 @@ class BasicBlock(nn.Module):
 		out_dim (T.Optional[int]): Number of output channels of the second convolution.
 		If None, it is set to bottleneck_dim.
 		Default is None.
-		conv_bn_relu (T.Callable): Layer used as the
+		conv_block (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module.
 		Default is layers.ConvBNAct.
 		cardinality (int): Cardinality.
@@ -154,7 +154,7 @@ class BasicBlock(nn.Module):
 	"""
 	bottleneck_dim: int
 	out_dim: T.Optional[int] = None
-	conv_bn_relu: T.Callable = layers.ConvBNAct
+	conv_block: T.Callable = layers.ConvBNAct
 	cardinality: int = 1
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
@@ -169,7 +169,7 @@ class BasicBlock(nn.Module):
 				input=input,
 				stride=self.stride,
 				)
-		output = self.conv_bn_relu(
+		output = self.conv_block(
 			out_dim=self.bottleneck_dim,
 			stride=1 if self.avg_downsample else self.stride,
 			groups=self.cardinality,
@@ -208,7 +208,7 @@ class BottleneckBlock(nn.Module):
 	Args:
 		out_dim (int): Number of output channels.
 		bottleneck_dim (int): Number of bottleneck channels.
-		conv_bn_relu (T.Callable): Layer used as the
+		conv_block (T.Callable): Layer used as the
 		middle convolution-batch normalization-ReLU module.
 		Default is layers.ConvBNAct.
 		cardinality (int): Cardinality.
@@ -234,7 +234,7 @@ class BottleneckBlock(nn.Module):
 	"""
 	out_dim: int
 	bottleneck_dim: int
-	conv_bn_relu: T.Callable = layers.ConvBNAct
+	conv_block: T.Callable = layers.ConvBNAct
 	cardinality: int = 1
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
@@ -255,7 +255,7 @@ class BottleneckBlock(nn.Module):
 				input=output,
 				stride=self.stride,
 				)
-		output = self.conv_bn_relu(
+		output = self.conv_block(
 			stride=1 if self.avg_downsample else self.stride,
 			groups=self.cardinality,
 			act=nn.relu,
@@ -297,7 +297,7 @@ class ResNetStage(nn.Module):
 		bottleneck_dim (int): Number of bottleneck channels.
 		block (T.Callable): Block used to construct the stage.
 		Default is BottleneckBlock.
-		conv_bn_relu (T.Callable): Layer used as the
+		conv_block (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module
 		of basic blocks or the middle convolution-batch normalization-ReLU
 		module of bottleneck blocks.
@@ -328,7 +328,7 @@ class ResNetStage(nn.Module):
 	out_dim: int
 	bottleneck_dim: int
 	block: T.Callable = BottleneckBlock
-	conv_bn_relu: T.Callable = layers.ConvBNAct
+	conv_block: T.Callable = layers.ConvBNAct
 	cardinality: int = 1
 	stride: int = 1
 	downsample: T.Callable = ResNetDownsample
@@ -342,7 +342,7 @@ class ResNetStage(nn.Module):
 			input = self.block(
 				out_dim=self.out_dim,
 				bottleneck_dim=self.bottleneck_dim,
-				conv_bn_relu=self.conv_bn_relu,
+				conv_block=self.conv_block,
 				cardinality=self.cardinality,
 				stride=self.stride if block_ind == 0 else 1,
 				downsample=self.downsample,
@@ -362,7 +362,7 @@ class ResNet(nn.Module):
 		depths (T.Tuple[int, ...]): Depth of each stage.
 		block (T.Callable): Block used to construct the network.
 		Default is BottleneckBlock.
-		conv_bn_relu (T.Callable): Layer used as the
+		conv_block (T.Callable): Layer used as the
 		first convolution-batch normalization-ReLU module
 		of basic blocks or the middle convolution-batch normalization-ReLU
 		module of bottleneck blocks.
@@ -399,7 +399,7 @@ class ResNet(nn.Module):
 	"""
 	depths: T.Tuple[int, ...]
 	block: T.Callable = BottleneckBlock
-	conv_bn_relu: T.Callable = layers.ConvBNAct
+	conv_block: T.Callable = layers.ConvBNAct
 	cardinality: int = 1
 	dim_per_cardinal_first_stage: int = 64
 	stem: T.Callable = ResNetStem
@@ -407,6 +407,7 @@ class ResNet(nn.Module):
 	attention: T.Callable = layers.Identity
 	attention_pre: bool = False
 	avg_downsample: T.Optional[str] = None
+	head: T.Type = layers.Head
 	n_classes: int = 0
 
 	@nn.compact
@@ -425,7 +426,7 @@ class ResNet(nn.Module):
 				out_dim=bottleneck_dim if self.block == BasicBlock else 2 ** (stage_ind+8),
 				bottleneck_dim=bottleneck_dim,
 				block=self.block,
-				conv_bn_relu=self.conv_bn_relu,
+				conv_block=self.conv_block,
 				cardinality=self.cardinality,
 				stride=1 if stage_ind == 0 else 2,
 				downsample=self.downsample,
@@ -439,7 +440,7 @@ class ResNet(nn.Module):
 				value=output,
 				)
 
-		output = layers.Head(
+		output = self.head(
 			n_classes=self.n_classes,
 			)(output)
 
@@ -936,7 +937,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			model_args=dict(
 				depths=(2, 2, 2, 2),
 				block=BasicBlock,
-				conv_bn_relu=layers.SK,
+				conv_block=layers.SK,
 			),
 			params={
 				'in1k_224': imagenet_params_config('skresnet18'),
@@ -946,7 +947,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 			model_args=dict(
 				depths=(3, 4, 6, 3),
 				block=BasicBlock,
-				conv_bn_relu=layers.SK,
+				conv_block=layers.SK,
 			),
 			params={
 				'in1k_224': imagenet_params_config('skresnet34'),
@@ -955,7 +956,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'skresnext50_32x4d': dict(
 			model_args=dict(
 				depths=(3, 4, 6, 3),
-				conv_bn_relu=partial(layers.SK, reduction_factor=16, min_reduction_dim=32, split=False),
+				conv_block=partial(layers.SK, reduction_factor=16, min_reduction_dim=32, split=False),
 				cardinality=32,
 				dim_per_cardinal_first_stage=4,
 			),
@@ -966,7 +967,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest14_2s1x64d': dict(
 			model_args=dict(
 				depths=(1, 1, 1, 1),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=ResNetDStem,
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',
@@ -978,7 +979,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest26_2s1x64d': dict(
 			model_args=dict(
 				depths=(2, 2, 2, 2),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=ResNetDStem,
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',
@@ -990,7 +991,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest50_1s4x24d': dict(
 			model_args=dict(
 				depths=(3, 4, 6, 3),
-				conv_bn_relu=partial(layers.SplAt, radix=1),
+				conv_block=partial(layers.SplAt, radix=1),
 				cardinality=4,
 				dim_per_cardinal_first_stage=24,
 				stem=ResNetDStem,
@@ -1004,7 +1005,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest50_2s1x64d': dict(
 			model_args=dict(
 				depths=(3, 4, 6, 3),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=ResNetDStem,
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',
@@ -1016,7 +1017,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest50_4s2x40d': dict(
 			model_args=dict(
 				depths=(3, 4, 6, 3),
-				conv_bn_relu=partial(layers.SplAt, radix=4),
+				conv_block=partial(layers.SplAt, radix=4),
 				cardinality=2,
 				dim_per_cardinal_first_stage=40,
 				stem=ResNetDStem,
@@ -1030,7 +1031,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest101_2s1x64d': dict(
 			model_args=dict(
 				depths=(3, 4, 23, 3),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',
@@ -1042,7 +1043,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest200_2s1x64d': dict(
 			model_args=dict(
 				depths=(3, 24, 36, 3),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',
@@ -1054,7 +1055,7 @@ def get_resnet_configs() -> T.Tuple[T.Type[ResNet], T.Dict]:
 		'resnest269_2s1x64d': dict(
 			model_args=dict(
 				depths=(3, 30, 48, 8),
-				conv_bn_relu=layers.SplAt,
+				conv_block=layers.SplAt,
 				stem=partial(ResNetDStem, out_dims=(64, 64, 128)),
 				downsample=partial(ResNetDownsample, avg_pool=True),
 				avg_downsample='post',

@@ -168,7 +168,7 @@ class GNActConv(nn.Module):
 		dilation (int): Dilation.
 		Default is 1.
 		bias (bool): Whether to the convolution should have a bias term.
-		Default is True.
+		Default is False.
 		ws_eps (float): Epsilon value for weight standardization.
 		Default is 1e-8.
 		group_norm_n_groups (int): Number of groups for group normalization.
@@ -185,7 +185,7 @@ class GNActConv(nn.Module):
 	padding: T.Optional[T.Union[str, int]] = None
 	groups: T.Union[int, str] = 1
 	dilation: int = 1
-	bias: bool = True
+	bias: bool = False
 	ws_eps: float = 1e-8
 	group_norm_n_groups: int = 32
 	group_norm_eps: T.Optional[float] = 1e-5
