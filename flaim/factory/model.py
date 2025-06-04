@@ -142,7 +142,7 @@ class Model:
 		prng: T.Optional[jax.random.KeyArray] = None,
 		n_classes: int = 0,
 		**model_kwargs,
-		) -> T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]:
+		) -> T.Tuple[nn.Module, T.Dict, T.Dict]:
 		"""
 		Constructs and initializes the model.
 
@@ -168,9 +168,9 @@ class Model:
 			Default is 0.
 			**model_kwargs: Additional arguments passed to the model.
 
-		Returns (T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]):
-		The model, its parameters, and, if pretrained is not False, the normalization statistics
-		associated with the pre-trained parameters.
+		Returns (T.Tuple[nn.Module, T.Dict, T.Dict]): The model, its parameters,
+		and the normalization statistics associated with the parameters. When pretrained
+		is False, the normalization statistics are empty.
 		"""
 		if pretrained:
 			params_name = self.get_params_name(pretrained)
@@ -195,4 +195,4 @@ class Model:
 				)
 			vars = merge_vars(vars, pretrained_vars)
 
-		return (model, vars, norm_stats) if pretrained else (model, vars)
+		return (model, vars, norm_stats) if pretrained else (model, vars, {})

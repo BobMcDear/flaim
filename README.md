@@ -52,7 +52,7 @@ can be a time-consuming process.
   * Positive integers: ```n_classes``` is interpreted as the desired number of output categories.
 <br><br>
 
-```flaim.get_model``` returns the model, its parameters, and, if ```pretrained``` is not ```False```, the normalization statistics associated with the pre-trained parameters. The snippet below constructs an ImageNet1K-trained ResNet-50 with 10 output classes.
+```flaim.get_model``` returns the model, its parameters, and the normalization statistics associated with the parameters. When ```pretrained``` is ```False```, these statistics are simply an empty dictionary. The snippet below constructs an ImageNet1K-trained ResNet-50 with 10 output classes.
 
 ```python
 import flaim

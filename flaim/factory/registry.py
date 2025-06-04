@@ -20,10 +20,10 @@ def register_models(
 	Decorator for registering models by adding them to MODELS.
 
 	Args:
-		get_models (T.Callable): T.Callable that returns
+		get_configs (T.Callable): T.Callable that returns
 		the model class and a dictionary of model configurations.
 
-	Returns (T.Callable): get_models unmodified.
+	Returns (T.Callable): get_configs unmodified.
 	"""
 	model_cls, model_configs = get_configs()
 	for model_name in model_configs:
@@ -41,7 +41,7 @@ def get_model(
 	jit: bool = True,
 	prng: T.Optional[jax.random.KeyArray] = None,
 	n_classes: int = 0,
-	) -> T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]:
+	) -> T.Tuple[nn.Module, T.Dict, T.Dict]:
 	"""
 	Returns a flaim model and its parameters.
 
@@ -67,9 +67,9 @@ def get_model(
 		returned.
 		Default is 0.
 
-	Returns (T.Union[T.Tuple[nn.Module, T.Dict], T.Tuple[nn.Module, T.Dict, T.Dict]]):
-	The model, its parameters, and the normalization statistics associated with the
-	parameters if pretrained is not False.
+	Returns (T.Tuple[nn.Module, T.Dict, T.Dict]): The model, its parameters,
+	and the normalization statistics associated with the parameters. When pretrained
+	is False, the normalization statistics are empty.
 	"""
 	if model_name not in MODELS:
 		raise ValueError(f'{model_name} not recognized')
