@@ -92,7 +92,7 @@ output, intermediates = model.apply(vars, input, training=False, mutable=['inter
 If the model is hierarchical, ```intermediates```'s entries are the output of each network stage and can be looked up through
 ```intermediates['intermediates']['stage_ind']```, where ```ind``` is the index of the desired stage, with 0 being reserved for the stem. For isotropic models, the output of every block is returned, accessible via ```intermediates['intermediates']['block_ind']```, where ```ind``` is the index of the desired block and 0 is once again reserved for the stem.
 
-It should be noted that Flax's [```sow```](https://flax.readthedocs.io/en/latest/api_reference/flax.linen.html#flax.linen.Module.sow) API, which is used utilized by flaim, appends the intermediate activations to a tuple; that is, if _n_ forward passes are performed, ```intermediates['intermediates']['stage_ind']``` or ```intermediates['intermediates']['block_ind']``` would be tuples of length _n_, with the *i*<sup>th</sup> item corresponding to the *i*<sup>th</sup> forward pass.
+It should be noted that Flax's [```sow```](https://flax-linen.readthedocs.io/en/v0.10.3/api_reference/flax.linen/module.html#flax.linen.Module.sow) API, which is used utilized by flaim, appends the intermediate activations to a tuple; that is, if _n_ forward passes are performed, ```intermediates['intermediates']['stage_ind']``` or ```intermediates['intermediates']['block_ind']``` would be tuples of length _n_, with the *i*<sup>th</sup> item corresponding to the *i*<sup>th</sup> forward pass.
 
 ## Examples
 
